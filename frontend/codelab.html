@@ -304,7 +304,7 @@
     <!-- ── JavaScript ────────────────────────────────────────────────────── -->
     <script>
     // ── Constants ────────────────────────────────────────────────────────
-    const WEBHOOK_URL = 'https://hook.eu1.make.com/4atrqtgj72rtg6743z7hyhaxkb823yio';
+    const CODE_RUNNER_API = '/api/run-code';
 
     // ── State ────────────────────────────────────────────────────────────
     let files = {
@@ -467,7 +467,7 @@
         showLoadingSkeleton();
 
         try {
-            const res = await fetch(WEBHOOK_URL, {
+            const res = await fetch(CODE_RUNNER_API, {
                 method:  'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body:    JSON.stringify({

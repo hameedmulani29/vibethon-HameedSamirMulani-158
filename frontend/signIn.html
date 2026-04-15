@@ -232,7 +232,7 @@
                 <div class="mt-10 text-center">
                     <p class="text-on-surface-variant text-sm">
                         Don't have an account?
-                        <a class="text-primary font-bold hover:underline ml-1" href="singup.html">Create Account</a>
+                        <a class="text-primary font-bold hover:underline ml-1" href="signup.html">Create Account</a>
                     </p>
                 </div>
             </div>
@@ -267,11 +267,6 @@
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // If already signed in, go straight to dashboard
-            if (sessionStorage.getItem('careerpilot_session') || localStorage.getItem('careerpilot_session')) {
-                window.location.href = '/dashboard.html';
-                return;
-            }
             const form      = document.querySelector('form');
             const submitBtn = form.querySelector('button[type="submit"]');
             const errorMsg  = document.querySelector('p.text-error');

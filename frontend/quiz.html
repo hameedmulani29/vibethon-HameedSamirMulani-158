@@ -234,10 +234,16 @@
 
                     <!-- Actions -->
                     <div class="flex items-center justify-between mt-8 pt-6 border-t border-surface-container-high">
-                        <button id="hint-btn" onclick="getHint()"
-                            class="flex items-center gap-2 text-sm font-bold text-secondary hover:bg-secondary-container/20 px-4 py-2 rounded-lg transition-colors">
-                            <span class="material-symbols-outlined text-sm">lightbulb</span>Ask AI Hint
-                        </button>
+                        <div class="flex gap-2">
+                            <button id="hint-btn" onclick="getHint()"
+                                class="flex items-center gap-2 text-sm font-bold text-secondary hover:bg-secondary-container/20 px-4 py-2 rounded-lg transition-colors">
+                                <span class="material-symbols-outlined text-sm">lightbulb</span>Hint
+                            </button>
+                            <button id="show-answer-btn" onclick="revealAnswer()" style="display:none"
+                                class="flex items-center gap-2 text-sm font-bold text-primary hover:bg-primary-container/20 px-4 py-2 rounded-lg transition-colors">
+                                <span class="material-symbols-outlined text-sm">visibility</span>Show Answer
+                            </button>
+                        </div>
                         <div class="flex gap-3">
                             <button id="submit-btn" onclick="submitAnswer()"
                                 class="px-8 py-3 bg-gradient-to-r from-primary to-primary-container text-white font-bold rounded-xl shadow-lg hover:brightness-110 active:scale-95 transition-all text-sm">
@@ -360,7 +366,7 @@ const DIFFICULTIES = [
     { label: 'Hard',   color: 'bg-primary-container text-white' },
 ];
 
-const BACKEND = 'http://localhost:5000';
+const BACKEND_API = '/api';
 
 // ── State ─────────────────────────────────────────────────────────────────
 let selectedLang  = 'Python';
@@ -439,7 +445,7 @@ async function startQuiz() {
     const msgInterval = setInterval(() => { lbl.textContent = loadMsgs[Math.min(++mi, loadMsgs.length - 1)]; }, 1200);
 
     try {
-        const res = await fetch(`${BACKEND}/generate-quiz`, {
+        const res = await fetch(`${BACKEND_API}/generate-quiz`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ language: selectedLang, topic, difficulty: selectedDiff })
@@ -514,6 +520,7 @@ function renderQuestion() {
     document.getElementById('hint-card').classList.add('hidden');
     document.getElementById('submit-btn').style.display = '';
     document.getElementById('next-btn').style.display   = 'none';
+    document.getElementById('show-answer-btn').style.display = 'none';
     document.getElementById('hint-btn').disabled        = false;
 
     // Score dots
@@ -535,26 +542,21 @@ function submitAnswer() {
 
     results.push(isCorrect);
 
-    // Style options
+    // Style ONLY the user's selected option
     document.querySelectorAll('.option-label').forEach(lbl => {
         const idx = parseInt(lbl.dataset.index);
         lbl.classList.add('answered', 'pointer-events-none');
-        if (idx === correctIdx)  lbl.classList.add('option-correct');
-        else if (idx === selectedIdx) lbl.classList.add('option-wrong');
+        if (idx === selectedIdx) {
+            if (isCorrect) lbl.classList.add('option-correct');
+            else lbl.classList.add('option-wrong');
+        }
     });
-
-    // Explanation
-    const expCard  = document.getElementById('explanation-card');
-    const expTitle = document.getElementById('exp-title');
-    const expText  = document.getElementById('exp-text');
-    expTitle.textContent = isCorrect ? '✅ Correct! Here\'s why:' : '❌ Not quite. Here\'s why:';
-    expTitle.className   = `font-bold font-headline mb-2 ${isCorrect ? 'text-tertiary' : 'text-error'}`;
-    expText.textContent  = quizData[currentQ].explanation;
-    expCard.classList.remove('hidden');
 
     // Buttons
     document.getElementById('submit-btn').style.display = 'none';
     document.getElementById('next-btn').style.display   = '';
+    document.getElementById('show-answer-btn').style.display = '';
+    
     if (currentQ === quizData.length - 1) {
         document.getElementById('next-btn').innerHTML =
             'View Results <span class="material-symbols-outlined text-sm">emoji_events</span>';
@@ -562,6 +564,28 @@ function submitAnswer() {
 
     updateScoreDots();
     updateLiveScore();
+}
+
+// ── Reveal Answer ──────────────────────────────────────────────────────────
+function revealAnswer() {
+    const correctIdx = quizData[currentQ].answer;
+    document.querySelectorAll('.option-label').forEach(lbl => {
+        if (parseInt(lbl.dataset.index) === correctIdx) {
+            lbl.classList.add('option-correct');
+        }
+    });
+
+    const expCard  = document.getElementById('explanation-card');
+    const expTitle = document.getElementById('exp-title');
+    const expText  = document.getElementById('exp-text');
+    const isCorrect = results[results.length - 1];
+
+    expTitle.textContent = isCorrect ? '✅ Analysis' : '❌ Solution';
+    expTitle.className   = `font-bold font-headline mb-2 ${isCorrect ? 'text-tertiary' : 'text-error'}`;
+    expText.textContent  = quizData[currentQ].explanation;
+    expCard.classList.remove('hidden');
+
+    document.getElementById('show-answer-btn').style.display = 'none';
 }
 
 // ── Next ──────────────────────────────────────────────────────────────────

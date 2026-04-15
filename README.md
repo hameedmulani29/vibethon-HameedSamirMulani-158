@@ -19,6 +19,50 @@ Unlike traditional platforms, CareerPilot AI focuses on **learning by doing**, n
 
 ---
 
+## 🔐 Authentication System
+
+The platform includes a full authentication system with the following features:
+
+### Features
+- **Signup**: Name, Email, Password with validation
+- **Login**: Email, Password with "Remember Me" option
+- **Session Management**: JWT-based with httpOnly cookies
+- **Security**: Password hashing with bcrypt, input validation
+- **Database**: MongoDB for user storage
+
+### Setup Instructions
+
+1. **Install Dependencies**:
+   ```bash
+   npm install
+   ```
+
+2. **Start MongoDB**:
+   Make sure MongoDB is installed and running on `mongodb://localhost:27017`
+
+3. **Start the Server**:
+   ```bash
+   node server.js
+   ```
+
+4. **Access the App**:
+   Open `http://localhost:3001` in your browser
+
+### API Endpoints
+- `POST /api/signup` - User registration
+- `POST /api/login` - User login
+- `POST /api/logout` - User logout
+- `GET /api/auth/status` - Check authentication status
+
+### User Flow
+1. Visit the app → Redirected to Login page
+2. Click "Create Account" → Go to Signup page
+3. Signup → Auto-login and redirect to Dashboard
+4. Login → Redirect to Dashboard
+5. Logout → Redirect to Login
+
+---
+
 ## 🚨 Problem
 
 Most platforms like Coursera and Udemy are:

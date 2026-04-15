@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>NeuralPlay | Python Coding Playground</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#191c1d",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "primary-fixed": "#e2dfff",
+                        "tertiary-container": "#007030",
+                        "surface-variant": "#e1e3e4",
+                        "on-secondary-fixed": "#001f26",
+                        "inverse-on-surface": "#f0f1f2",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#c3c0ff",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#005321",
+                        "primary": "#3525cd",
+                        "outline-variant": "#c7c4d8",
+                        "surface-container-low": "#f3f4f5",
+                        "primary-container": "#4f46e5",
+                        "surface-container-highest": "#e1e3e4",
+                        "inverse-surface": "#2e3132",
+                        "tertiary-fixed": "#6bff8f",
+                        "secondary-fixed": "#acedff",
+                        "on-secondary-fixed-variant": "#004e5c",
+                        "on-surface": "#191c1d",
+                        "secondary": "#00687a",
+                        "on-secondary-container": "#006172",
+                        "on-error-container": "#93000a",
+                        "on-surface-variant": "#464555",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed-dim": "#4cd7f6",
+                        "secondary-container": "#57dffe",
+                        "surface-tint": "#4d44e3",
+                        "surface-container-high": "#e7e8e9",
+                        "surface-dim": "#d9dadb",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed-dim": "#4ae176",
+                        "surface-container": "#edeeef",
+                        "surface": "#f8f9fa",
+                        "on-tertiary-fixed": "#002109",
+                        "surface-bright": "#f8f9fa",
+                        "outline": "#777587",
+                        "error-container": "#ffdad6",
+                        "tertiary": "#005523",
+                        "on-primary-fixed": "#0f0069",
+                        "background": "#f8f9fa",
+                        "on-tertiary-container": "#63f889",
+                        "on-primary-container": "#dad7ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"],
+                        "mono": ["JetBrains Mono"]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Manrope', sans-serif;
+        }
+
+        code,
+        pre {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .glass-header {
+            backdrop-filter: blur(20px);
+            background: rgba(248, 249, 250, 0.8);
+        }
+    </style>
+</head>
+
+<body
+    class="bg-surface text-on-surface selection:bg-primary-fixed selection:text-primary min-h-screen flex flex-col overflow-hidden">
+    <!-- TopNavBar Implementation -->
+    <header class="w-full top-0 z-50 bg-[#f8f9fa] dark:bg-gray-900 glass-header">
+        <div class="flex justify-between items-center px-6 py-3 w-full">
+            <div class="flex items-center gap-8">
+                <span class="text-xl font-bold tracking-tighter text-[#3525cd] dark:text-[#4f46e5]">NeuralPlay</span>
+                <nav class="hidden md:flex gap-6 items-center">
+                    <a class="font-manrope text-sm font-medium tracking-tight text-[#3525cd] dark:text-[#4f46e5] border-b-2 border-[#3525cd] pb-1"
+                        href="#">Editor</a>
+                    <a class="font-manrope text-sm font-medium tracking-tight text-gray-500 dark:text-gray-400 hover:text-[#3525cd] dark:hover:text-[#4f46e5] transition-colors"
+                        href="#">Templates</a>
+                    <a class="font-manrope text-sm font-medium tracking-tight text-gray-500 dark:text-gray-400 hover:text-[#3525cd] dark:hover:text-[#4f46e5] transition-colors"
+                        href="#">Community</a>
+                    <a class="font-manrope text-sm font-medium tracking-tight text-gray-500 dark:text-gray-400 hover:text-[#3525cd] dark:hover:text-[#4f46e5] transition-colors"
+                        href="#">Docs</a>
+                </nav>
+            </div>
+            <div class="flex items-center gap-4">
+                <button class="p-2 text-gray-500 hover:text-[#3525cd] transition-all scale-95 duration-200">
+                    <span class="material-symbols-outlined">settings</span>
+                </button>
+                <button class="p-2 text-gray-500 hover:text-[#3525cd] transition-all scale-95 duration-200">
+                    <span class="material-symbols-outlined">help</span>
+                </button>
+                <div
+                    class="h-8 w-8 rounded-full overflow-hidden bg-surface-container-highest border border-outline-variant/20">
+                    <img alt="User avatar" class="w-full h-full object-cover"
+                        data-alt="close-up portrait of a professional male developer with a friendly expression in a modern office setting"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8Zs5vyIw95chG7ShD2s5ct-9SWgRlotjkwQ5GjiBu7jbtB_Lm339gxtF-LhNzjiX_eyYt5R2xVyQjB0GE9gIim0H1_JnkOul4RHQgYi3h2xae7zOBKhq5-Lq9VShRLbhs6gPvGG0T_ulqZawicPn1YuO2ntnAookZvuUZ-UwmxKwQXiwAbknyyij7jwsVBdymjX8MMNKPvALfjgfRud2gXqe4Q21s0IwRGS-vkg-J1WxJqBni4OEnFbj7J1bOCFR_iEi11WAOruk" />
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="flex flex-1 overflow-hidden">
+        <!-- SideNavBar Implementation -->
+        <aside class="h-full w-16 md:w-64 border-r-0 bg-[#f3f4f5] dark:bg-gray-800 flex flex-col py-4 px-2">
+            <div class="mb-6 px-4 hidden md:block">
+                <div class="flex items-center gap-3">
+                    <div
+                        class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center text-on-primary-container">
+                        <span class="material-symbols-outlined text-sm">code</span>
+                    </div>
+                    <div>
+                        <p class="font-inter text-xs font-semibold text-on-surface">Main.js</p>
+                        <p class="text-[10px] text-gray-400">Active Session</p>
+                    </div>
+                </div>
+            </div>
+            <nav class="flex-1 space-y-1">
+                <a class="flex items-center gap-3 px-4 py-2.5 rounded-xl transition-all hover:bg-white/50 dark:hover:bg-white/5 text-gray-400 dark:text-gray-500"
+                    href="#">
+                    <span class="material-symbols-outlined">folder</span>
+                    <span class="font-inter text-xs font-semibold hidden md:block">Projects</span>
+                </a>
+                <a class="flex items-center gap-3 px-4 py-2.5 rounded-xl transition-all hover:bg-white/50 dark:hover:bg-white/5 text-gray-400 dark:text-gray-500"
+                    href="#">
+                    <span class="material-symbols-outlined">bug_report</span>
+                    <span class="font-inter text-xs font-semibold hidden md:block">Debugger</span>
+                </a>
+                <a class="flex items-center gap-3 px-4 py-2.5 rounded-xl transition-all bg-white/50 text-[#3525cd] dark:text-[#4f46e5] font-bold"
+                    href="#">
+                    <span class="material-symbols-outlined">terminal</span>
+                    <span class="font-inter text-xs font-semibold hidden md:block">Console</span>
+                </a>
+                <a class="flex items-center gap-3 px-4 py-2.5 rounded-xl transition-all hover:bg-white/50 dark:hover:bg-white/5 text-gray-400 dark:text-gray-500"
+                    href="#">
+                    <span class="material-symbols-outlined">commit</span>
+                    <span class="font-inter text-xs font-semibold hidden md:block">Git</span>
+                </a>
+                <a class="flex items-center gap-3 px-4 py-2.5 rounded-xl transition-all hover:bg-white/50 dark:hover:bg-white/5 text-gray-400 dark:text-gray-500"
+                    href="#">
+                    <span class="material-symbols-outlined">extension</span>
+                    <span class="font-inter text-xs font-semibold hidden md:block">Extensions</span>
+                </a>
+            </nav>
+            <div class="mt-auto px-2">
+                <button
+                    class="w-full bg-gradient-to-br from-[#3525cd] to-[#4f46e5] text-white py-2.5 rounded-xl font-manrope text-xs font-bold shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all hidden md:block">
+                    Run Code
+                </button>
+                <button
+                    class="w-full aspect-square bg-primary text-white rounded-xl flex items-center justify-center md:hidden">
+                    <span class="material-symbols-outlined">play_arrow</span>
+                </button>
+            </div>
+        </aside>
+        <!-- Main Workspace Canvas -->
+        <main class="flex-1 flex flex-col md:flex-row bg-surface overflow-hidden">
+            <!-- Left: Code Editor -->
+            <section class="flex-1 h-full bg-surface-container-lowest flex flex-col">
+                <div
+                    class="h-10 border-b border-outline-variant/10 flex items-center justify-between px-4 bg-surface/50">
+                    <div class="flex items-center gap-2">
+                        <span
+                            class="text-[11px] font-bold uppercase tracking-widest text-on-surface-variant/60">main.py</span>
+                        <div class="w-1.5 h-1.5 rounded-full bg-tertiary-fixed shadow-[0_0_8px_rgba(107,255,143,0.5)]">
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="text-[10px] text-on-surface-variant/40 font-mono">UTF-8</span>
+                        <button
+                            class="text-primary flex items-center gap-1 hover:bg-primary/5 px-2 py-1 rounded-lg transition-colors">
+                            <span class="material-symbols-outlined text-sm">play_circle</span>
+                            <span class="text-xs font-bold font-manrope">Run</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="flex-1 overflow-auto flex font-mono text-sm leading-relaxed p-4">
+                    <!-- Line Numbers -->
+                    <div
+                        class="w-10 text-right pr-4 text-outline select-none border-r border-outline-variant/10 mr-4 opacity-40">
+                        <div>1</div>
+                        <div>2</div>
+                        <div>3</div>
+                        <div>4</div>
+                        <div>5</div>
+                        <div>6</div>
+                        <div>7</div>
+                        <div>8</div>
+                        <div>9</div>
+                        <div>10</div>
+                        <div>11</div>
+                        <div>12</div>
+                    </div>
+                    <!-- Code Content -->
+                    <div class="flex-1 whitespace-pre">
+                        <span class="text-secondary">import</span> numpy <span class="text-secondary">as</span> np
+                        <span class="text-secondary">import</span> matplotlib.pyplot <span
+                            class="text-secondary">as</span> plt
+
+                        <span class="text-on-surface-variant opacity-60"># Initialize neural parameters</span>
+                        <span class="text-primary">def</span> <span class="text-tertiary">sigmoid</span>(x):
+                        <span class="text-secondary">return</span> <span class="text-primary-container">1</span> /
+                        (<span class="text-primary-container">1</span> + np.exp(-x))
+
+                        <span class="text-primary">class</span> <span class="text-tertiary">Neuron</span>:
+                        <span class="text-primary">def</span> <span class="text-tertiary">__init__</span>(self, weights,
+                        bias):
+                        self.weights = weights
+                        self.bias = bias
+
+                        <span class="text-primary">def</span> <span class="text-tertiary">feedforward</span>(self,
+                        inputs):
+                        total = np.dot(self.weights, inputs) + self.bias
+                        <span class="text-secondary">return</span> sigmoid(total)
+
+                        <span class="text-on-surface-variant opacity-60"># Create a test instance</span>
+                        weights = np.array([<span class="text-primary-container">0</span>, <span
+                            class="text-primary-container">1</span>])
+                        bias = <span class="text-primary-container">4</span>
+                        n = Neuron(weights, bias)
+
+                        x = np.array([<span class="text-primary-container">2</span>, <span
+                            class="text-primary-container">3</span>])
+                        <span class="text-secondary">print</span>(n.feedforward(x))
+                    </div>
+                </div>
+            </section>
+            <!-- Right: Interactive Console -->
+            <section
+                class="w-full md:w-1/3 h-1/3 md:h-full bg-surface-container-low border-l-0 md:border-l border-outline-variant/10 flex flex-col">
+                <div
+                    class="h-10 border-b border-outline-variant/10 flex items-center justify-between px-4 bg-surface-container-high/30">
+                    <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-sm text-on-surface-variant">terminal</span>
+                        <span
+                            class="text-[11px] font-bold uppercase tracking-widest text-on-surface-variant/60">Console</span>
+                    </div>
+                    <button
+                        class="text-[10px] font-bold text-on-surface-variant/60 hover:text-error transition-colors flex items-center gap-1">
+                        <span class="material-symbols-outlined text-xs">delete_sweep</span>
+                        Clear
+                    </button>
+                </div>
+                <div class="flex-1 p-6 font-mono text-xs overflow-auto space-y-3">
+                    <div class="flex gap-2">
+                        <span class="text-tertiary opacity-70">&gt;&gt;</span>
+                        <span class="text-on-surface">python3 main.py</span>
+                    </div>
+                    <div
+                        class="text-on-surface-variant bg-surface-container-highest/40 p-3 rounded-lg border border-outline-variant/5">
+                        <p class="mb-1 opacity-50 font-sans italic">Loading runtime environment...</p>
+                        <p class="text-secondary-fixed-dim">Successfully connected to Python 3.11.2 cluster.</p>
+                    </div>
+                    <div class="pl-4 border-l-2 border-primary/20 py-1">
+                        <span class="text-primary font-bold">0.9990889488055994</span>
+                    </div>
+                    <div class="flex gap-2 animate-pulse">
+                        <span class="text-tertiary opacity-70">&gt;&gt;</span>
+                        <span class="w-2 h-4 bg-primary/40 rounded-sm"></span>
+                    </div>
+                </div>
+                <!-- Bento Style Insight Card -->
+                <div class="p-4 mt-auto">
+                    <div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm border border-outline-variant/5">
+                        <div class="flex justify-between items-start mb-2">
+                            <span
+                                class="px-2 py-0.5 bg-tertiary-fixed text-on-tertiary-fixed text-[10px] font-bold rounded-full uppercase tracking-tighter">AI
+                                Insight</span>
+                            <span class="material-symbols-outlined text-sm text-primary">auto_awesome</span>
+                        </div>
+                        <p class="text-[11px] text-on-surface-variant leading-relaxed">
+                            Your neuron is heavily biased towards the second input index. Consider normalizing your
+                            weights for more stable convergence in deep architectures.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <!-- Floating Action Button (Only on Home/Dashboard) -->
+    <!-- Suppressed on Editor screen as per "Contextual FAB Suppression" rule -->
+</body>
+
+</html>

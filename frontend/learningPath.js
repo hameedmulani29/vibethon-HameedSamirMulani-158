@@ -1,6 +1,6 @@
 /**
  * ═══════════════════════════════════════════════════════════════════════════════
- * CareerPilot AI - Learning Path System
+ * NuralPlay - Learning Path System
  * Dynamic Curriculum Management with Progress Tracking & Persistence
  * ═══════════════════════════════════════════════════════════════════════════════
  */
@@ -184,7 +184,7 @@ const curriculumData = [
 
 class LearningPathManager {
   constructor() {
-    this.storageKey = "careerpilot_learning_progress";
+    this.storageKey = "nuralplay_learning_progress";
     this.curriculum = curriculumData;
     this.loadProgress();
   }
@@ -599,9 +599,9 @@ function attachLogoutListener() {
   const logoutBtn = document.getElementById("logout-btn");
   if (logoutBtn) {
     logoutBtn.addEventListener("click", () => {
-      sessionStorage.removeItem("careerpilot_session");
-      localStorage.removeItem("careerpilot_session");
-      window.location.replace("signIn.html");
+      sessionStorage.removeItem("nuralplay_session");
+      localStorage.removeItem("nuralplay_session");
+      window.location.replace("hero.html");
     });
   }
 }

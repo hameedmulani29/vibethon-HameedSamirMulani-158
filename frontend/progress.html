@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>NeuralPlay Dashboard | Progress Tracking</title>
+    <title>NuralPlay Dashboard | Progress Tracking</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap"
@@ -116,7 +116,7 @@
                 <div>
                     <h1
                         class="text-2xl font-bold text-[#3525cd] dark:text-[#4f46e5] font-manrope tracking-tight leading-tight">
-                        CareerPilot AI</h1>
+                        NuralPlay</h1>
                     <p class="text-[10px] uppercase tracking-[0.2em] text-slate-500 font-bold">The Intelligent Void</p>
                 </div>
             </div>
@@ -177,7 +177,7 @@
             class="w-full sticky top-0 z-40 bg-slate-50/80 dark:bg-slate-950/80 backdrop-blur-xl flex justify-between items-center px-8 py-4 shadow-sm shadow-indigo-500/5">
             <div class="flex items-center gap-12">
                 <span
-                    class="text-2xl font-bold tracking-tighter text-indigo-700 dark:text-indigo-400 font-['Manrope']">NeuralPlay</span>
+                    class="text-2xl font-bold tracking-tighter text-indigo-700 dark:text-indigo-400 font-['Manrope']">NuralPlay</span>
                 <nav class="hidden md:flex items-center gap-6 font-['Manrope'] tracking-tight">
                     <a class="text-slate-500 dark:text-slate-400 font-medium hover:text-indigo-600 dark:hover:text-indigo-300 transition-colors"
                         href="#">Curriculum</a>
@@ -517,6 +517,20 @@
             </div>
         </div>
     </main>
+    <script>
+        // ── Auth Guard ────────────────────────────────────────────────────
+        (function () {
+            const s = sessionStorage.getItem('nuralplay_session') || localStorage.getItem('nuralplay_session');
+            if (!s) window.location.replace('signIn.html');
+        })();
+
+        // ── Logout ────────────────────────────────────────────────────────
+        document.getElementById('logout-btn')?.addEventListener('click', function () {
+            sessionStorage.removeItem('nuralplay_session');
+            localStorage.removeItem('nuralplay_session');
+            window.location.href = 'hero.html';
+        });
+    </script>
 </body>
 
 </html>

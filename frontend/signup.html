@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Sign Up | NeuralPlay</title>
+    <title>Sign Up | NuralPlay</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap"
@@ -123,7 +123,7 @@
                         <span class="material-symbols-outlined text-white"
                             style="font-variation-settings: 'FILL' 1;">psychology</span>
                     </div>
-                    <span class="font-headline font-extrabold text-2xl tracking-tighter text-primary">NeuralPlay</span>
+                    <span class="font-headline font-extrabold text-2xl tracking-tighter text-primary">NuralPlay</span>
                 </div>
                 <h1 class="font-headline text-5xl font-extrabold text-on-surface leading-tight mb-6 tracking-tight">
                     Step into the <br />
@@ -169,7 +169,7 @@
                 <!-- Mobile Branding -->
                 <div class="flex md:hidden items-center gap-2 mb-8">
                     <span class="material-symbols-outlined text-primary text-3xl">psychology</span>
-                    <span class="font-headline font-extrabold text-xl tracking-tighter text-primary">NeuralPlay</span>
+                    <span class="font-headline font-extrabold text-xl tracking-tighter text-primary">NuralPlay</span>
                 </div>
                 <div class="mb-10">
                     <h2 class="font-headline text-3xl font-bold text-on-surface mb-2">Create your account</h2>
@@ -257,7 +257,7 @@
                 </form>
                 <footer class="mt-12 text-center">
                     <p class="text-xs text-outline font-label tracking-wide">
-                        Protected by NeuralPlay Shield™ <br />
+                        Protected by NuralPlay Shield™ <br />
                         Encrypted end-to-end with lattice-based cryptography.
                     </p>
                 </footer>
@@ -312,7 +312,7 @@
                 if (!terms)                       return showError('You must agree to the Terms of Service.');
 
                 // --- Check if email already registered ---
-                const users = JSON.parse(localStorage.getItem('careerpilot_users') || '[]');
+                const users = JSON.parse(localStorage.getItem('nuralplay_users') || '[]');
                 if (users.find(u => u.email === email)) {
                     return showError('An account with this email already exists. Sign in instead.');
                 }
@@ -333,7 +333,7 @@
                 };
 
                 users.push(newUser);
-                localStorage.setItem('careerpilot_users', JSON.stringify(users));
+                localStorage.setItem('nuralplay_users', JSON.stringify(users));
 
                 // Show success flash briefly then redirect
                 submitBtn.textContent = '✓ Account Created! Redirecting...';

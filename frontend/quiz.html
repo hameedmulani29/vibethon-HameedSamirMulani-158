@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>AI Quiz | CareerPilot AI</title>
+    <title>AI Quiz | NuralPlay</title>
     <meta name="description" content="Test your AI & programming knowledge with Gemini-powered adaptive quizzes." />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -68,7 +68,7 @@
 <!-- ── Auth Guard ──────────────────────────────────────────────────────── -->
 <script>
     (function(){
-        const s = sessionStorage.getItem('careerpilot_session') || localStorage.getItem('careerpilot_session');
+        const s = sessionStorage.getItem('nuralplay_session') || localStorage.getItem('nuralplay_session');
         if(!s) window.location.replace('signIn.html');
     })();
 </script>
@@ -76,7 +76,7 @@
 <!-- ── Sidebar ────────────────────────────────────────────────────────── -->
 <aside class="fixed left-0 top-0 h-screen w-64 bg-[#f3f4f5] flex flex-col py-6 z-50 border-r border-outline-variant/10">
     <div class="px-6 mb-8">
-        <h1 class="text-xl font-bold text-primary font-headline tracking-tight">CareerPilot AI</h1>
+        <h1 class="text-xl font-bold text-primary font-headline tracking-tight">NuralPlay</h1>
         <p class="text-xs text-outline mt-0.5">The Intelligent Void</p>
     </div>
     <nav class="flex-1 px-4 space-y-0.5">
@@ -384,7 +384,7 @@ document.addEventListener('DOMContentLoaded', () => {
     buildPills('diff-pills',  DIFFICULTIES.map(d => d.label), () => selectedDiff, v => selectedDiff = v);
 
     // Load session user info into header
-    const raw = sessionStorage.getItem('careerpilot_session') || localStorage.getItem('careerpilot_session');
+    const raw = sessionStorage.getItem('nuralplay_session') || localStorage.getItem('nuralplay_session');
     if (raw) {
         const s = JSON.parse(raw);
         document.getElementById('hdr-streak').querySelector('span:last-child').textContent = (s.streak || 0) + ' Streak';
@@ -671,13 +671,13 @@ function retryQuiz() {
 }
 
 function saveXP(earned) {
-    const key = sessionStorage.getItem('careerpilot_session') ? 'careerpilot_session' : null;
-    const lkey = localStorage.getItem('careerpilot_session')  ? 'careerpilot_session' : null;
+    const key = sessionStorage.getItem('nuralplay_session') ? 'nuralplay_session' : null;
+    const lkey = localStorage.getItem('nuralplay_session')  ? 'nuralplay_session' : null;
     const storage = key ? sessionStorage : (lkey ? localStorage : null);
     if (!storage) return;
-    const s = JSON.parse(storage.getItem('careerpilot_session'));
+    const s = JSON.parse(storage.getItem('nuralplay_session'));
     s.xp = (s.xp || 0) + earned;
-    storage.setItem('careerpilot_session', JSON.stringify(s));
+    storage.setItem('nuralplay_session', JSON.stringify(s));
     document.getElementById('hdr-xp').querySelector('span:last-child').textContent = s.xp.toLocaleString() + ' XP';
 }
 
@@ -692,9 +692,9 @@ function showToast(msg, type = 'info') {
 }
 
 function logout() {
-    sessionStorage.removeItem('careerpilot_session');
-    localStorage.removeItem('careerpilot_session');
-    window.location.href = 'signIn.html';
+    sessionStorage.removeItem('nuralplay_session');
+    localStorage.removeItem('nuralplay_session');
+    window.location.href = 'hero.html';
 }
 </script>
 </body>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>CodeLab | CareerPilot AI</title>
+    <title>CodeLab | NuralPlay</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
@@ -133,7 +133,7 @@
         <div class="flex items-center justify-between px-5 py-2.5">
             <div class="flex items-center gap-6">
                 <a href="dashboard.html" class="text-lg font-bold tracking-tighter text-primary font-headline">
-                    CareerPilot AI
+                    NuralPlay
                 </a>
                 <span class="text-outline-variant/40 text-sm hidden md:block">/</span>
                 <span class="text-sm font-semibold text-on-surface-variant hidden md:block">CodeLab</span>
@@ -170,7 +170,7 @@
                         <span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">rocket_launch</span>
                     </div>
                     <div>
-                        <h1 class="text-2xl font-bold text-[#3525cd] dark:text-[#4f46e5] font-manrope tracking-tight leading-tight">CareerPilot AI</h1>
+                        <h1 class="text-2xl font-bold text-[#3525cd] dark:text-[#4f46e5] font-manrope tracking-tight leading-tight">NuralPlay</h1>
                         <p class="text-[10px] uppercase tracking-[0.2em] text-slate-500 font-bold">The Intelligent Void</p>
                     </div>
                 </div>
@@ -302,6 +302,23 @@
     </div>
 
     <!-- ── JavaScript ────────────────────────────────────────────────────── -->
+    <script>
+        // ── Auth Guard ────────────────────────────────────────────────────
+        (function () {
+            const s = sessionStorage.getItem('nuralplay_session') || localStorage.getItem('nuralplay_session');
+            if (!s) window.location.replace('signIn.html');
+        })();
+
+        // ── Logout ────────────────────────────────────────────────────────
+        document.getElementById('logout-btn')?.addEventListener('click', function () {
+            sessionStorage.removeItem('nuralplay_session');
+            localStorage.removeItem('nuralplay_session');
+            window.location.href = 'hero.html';
+        });
+
+        // ── CodeLab Logic ──────────────────────────────────────────────────
+        // ... (existing script starts here)
+    </script>
     <script>
     // ── Constants ────────────────────────────────────────────────────────
     const CODE_RUNNER_API = '/api/run-code';

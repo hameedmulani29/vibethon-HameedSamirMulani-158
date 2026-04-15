@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Login | CareerPilot AI</title>
+    <title>Login | NuralPlay</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap"
@@ -116,8 +116,7 @@
                     <div class="flex items-center gap-2 mb-12">
                         <span class="material-symbols-outlined text-primary text-3xl"
                             data-icon="auto_awesome">auto_awesome</span>
-                        <h1 class="font-headline font-extrabold text-2xl text-primary tracking-tight">CareerPilot AI
-                        </h1>
+                        <h1 class="font-headline font-extrabold text-2xl text-primary tracking-tight">NuralPlay</h1>
                     </div>
                     <div class="space-y-6">
                         <h2 class="font-headline text-4xl font-bold leading-tight text-on-surface">
@@ -249,14 +248,14 @@
     <div
         class="fixed top-0 right-0 h-full w-80 glass-panel translate-x-full transition-transform duration-500 z-50 p-8 shadow-2xl border-l border-outline-variant/10">
         <div class="flex items-center justify-between mb-8">
-            <span class="font-headline font-bold text-primary">AI Insight</span>
+            <span class="font-headline font-bold text-primary">NuralPlay Insight</span>
             <button class="material-symbols-outlined text-outline hover:text-on-surface"
                 data-icon="close">close</button>
         </div>
         <div class="space-y-4">
             <h4 class="text-xl font-bold">Secure Authentication</h4>
             <p class="text-on-surface-variant text-sm leading-relaxed">
-                CareerPilot AI uses SHA-256 encryption and multi-factor authentication protocols to ensure your learning
+                NuralPlay uses SHA-256 encryption and multi-factor authentication protocols to ensure your learning
                 data remains strictly private.
             </p>
             <div class="p-4 rounded-lg bg-tertiary/10 border border-tertiary/20">
@@ -270,6 +269,13 @@
             const form      = document.querySelector('form');
             const submitBtn = form.querySelector('button[type="submit"]');
             const errorMsg  = document.querySelector('p.text-error');
+            const emailInput = document.getElementById('email');
+
+            // --- Auto-fill last used email ---
+            const lastEmail = localStorage.getItem('nuralplay_last_email');
+            if (lastEmail) {
+                emailInput.value = lastEmail;
+            }
 
             function showError(msg) {
                 errorMsg.textContent = msg;
@@ -278,13 +284,13 @@
                 submitBtn.textContent = 'Sign In';
             }
 
-            document.getElementById('email').addEventListener('input',    () => errorMsg.classList.add('hidden'));
+            emailInput.addEventListener('input',    () => errorMsg.classList.add('hidden'));
             document.getElementById('password').addEventListener('input', () => errorMsg.classList.add('hidden'));
 
             form.addEventListener('submit', function (e) {
                 e.preventDefault();
 
-                const email    = document.getElementById('email').value.trim().toLowerCase();
+                const email    = emailInput.value.trim().toLowerCase();
                 const password = document.getElementById('password').value;
                 const remember = document.getElementById('remember').checked;
 
@@ -295,7 +301,7 @@
                 submitBtn.textContent = 'Signing In...';
 
                 // --- Look up user in localStorage ---
-                const users = JSON.parse(localStorage.getItem('careerpilot_users') || '[]');
+                const users = JSON.parse(localStorage.getItem('nuralplay_users') || '[]');
                 const user  = users.find(u => u.email === email);
 
                 if (!user) {
@@ -306,6 +312,9 @@
                 if (user.passwordHash !== expectedHash) {
                     return showError('Incorrect password. Please try again.');
                 }
+
+                // --- Remember email for next time ---
+                localStorage.setItem('nuralplay_last_email', email);
 
                 // --- Create session ---
                 const session = {
@@ -319,9 +328,9 @@
 
                 // "Remember me" → persist across tabs; otherwise tab-scoped
                 if (remember) {
-                    localStorage.setItem('careerpilot_session', JSON.stringify(session));
+                    localStorage.setItem('nuralplay_session', JSON.stringify(session));
                 } else {
-                    sessionStorage.setItem('careerpilot_session', JSON.stringify(session));
+                    sessionStorage.setItem('nuralplay_session', JSON.stringify(session));
                 }
 
                 submitBtn.textContent = '✓ Welcome back, ' + user.name.split(' ')[0] + '!';

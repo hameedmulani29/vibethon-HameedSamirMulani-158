@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Games Dashboard | CareerPilot AI</title>
+    <title>Games Dashboard | NuralPlay</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
@@ -102,8 +102,7 @@
     <!-- SideNavBar Anchor -->
     <aside class="fixed left-0 top-0 h-screen w-64 bg-[#f3f4f5] dark:bg-slate-900 flex flex-col py-6 z-50">
         <div class="px-6 mb-10">
-            <h1 class="text-2xl font-bold text-[#3525cd] dark:text-[#4f46e5] font-headline tracking-tight">CareerPilot
-                AI</h1>
+            <h1 class="text-2xl font-bold text-[#3525cd] dark:text-[#4f46e5] font-headline tracking-tight">NuralPlay</h1>
             <p class="text-xs text-slate-500 font-label tracking-widest mt-1">The Intelligent Void</p>
         </div>
         <nav class="flex-1 space-y-1 px-4">
@@ -447,9 +446,16 @@
     <script>
         // ── Auth Guard ────────────────────────────────────────────────────
         (function () {
-            const s = sessionStorage.getItem('careerpilot_session') || localStorage.getItem('careerpilot_session');
+            const s = sessionStorage.getItem('nuralplay_session') || localStorage.getItem('nuralplay_session');
             if (!s) window.location.replace('signIn.html');
         })();
+
+        // ── Logout ────────────────────────────────────────────────────────
+        document.getElementById('logout-btn')?.addEventListener('click', function () {
+            sessionStorage.removeItem('nuralplay_session');
+            localStorage.removeItem('nuralplay_session');
+            window.location.href = 'hero.html';
+        });
     </script>
 </body>
 

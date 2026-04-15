@@ -285,7 +285,7 @@
                     <div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
                         <div class="w-2/3 h-full bg-secondary"></div>
                     </div>
-                    <button
+                    <button id="sorting-room-btn" onclick="openClassification()"
                         class="w-full py-3 bg-surface-container-high text-primary font-bold rounded-lg hover:bg-surface-container-highest transition-colors">
                         Enter Sorting Room
                     </button>
@@ -312,7 +312,7 @@
                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmw_7z30bQ4RzeAwSpD1djAh7Z7eSfVGsu2gm8DtoC2wIvGNsu6jI0Fh7AOI1CwyQvEPGrQjfqWjVA0thfWReM9fDujr4OcDKiFh3yxESZGYiFkFGB0ke8WkZLMcCkP2pYWJUIqhgh4g4a4XNUGTeUHyvwsLbNZ7c6gXoWMgVXrJpI1YdfWcbrLcxWpE7pr4mKFoOGRp9RCFvRD48e1sJmdc5Cb1rrnA-p-ZQ9O_F1r2nH9hzN9qsxCwgPNFJ33MGl_u7g2RWW5Dw" />
                         <div class="absolute inset-0 bg-gradient-to-t from-surface-container-low to-transparent"></div>
                     </div>
-                    <button
+                    <button id="adjust-weights-btn"
                         class="w-full py-3 bg-surface-container-high text-primary font-bold rounded-lg hover:bg-surface-container-highest transition-colors">
                         Adjust Weights
                     </button>
@@ -396,53 +396,97 @@
     <script src="https://cdn.jsdelivr.net/npm/leader-line-new@1.6.0/dist/leader-line.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Select existing elements
             const rootNode = document.getElementById('root');
             const yesNode = document.getElementById('node-yes');
             const noNode = document.getElementById('node-no');
             const playBtn = document.getElementById('play-session-btn');
+            const treeContainer = document.getElementById('tree-container');
 
-            let line1 = null;
-            let line2 = null;
+            let lines = [];
             let hasExpanded = false;
 
-            function expandTree() {
-                if (hasExpanded) return; // prevent duplicate lines on repeated clicks
-                hasExpanded = true;
+            // --- Decision Tree Game Logic ---
+            const treeData = {
+                question: "Start: Is it Spam?",
+                yes: {
+                    question: "Contains 'FREE'?",
+                    yes: "Result: 99% SPAM",
+                    no: "Result: PROMOTION"
+                },
+                no: {
+                    question: "Known Sender?",
+                    yes: "Result: PRIMARY",
+                    no: "Result: UNKNOWN"
+                }
+            };
 
-                // 1. Reveal the child nodes
+            function drawConnector(start, end, label) {
+                const line = new LeaderLine(start, end, {
+                    color: label === 'YES' ? '#4f46e5' : '#00687a',
+                    size: 3,
+                    label: LeaderLine.captionLabel(label, { color: '#ffffff', outlineColor: label === 'YES' ? '#4f46e5' : '#00687a', size: 0.8 }),
+                    path: 'grid',
+                    startSocket: 'bottom',
+                    endSocket: 'top'
+                });
+                lines.push(line);
+            }
+
+            function expandTree() {
+                if (hasExpanded) return;
+                hasExpanded = true;
+                
+                // Reveal nodes
                 yesNode.classList.remove('hidden');
                 noNode.classList.remove('hidden');
-
-                // 2. Slight delay so the browser has painted the nodes before measuring positions
+                
                 setTimeout(() => {
                     yesNode.classList.add('opacity-100');
                     noNode.classList.add('opacity-100');
-
-                    // 3. Draw the connector lines
-                    line1 = new LeaderLine(
-                        rootNode,
-                        yesNode,
-                        { color: '#4f46e5', size: 3, label: 'YES', path: 'grid', startSocket: 'bottom', endSocket: 'top' }
-                    );
-
-                    line2 = new LeaderLine(
-                        rootNode,
-                        noNode,
-                        { color: '#00687a', size: 3, label: 'NO', path: 'grid', startSocket: 'bottom', endSocket: 'top' }
-                    );
+                    drawConnector(rootNode, yesNode, 'YES');
+                    drawConnector(rootNode, noNode, 'NO');
                 }, 100);
             }
 
-            // Click root node to expand
             rootNode.addEventListener('click', expandTree);
-
+            
             // "Play Session" button scrolls to the tree then triggers expansion
             playBtn.addEventListener('click', () => {
                 rootNode.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 setTimeout(expandTree, 500);
             });
+            
+            // Auto-update lines on scroll or resize (LeaderLine requirement)
+            window.addEventListener('scroll', () => lines.forEach(l => l.position()), {passive: true});
+            window.addEventListener('resize', () => lines.forEach(l => l.position()), {passive: true});
         });
     </script>
+
+    <!-- Classification Modal -->
+    <div id="classification-modal" class="fixed inset-0 z-[60] hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl w-full max-w-2xl p-8 shadow-2xl">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold font-headline">Classification Room</h3>
+                <button onclick="closeModal()" class="material-symbols-outlined">close</button>
+            </div>
+            <p class="mb-4 text-slate-500 font-body">Drag the skill to the correct career cluster:</p>
+            
+            <div class="flex gap-4 mb-8">
+                <div id="skill-pill" draggable="true" class="px-6 py-3 bg-primary text-white rounded-full cursor-move font-bold">React.js</div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-6">
+                <div ondragover="event.preventDefault()" ondrop="handleDrop(event, 'Dev')" class="h-32 border-2 border-dashed border-slate-200 rounded-xl flex flex-col items-center justify-center hover:border-primary transition-colors group">
+                    <span class="font-bold text-slate-400 group-hover:text-primary">Web Development</span>
+                </div>
+                <div ondragover="event.preventDefault()" ondrop="handleDrop(event, 'Design')" class="h-32 border-2 border-dashed border-slate-200 rounded-xl flex flex-col items-center justify-center hover:border-primary transition-colors group">
+                    <span class="font-bold text-slate-400 group-hover:text-primary">UI/UX Design</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         // ── Auth Guard ────────────────────────────────────────────────────
         (function () {
@@ -456,6 +500,73 @@
             localStorage.removeItem('nuralplay_session');
             window.location.href = 'hero.html';
         });
+
+        // ── Search Filter ─────────────────────────────────────────────────
+        const searchInput = document.querySelector('input[placeholder="Search challenges..."]');
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                const term = e.target.value.toLowerCase();
+                document.querySelectorAll('.grid-cols-12 > div').forEach(card => {
+                    const text = card.innerText.toLowerCase();
+                    // We check if it's one of the game cards, avoiding sidebars if applicable
+                    if (card.classList.contains('col-span-12')) {
+                        card.style.display = text.includes(term) ? '' : 'none';
+                    }
+                });
+            });
+        }
+
+        // ── Neural Network Weight Adjuster ────────────────────────────────
+        const adjustWeightsBtn = document.getElementById('adjust-weights-btn');
+        const networkImg = document.querySelector('img[data-alt*="circuit board"]');
+        let weightCounter = 0;
+        
+        if (adjustWeightsBtn && networkImg) {
+            adjustWeightsBtn.addEventListener('click', () => {
+                weightCounter++;
+                const opacity = 0.5 + (Math.sin(weightCounter) * 0.25 + 0.25); // Cycle opacity
+                networkImg.style.opacity = opacity;
+                adjustWeightsBtn.innerText = `Weights Adjusted (${weightCounter})`;
+                
+                // Visual feedback
+                networkImg.style.filter = `brightness(${1 + (weightCounter % 5) * 0.1})`;
+            });
+        }
+
+        // ── Classification Room Logic ──────────────────────────────
+        function openClassification() {
+            document.getElementById('classification-modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('classification-modal').classList.add('hidden');
+        }
+
+        function handleDrop(event, category) {
+            event.preventDefault();
+            const pill = document.getElementById('skill-pill');
+            if (category === 'Dev') {
+                pill.innerText = "Correct! +50 XP";
+                pill.className = "px-6 py-3 bg-green-500 text-white rounded-full font-bold transition-all animate-bounce";
+                setTimeout(() => {
+                    closeModal();
+                    // Reset for next time
+                    pill.innerText = "React.js";
+                    pill.className = "px-6 py-3 bg-primary text-white rounded-full cursor-move font-bold";
+                }, 1500);
+            } else {
+                pill.classList.add('animate-shake'); // Assuming shake exists or just alerting
+                alert("Wrong cluster! Data skewed.");
+            }
+        }
+        
+        // Drag events for mobile/better UX
+        const skillPill = document.getElementById('skill-pill');
+        if (skillPill) {
+            skillPill.addEventListener('dragstart', (e) => {
+                e.dataTransfer.setData('text/plain', 'React.js');
+            });
+        }
     </script>
 </body>
 

@@ -186,104 +186,39 @@ Apply concepts to **real-life scenarios**.
 ## 📁 Project Structure
 
 ```
-careerpilot-ai/
+Vibethon/
 │
-├── public/
-├── src/
-│   ├── components/
-│   ├── pages/
-│   ├── layouts/
-│   ├── assets/
-│   ├── data/ (mock data)
-│   └── utils/
+├── .vscode/
 │
-├── package.json
-└── README.md
+├── backend/
+│   ├── node_modules/
+│   ├── .env
+│   ├── package-lock.json
+│   ├── package.json
+│
+├── frontend/
+│   ├── codelab.html
+│   ├── dashboard.html
+│   ├── games.html
+│   ├── hero.html
+│   ├── leaderboard.html
+│   ├── learningPath.html
+│   ├── learningPath.js
+│   ├── progress.html
+│   ├── quiz.html
+│   ├── sandbox.html
+│   ├── signin.html
+│   ├── simulations.html
+│   ├── signup.html
+│
+├── README.md
+├── server.js
 ```
 
----
-
-## 🚀 Getting Started
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/your-username/careerpilot-ai.git
-cd careerpilot-ai
-```
-
-### 2. Install dependencies
-
-```bash
-npm install
-```
-
-### 3. Run the development server
-
-```bash
-npm run dev
-```
-
-### 4. Open in browser
-
-```
-http://localhost:5173
-```
-
----
-
-## 📱 Responsive Design
-
-* 💻 Desktop optimized
-* 📱 Mobile-friendly
-* 📲 Tablet support
-
----
-
-## 📊 MVP Scope
-
-* ✅ Authentication
-* ✅ Learning modules
-* ✅ Coding playground
-* ✅ One mini-game
-* ✅ Quiz system
-* ✅ Basic leaderboard
-
----
-
-## 🏁 Roadmap
-
-* 🤖 AI Tutor (LLM-based guidance)
-* 📈 Personalized learning paths
-* 🧾 Certification system
-* 💼 Job & internship integration
-
----
-
-## 💰 Business Model
-
-* Freemium model
-* Paid Pro tier (advanced content + AI features)
-* Future: College partnerships
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome!
-Feel free to fork the repo and submit a pull request.
-
----
-
-## 📜 License
-
-This project is licensed under the MIT License.
-
----
 
 ## 💥 One-Line Pitch
 
-> **CareerPilot AI transforms AI/ML learning into an interactive, gamified experience that makes students job-ready faster.**
+> ** NuralPlay transforms AI/ML learning into an interactive, gamified experience that makes students job-ready faster.**
 
 ---
 
@@ -296,6 +231,6 @@ Built with ❤️ for innovation, learning, and impact.
 ## 📬 Contact
 
 For queries or collaboration:
-📧 [your-email@example.com](mailto:your-email@example.com)
+📧 [EMAIL_ADDRESS](mailto:[EMAIL_ADDRESS])
 
 ---

@@ -111,56 +111,9 @@
 </head>
 
 <body class="bg-surface text-on-surface selection:bg-primary-container selection:text-on-primary-container">
-    <!-- SideNavBar Anchor -->
-    <aside class="h-screen w-64 fixed left-0 top-0 bg-slate-100 flex flex-col border-r border-slate-200 z-50">
-        <!-- Header -->
-        <div class="p-6">
-            <div class="text-slate-900 font-black text-xl font-headline tracking-tighter mb-1">Core Engine</div>
-            <div class="text-[10px] uppercase tracking-widest text-slate-500 font-headline">v4.0.2-Stable</div>
-        </div>
-        <!-- Navigation Tabs -->
-        <nav class="flex-1 px-2 space-y-1">
-            <div
-                class="bg-white text-cyan-600 border-l-4 border-cyan-500 font-bold py-3 px-4 flex items-center gap-3 font-headline uppercase tracking-widest text-xs transition-all duration-200 ease-linear">
-                <span class="material-symbols-outlined" data-icon="account_tree">account_tree</span> Architecture
-            </div>
-            <div
-                class="text-slate-500 py-3 px-4 flex items-center gap-3 hover:bg-slate-200/50 transition-all duration-200 ease-linear font-headline uppercase tracking-widest text-xs">
-                <span class="material-symbols-outlined" data-icon="psychology">psychology</span> Models
-            </div>
-            <div
-                class="text-slate-500 py-3 px-4 flex items-center gap-3 hover:bg-slate-200/50 transition-all duration-200 ease-linear font-headline uppercase tracking-widest text-xs">
-                <span class="material-symbols-outlined" data-icon="tune">tune</span> Parameters
-            </div>
-            <div
-                class="text-slate-500 py-3 px-4 flex items-center gap-3 hover:bg-slate-200/50 transition-all duration-200 ease-linear font-headline uppercase tracking-widest text-xs">
-                <span class="material-symbols-outlined" data-icon="rocket_launch">rocket_launch</span> Deployment
-            </div>
-            <div
-                class="text-slate-500 py-3 px-4 flex items-center gap-3 hover:bg-slate-200/50 transition-all duration-200 ease-linear font-headline uppercase tracking-widest text-xs">
-                <span class="material-symbols-outlined" data-icon="terminal">terminal</span> Logs
-            </div>
-        </nav>
-        <!-- CTA & Footer -->
-        <div class="p-4 border-t border-slate-200 bg-slate-50">
-            <button
-                class="w-full bg-primary text-white py-3 rounded-lg font-headline uppercase tracking-widest text-xs font-bold hover:shadow-lg hover:shadow-primary/20 transition-all mb-6">
-                New Experiment
-            </button>
-            <div class="space-y-2">
-                <div
-                    class="text-slate-500 py-2 px-2 flex items-center gap-3 hover:text-slate-900 transition-colors text-xs font-headline uppercase tracking-widest cursor-pointer">
-                    <span class="material-symbols-outlined text-lg" data-icon="settings">settings</span> Settings
-                </div>
-                <div
-                    class="text-slate-500 py-2 px-2 flex items-center gap-3 hover:text-slate-900 transition-colors text-xs font-headline uppercase tracking-widest cursor-pointer">
-                    <span class="material-symbols-outlined text-lg" data-icon="help">help</span> Documentation
-                </div>
-            </div>
-        </div>
-    </aside>
+
     <!-- Main Content Canvas -->
-    <main class="ml-64 min-h-screen flex flex-col">
+    <main class="min-h-screen flex flex-col">
         <!-- Top Header Navigation -->
         <header
             class="sticky top-0 z-40 bg-slate-50/80 backdrop-blur-xl border-b border-slate-200/50 flex justify-between items-center w-full px-8 py-4">
@@ -179,6 +132,7 @@
                 </nav>
             </div>
             <button
+                onclick="location.href='signIn.html'"
                 class="bg-primary text-white px-6 py-2 rounded-lg font-headline text-xs font-bold uppercase tracking-widest hover:bg-primary/90 transition-all">
                 Initialize Session
             </button>

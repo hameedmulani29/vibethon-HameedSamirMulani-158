@@ -103,56 +103,72 @@
 </head>
 
 <body class="bg-surface text-on-surface">
-    <!-- SideNavBar (Authority: JSON & Design System) -->
-    <aside class="h-screen w-64 fixed left-0 top-0 bg-slate-50 dark:bg-slate-950 flex flex-col gap-2 p-6 z-50">
-        <div class="mb-8 px-2 flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-on-primary">
-                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">science</span>
-            </div>
-            <div>
-                <div class="text-on-surface font-bold font-headline leading-tight">NeuralPlay</div>
-                <div class="text-on-surface-variant text-xs font-medium">AI/ML Specialist</div>
+    <!-- SideNavBar Integration -->
+    <aside
+        class="fixed left-0 top-0 hidden md:flex flex-col h-screen w-64 py-6 bg-[#f3f4f5] dark:bg-slate-900 z-50 overflow-y-auto">
+        <div class="px-6 mb-8">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-lg"
+                    style="background: linear-gradient(135deg, #3525cd 0%, #4f46e5 100%);">
+                    <span class="material-symbols-outlined text-white"
+                        style="font-variation-settings: 'FILL' 1;">rocket_launch</span>
+                </div>
+                <div>
+                    <h1
+                        class="text-2xl font-bold text-[#3525cd] dark:text-[#4f46e5] font-manrope tracking-tight leading-tight">
+                        CareerPilot AI</h1>
+                    <p class="text-[10px] uppercase tracking-[0.2em] text-slate-500 font-bold">The Intelligent Void</p>
+                </div>
             </div>
         </div>
-        <nav class="flex-1 flex flex-col gap-2">
-            <a class="flex items-center gap-3 px-4 py-3 text-indigo-700 dark:text-indigo-400 bg-white dark:bg-slate-900 rounded-lg shadow-sm shadow-indigo-500/10 font-['Inter'] font-medium transition-all duration-300"
-                href="#">
-                <span class="material-symbols-outlined">dashboard</span>
-                <span>Dashboard</span>
+        <nav class="flex-1 px-4 space-y-1">
+            <a class="flex items-center gap-4 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-white/50 transition-colors duration-300"
+                href="dashboard.html">
+                <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                <span class="font-manrope tracking-tight">Dashboard</span>
             </a>
-            <a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 font-['Inter'] font-medium hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-all"
-                href="#">
-                <span class="material-symbols-outlined">school</span>
-                <span>My Courses</span>
+            <a class="flex items-center gap-4 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-white/50 transition-colors duration-300"
+                href="learningPath.html">
+                <span class="material-symbols-outlined" data-icon="auto_stories">auto_stories</span>
+                <span class="font-manrope tracking-tight">Learning Path</span>
             </a>
-            <a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 font-['Inter'] font-medium hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-all"
-                href="#">
-                <span class="material-symbols-outlined">science</span>
-                <span>AI Lab</span>
+            <a class="flex items-center gap-4 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-white/50 transition-colors duration-300"
+                href="codelab.html">
+                <span class="material-symbols-outlined" data-icon="science">science</span>
+                <span class="font-manrope tracking-tight">Playground</span>
             </a>
-            <a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 font-['Inter'] font-medium hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-all"
-                href="#">
-                <span class="material-symbols-outlined">menu_book</span>
-                <span>Resource Library</span>
+            <a class="flex items-center gap-4 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-white/50 transition-colors duration-300"
+                href="games.html">
+                <span class="material-symbols-outlined" data-icon="sports_esports">sports_esports</span>
+                <span class="font-manrope tracking-tight">Games</span>
             </a>
-            <a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 font-['Inter'] font-medium hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-all"
-                href="#">
-                <span class="material-symbols-outlined">help_center</span>
-                <span>Support</span>
+            <a class="flex items-center gap-4 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-white/50 transition-colors duration-300"
+                href="quiz.html">
+                <span class="material-symbols-outlined" data-icon="quiz">quiz</span>
+                <span class="font-manrope tracking-tight">Quizzes</span>
+            </a>
+            <a class="flex items-center gap-4 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-white/50 transition-colors duration-300"
+                href="simulations.html">
+                <span class="material-symbols-outlined" data-icon="vital_signs">vital_signs</span>
+                <span class="font-manrope tracking-tight">Simulations</span>
+            </a>
+            <a class="flex items-center gap-4 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-white/50 transition-colors duration-300"
+                href="leaderboard.html">
+                <span class="material-symbols-outlined" data-icon="leaderboard">leaderboard</span>
+                <span class="font-manrope tracking-tight">Leaderboard</span>
+            </a>
+            <a class="flex items-center gap-4 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-white/50 transition-colors duration-300"
+                href="progress.html">
+                <span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+                <span class="font-manrope tracking-tight">Profile</span>
             </a>
         </nav>
-        <div class="mt-auto space-y-4">
-            <div class="p-4 rounded-xl bg-primary-fixed text-on-primary-fixed">
-                <p class="text-xs font-bold uppercase tracking-wider mb-2">Pro Access</p>
-                <p class="text-sm mb-3">Unlock advanced GPU clusters &amp; certificates.</p>
-                <button class="w-full py-2 bg-primary text-on-primary rounded-lg text-sm font-semibold">Upgrade to
-                    Pro</button>
-            </div>
-            <a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 font-['Inter'] font-medium hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-all"
-                href="#">
-                <span class="material-symbols-outlined">logout</span>
+        <div class="mt-auto px-4 space-y-2">
+            <button id="logout-btn"
+                class="w-full py-3 px-4 bg-surface-container-low hover:bg-surface-container-high text-on-surface rounded-xl font-manrope font-medium text-sm tracking-wide flex items-center justify-center gap-2 transition-colors">
+                <span class="material-symbols-outlined text-sm">logout</span>
                 <span>Logout</span>
-            </a>
+            </button>
         </div>
     </aside>
     <main class="ml-64 min-h-screen">

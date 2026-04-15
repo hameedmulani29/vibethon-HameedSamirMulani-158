@@ -104,49 +104,49 @@
         </div>
         <nav class="flex-1 space-y-1 px-4">
             <a class="flex items-center px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg group"
-                href="#">
+                href="dashboard.html">
                 <span class="material-symbols-outlined mr-3 group-hover:scale-110 transition-transform"
                     data-icon="dashboard">dashboard</span>
                 <span>Dashboard</span>
             </a>
             <a class="flex items-center px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg group"
-                href="#">
+                href="learningPath.html">
                 <span class="material-symbols-outlined mr-3 group-hover:scale-110 transition-transform"
                     data-icon="auto_stories">auto_stories</span>
                 <span>Learning Path</span>
             </a>
             <a class="flex items-center px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg group"
-                href="#">
+                href="codelab.html">
                 <span class="material-symbols-outlined mr-3 group-hover:scale-110 transition-transform"
                     data-icon="science">science</span>
                 <span>Playground</span>
             </a>
             <a class="flex items-center px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg group"
-                href="#">
+                href="games.html">
                 <span class="material-symbols-outlined mr-3 group-hover:scale-110 transition-transform"
                     data-icon="sports_esports">sports_esports</span>
                 <span>Games</span>
             </a>
             <a class="flex items-center px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg group"
-                href="#">
+                href="quiz.html">
                 <span class="material-symbols-outlined mr-3 group-hover:scale-110 transition-transform"
                     data-icon="quiz">quiz</span>
                 <span>Quizzes</span>
             </a>
             <a class="flex items-center px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg group"
-                href="#">
+                href="simulations.html">
                 <span class="material-symbols-outlined mr-3 group-hover:scale-110 transition-transform"
                     data-icon="vital_signs">vital_signs</span>
                 <span>Simulations</span>
             </a>
             <a class="flex items-center px-4 py-3 text-[#3525cd] dark:text-[#4f46e5] font-bold border-r-4 border-[#3525cd] font-manrope tracking-tight bg-white/50 dark:bg-slate-800/50 rounded-l-lg group"
-                href="#">
+                href="leaderboard.html">
                 <span class="material-symbols-outlined mr-3 scale-110" data-icon="leaderboard"
                     style="font-variation-settings: 'FILL' 1;">leaderboard</span>
                 <span>Leaderboard</span>
             </a>
             <a class="flex items-center px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg group"
-                href="#">
+                href="progress.html">
                 <span class="material-symbols-outlined mr-3 group-hover:scale-110 transition-transform"
                     data-icon="account_circle">account_circle</span>
                 <span>Profile</span>
@@ -513,6 +513,13 @@
             class="absolute right-full mr-4 bg-on-surface text-surface text-[10px] font-bold px-3 py-1.5 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none uppercase tracking-widest">How
             to Rank Up</span>
     </button>
+    <script>
+        // ── Auth Guard ────────────────────────────────────────────────────
+        (function () {
+            const s = sessionStorage.getItem('careerpilot_session') || localStorage.getItem('careerpilot_session');
+            if (!s) window.location.replace('signIn.html');
+        })();
+    </script>
 </body>
 
 </html>

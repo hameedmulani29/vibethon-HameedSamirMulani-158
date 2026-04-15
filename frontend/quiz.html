@@ -1,408 +1,677 @@
 <!DOCTYPE html>
-
 <html class="light" lang="en">
-
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Quiz &amp; Assessment | CareerPilot AI</title>
+    <title>AI Quiz | CareerPilot AI</title>
+    <meta name="description" content="Test your AI & programming knowledge with Gemini-powered adaptive quizzes." />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <script id="tailwind-config">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script>
         tailwind.config = {
             darkMode: "class",
             theme: {
                 extend: {
-                    "colors": {
-                        "error-container": "#ffdad6",
-                        "surface-tint": "#4d44e3",
-                        "on-surface-variant": "#464555",
-                        "secondary-fixed": "#acedff",
-                        "on-surface": "#191c1d",
-                        "on-secondary-fixed": "#001f26",
-                        "surface-container-lowest": "#ffffff",
-                        "on-primary-fixed": "#0f0069",
-                        "surface-container-low": "#f3f4f5",
-                        "surface-dim": "#d9dadb",
-                        "on-background": "#191c1d",
-                        "outline": "#777587",
-                        "error": "#ba1a1a",
-                        "surface-container": "#edeeef",
-                        "on-tertiary-fixed": "#002109",
-                        "tertiary-container": "#007030",
-                        "inverse-surface": "#2e3132",
-                        "background": "#f8f9fa",
-                        "surface-variant": "#e1e3e4",
-                        "secondary-fixed-dim": "#4cd7f6",
-                        "primary-fixed": "#e2dfff",
-                        "tertiary-fixed": "#6bff8f",
-                        "tertiary-fixed-dim": "#4ae176",
-                        "on-primary-fixed-variant": "#3323cc",
-                        "on-primary-container": "#dad7ff",
-                        "primary-container": "#4f46e5",
-                        "on-primary": "#ffffff",
-                        "on-tertiary-fixed-variant": "#005321",
-                        "tertiary": "#005523",
-                        "primary-fixed-dim": "#c3c0ff",
+                    colors: {
+                        "primary": "#3525cd", "primary-container": "#4f46e5", "on-primary": "#ffffff",
+                        "primary-fixed": "#e2dfff", "primary-fixed-dim": "#c3c0ff",
+                        "on-primary-fixed": "#0f0069", "on-primary-fixed-variant": "#3323cc",
+                        "secondary": "#00687a", "secondary-container": "#57dffe", "on-secondary": "#ffffff",
                         "on-secondary-container": "#006172",
-                        "on-error-container": "#93000a",
-                        "surface-container-high": "#e7e8e9",
-                        "surface": "#f8f9fa",
-                        "on-tertiary": "#ffffff",
-                        "surface-container-highest": "#e1e3e4",
-                        "on-secondary": "#ffffff",
-                        "outline-variant": "#c7c4d8",
-                        "inverse-on-surface": "#f0f1f2",
-                        "inverse-primary": "#c3c0ff",
-                        "on-error": "#ffffff",
-                        "surface-bright": "#f8f9fa",
-                        "primary": "#3525cd",
-                        "on-tertiary-container": "#63f889",
-                        "on-secondary-fixed-variant": "#004e5c",
-                        "secondary": "#00687a",
-                        "secondary-container": "#57dffe"
+                        "tertiary": "#005523", "tertiary-container": "#007030", "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#6bff8f", "on-tertiary-fixed": "#002109",
+                        "on-tertiary-fixed-variant": "#005321", "tertiary-fixed-dim": "#4ae176",
+                        "surface": "#f8f9fa", "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f3f4f5", "surface-container": "#edeeef",
+                        "surface-container-high": "#e7e8e9", "surface-container-highest": "#e1e3e4",
+                        "on-surface": "#191c1d", "on-surface-variant": "#464555",
+                        "outline": "#777587", "outline-variant": "#c7c4d8",
+                        "error": "#ba1a1a", "error-container": "#ffdad6", "on-error-container": "#93000a",
+                        "background": "#f8f9fa",
                     },
-                    "borderRadius": {
-                        "DEFAULT": "0.25rem",
-                        "lg": "1rem",
-                        "xl": "1.25rem",
-                        "full": "9999px"
-                    },
-                    "fontFamily": {
-                        "headline": ["Manrope"],
-                        "body": ["Inter"],
-                        "label": ["Inter"]
-                    }
-                },
-            },
+                    fontFamily: { "headline": ["Manrope"], "body": ["Inter"], "mono": ["JetBrains Mono"] }
+                }
+            }
         }
     </script>
     <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .filled { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+
+        /* Skeleton */
+        @keyframes shimmer { 0%{background-position:-400px 0} 100%{background-position:400px 0} }
+        .skeleton {
+            background: linear-gradient(90deg, #e7e8e9 25%, #f3f4f5 50%, #e7e8e9 75%);
+            background-size: 800px 100%;
+            animation: shimmer 1.4s infinite;
+            border-radius: 6px;
         }
 
-        .glass-panel {
-            background: rgba(248, 249, 250, 0.8);
-            backdrop-filter: blur(12px);
+        /* Option states */
+        .option-label { cursor: pointer; transition: all 0.2s; }
+        .option-label:hover:not(.answered) { background: #e2dfff; border-color: #3525cd; }
+        .option-correct { background: #d4f5e0 !important; border-color: #005523 !important; }
+        .option-wrong   { background: #ffdad6 !important; border-color: #ba1a1a !important; }
+        .option-missed  { background: #e2dfff !important; border-color: #3525cd !important; }
+
+        /* Score ring */
+        .ring-progress {
+            stroke-dasharray: 283;
+            stroke-dashoffset: 283;
+            transition: stroke-dashoffset 1.2s cubic-bezier(.5,0,.3,1);
         }
     </style>
 </head>
+<body class="bg-background text-on-surface font-body min-h-screen">
 
-<body class="bg-background font-body text-on-surface selection:bg-primary-fixed-dim">
-    <!-- SideNavBar (Shared Component) -->
-    <aside class="fixed left-0 top-0 h-screen w-64 bg-[#f3f4f5] dark:bg-slate-900 flex flex-col py-6 border-r-0 z-50">
-        <div class="px-6 mb-10">
-            <h1 class="text-2xl font-bold text-[#3525cd] dark:text-[#4f46e5] font-headline tracking-tight">CareerPilot
-                AI</h1>
-            <p class="text-xs text-slate-500 font-medium mt-1">The Intelligent Void</p>
-        </div>
-        <nav class="flex-1 space-y-1 px-4 overflow-y-auto">
-            <a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg"
-                href="dashboard.html">
-                <span class="material-symbols-outlined">dashboard</span>
-                <span>Dashboard</span>
-            </a>
-            <a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg"
-                href="learningPath.html">
-                <span class="material-symbols-outlined">auto_stories</span>
-                <span>Learning Path</span>
-            </a>
-            <a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg"
-                href="codelab.html">
-                <span class="material-symbols-outlined">science</span>
-                <span>Playground</span>
-            </a>
-            <a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg"
-                href="games.html">
-                <span class="material-symbols-outlined">sports_esports</span>
-                <span>Games</span>
-            </a>
-            <a class="flex items-center gap-3 px-4 py-3 text-[#3525cd] dark:text-[#4f46e5] font-bold border-r-4 border-[#3525cd] font-manrope tracking-tight bg-white/40 rounded-l-lg"
-                href="quiz.html">
-                <span class="material-symbols-outlined">quiz</span>
-                <span>Quizzes</span>
-            </a>
-            <a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg"
-                href="simulations.html">
-                <span class="material-symbols-outlined">vital_signs</span>
-                <span>Simulations</span>
-            </a>
-            <a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg"
-                href="leaderboard.html">
-                <span class="material-symbols-outlined">leaderboard</span>
-                <span>Leaderboard</span>
-            </a>
-            <a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg"
-                href="progress.html">
-                <span class="material-symbols-outlined">account_circle</span>
-                <span>Profile</span>
-            </a>
-        </nav>
-        <div class="px-6 mt-auto">
-            <button
-                class="w-full py-4 px-4 bg-gradient-to-br from-primary to-primary-container text-white font-bold rounded-lg shadow-lg hover:opacity-90 transition-all flex items-center justify-center gap-2">
-                <span>Start Daily Lesson</span>
-            </button>
-        </div>
-    </aside>
-    <!-- TopAppBar (Shared Component) -->
-    <header
-        class="fixed top-0 w-full z-40 bg-[#f8f9fa]/80 dark:bg-slate-950/80 backdrop-blur-xl flex justify-between items-center h-16 px-8 ml-64 shadow-[0_4px_20px_rgba(53,37,205,0.04)]">
-        <div class="flex items-center gap-4">
-            <div class="flex items-center gap-2 text-[#3525cd] dark:text-[#4f46e5] font-manrope text-sm tracking-wide">
-                <span class="material-symbols-outlined">local_fire_department</span>
-                <span class="font-bold">12 Day Streak</span>
-            </div>
-            <div class="flex items-center gap-2 text-slate-600 dark:text-slate-400 font-manrope text-sm tracking-wide">
-                <span class="material-symbols-outlined">military_tech</span>
-                <span class="font-bold">4,250 XP</span>
-            </div>
-        </div>
-        <div class="flex items-center gap-6">
-            <div class="relative">
-                <span
-                    class="material-symbols-outlined text-slate-600 cursor-pointer hover:opacity-80 transition-opacity">notifications</span>
-                <span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full"></span>
-            </div>
-            <img alt="User avatar"
-                class="w-10 h-10 rounded-full border-2 border-primary-fixed-dim object-cover scale-95 active:scale-90 transition-transform"
-                data-alt="Close up portrait of a smiling young creative professional in a bright studio environment with warm natural lighting"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCE5dUtOdSNxfztWjAWuPpZg8NNLj1WgYHGcJAV4EQ0J3Ac9u6rMyrgPOZ_awCTyJwO9q-VkybXLnP-cYBl-6Hzkj4RU82dHLo6TVMEkthZeX2wGxTuMu8HEesJL30vMV7mXnFfnHsFBZbTx36UTQgPDrbaJWSqN_GaU-aUQ6R4lIBUVAZn_znPEgoXjxXKSHW5OSphxFmQn0GGzTFWF7us2CrIfuh7TB59vSEhTOOIlLl65LdnLoQmpfWW6ZTlPXtbWkprA7sRdnc" />
-        </div>
-    </header>
-    <!-- Main Content Canvas -->
-    <main class="ml-64 pt-24 pb-12 px-12 min-h-screen">
-        <div class="max-w-4xl mx-auto">
-            <!-- Progress Header -->
-            <div class="mb-12">
-                <div class="flex justify-between items-end mb-4">
-                    <div>
-                        <span
-                            class="text-label-sm font-semibold text-secondary tracking-widest uppercase text-[10px]">Assessment
-                            Module 04</span>
-                        <h2 class="font-headline text-3xl font-extrabold tracking-tight mt-1 text-on-surface">
-                            Asynchronous Programming</h2>
-                    </div>
-                    <div class="text-right">
-                        <span class="font-headline font-bold text-primary">07</span>
-                        <span class="font-label text-slate-400">/ 15</span>
-                    </div>
-                </div>
-                <div class="h-1.5 w-full bg-surface-container-high rounded-full overflow-hidden">
-                    <div class="h-full bg-gradient-to-r from-primary to-secondary w-[46%] rounded-full"></div>
-                </div>
-            </div>
-            <!-- Quiz Layout: Asymmetric Bento Grid -->
-            <div class="grid grid-cols-12 gap-8 items-start">
-                <!-- Main Question Card (Left 8 cols) -->
-                <div class="col-span-12 lg:col-span-8 space-y-6">
-                    <div class="bg-surface-container-lowest p-8 rounded-xl shadow-sm border border-outline-variant/10">
-                        <div class="flex items-center gap-3 mb-6">
-                            <span
-                                class="px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed-variant rounded-full text-[10px] font-bold tracking-widest uppercase">Intermediate</span>
-                            <span class="text-slate-400 text-xs">• 3 mins estimated</span>
-                        </div>
-                        <p class="font-headline text-xl font-semibold leading-relaxed mb-8">
-                            In the provided JavaScript snippet, what will be the console output order given the event
-                            loop's priority handling for Microtasks and Macrotasks?
-                        </p>
-                        <!-- Code Block -->
-                        <div
-                            class="bg-[#1e1e2e] p-6 rounded-lg font-mono text-sm leading-relaxed text-indigo-200 overflow-x-auto mb-8 border-l-4 border-primary">
-                            <pre><code><span class="text-purple-400">console</span>.<span class="text-blue-400">log</span>(<span class="text-green-400">'Start'</span>);
+<!-- ── Auth Guard ──────────────────────────────────────────────────────── -->
+<script>
+    (function(){
+        const s = sessionStorage.getItem('careerpilot_session') || localStorage.getItem('careerpilot_session');
+        if(!s) window.location.replace('signIn.html');
+    })();
+</script>
 
-<span class="text-purple-400">setTimeout</span>(() =&gt; {
-  <span class="text-purple-400">console</span>.<span class="text-blue-400">log</span>(<span class="text-green-400">'Timeout'</span>);
-}, <span class="text-amber-400">0</span>);
-
-<span class="text-purple-400">Promise</span>.<span class="text-blue-400">resolve</span>().<span class="text-blue-400">then</span>(() =&gt; {
-  <span class="text-purple-400">console</span>.<span class="text-blue-400">log</span>(<span class="text-green-400">'Promise'</span>);
-});
-
-<span class="text-purple-400">console</span>.<span class="text-blue-400">log</span>(<span class="text-green-400">'End'</span>);</code></pre>
-                        </div>
-                        <!-- Options -->
-                        <div class="space-y-3">
-                            <label
-                                class="group flex items-center p-4 rounded-lg bg-surface-container-low hover:bg-primary-fixed/30 cursor-pointer transition-all border border-transparent hover:border-primary-fixed-dim">
-                                <input
-                                    class="w-5 h-5 text-primary border-outline focus:ring-primary ring-offset-background"
-                                    name="quiz-option" type="radio" />
-                                <span class="ml-4 font-medium text-on-surface">Start, End, Timeout, Promise</span>
-                            </label>
-                            <label
-                                class="group flex items-center p-4 rounded-lg bg-surface-container-low hover:bg-primary-fixed/30 cursor-pointer transition-all border border-transparent hover:border-primary-fixed-dim">
-                                <input
-                                    class="w-5 h-5 text-primary border-outline focus:ring-primary ring-offset-background"
-                                    name="quiz-option" type="radio" />
-                                <span class="ml-4 font-medium text-on-surface">Start, Promise, Timeout, End</span>
-                            </label>
-                            <!-- Correct Selected State -->
-                            <label
-                                class="group flex items-center p-4 rounded-lg bg-tertiary-fixed/20 border-2 border-tertiary/30 cursor-pointer transition-all">
-                                <div class="relative flex items-center justify-center">
-                                    <input checked=""
-                                        class="w-5 h-5 text-tertiary border-tertiary focus:ring-tertiary ring-offset-background"
-                                        name="quiz-option" type="radio" />
-                                    <span
-                                        class="absolute material-symbols-outlined text-tertiary text-[16px] pointer-events-none">check</span>
-                                </div>
-                                <span class="ml-4 font-bold text-on-tertiary-fixed-variant">Start, End, Promise,
-                                    Timeout</span>
-                                <span class="ml-auto material-symbols-outlined text-tertiary"
-                                    style="font-variation-settings: 'FILL' 1;">check_circle</span>
-                            </label>
-                            <label
-                                class="group flex items-center p-4 rounded-lg bg-surface-container-low hover:bg-primary-fixed/30 cursor-pointer transition-all border border-transparent hover:border-primary-fixed-dim">
-                                <input
-                                    class="w-5 h-5 text-primary border-outline focus:ring-primary ring-offset-background"
-                                    name="quiz-option" type="radio" />
-                                <span class="ml-4 font-medium text-on-surface">Start, End, Timeout</span>
-                            </label>
-                        </div>
-                        <!-- Submit Section -->
-                        <div
-                            class="mt-10 flex items-center justify-between gap-6 border-t border-surface-container-high pt-8">
-                            <button
-                                class="flex items-center gap-2 px-6 py-3 text-secondary font-bold hover:bg-secondary-container/20 transition-all rounded-lg">
-                                <span class="material-symbols-outlined">flag</span>
-                                <span>Report Issue</span>
-                            </button>
-                            <div class="flex items-center gap-4">
-                                <button
-                                    class="px-8 py-3 bg-gradient-to-r from-primary to-primary-container text-white font-bold rounded-lg shadow-lg hover:shadow-primary/20 transition-all active:scale-95">
-                                    Submit Answer
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Post-Submission Feedback Block -->
-                    <div class="bg-tertiary-container/10 border-l-8 border-tertiary p-8 rounded-xl">
-                        <div class="flex items-start gap-4">
-                            <div class="bg-tertiary p-2 rounded-full">
-                                <span class="material-symbols-outlined text-white"
-                                    style="font-variation-settings: 'FILL' 1;">lightbulb</span>
-                            </div>
-                            <div>
-                                <h4 class="font-headline font-bold text-on-tertiary-fixed-variant text-lg mb-2">
-                                    Excellent! Here's why:</h4>
-                                <p class="text-on-tertiary-fixed-variant/80 leading-relaxed font-medium">
-                                    Synchronous code runs first (Start, End). Next, the <strong>Microtask Queue</strong>
-                                    (Promises) is emptied before moving to the <strong>Macrotask Queue</strong>
-                                    (setTimeout). Even with a delay of 0ms, the timeout is queued as a macrotask and
-                                    will always execute after microtasks.
-                                </p>
-                                <div class="mt-4 flex items-center gap-4">
-                                    <button
-                                        class="text-xs font-bold text-tertiary underline decoration-2 underline-offset-4">Read
-                                        Documentation</button>
-                                    <button
-                                        class="text-xs font-bold text-tertiary underline decoration-2 underline-offset-4">Watch
-                                        Deep Dive</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Contextual Panel (Right 4 cols) -->
-                <div class="col-span-12 lg:col-span-4 space-y-6">
-                    <!-- Tip Card -->
-                    <div class="glass-panel p-6 rounded-xl border border-white/40 shadow-sm">
-                        <h5 class="font-headline font-bold text-on-surface mb-4 flex items-center gap-2">
-                            <span class="material-symbols-outlined text-secondary">psychology</span>
-                            AI Tutor Note
-                        </h5>
-                        <p class="text-sm text-slate-600 leading-relaxed mb-4">
-                            Think of the Microtask Queue as "priority mail"—it gets delivered before the Macrotask
-                            "standard package" even if they arrive at the same time.
-                        </p>
-                        <div class="flex items-center gap-3">
-                            <img alt="AI Mentor" class="w-8 h-8 rounded-full"
-                                data-alt="Digital representation of an AI mentor, semi-transparent silhouette against a soft blue abstract network background"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDodnwGHZ9p-VdqehYgvqg66Y8_wdHkU5m3jmkrx1_gJc-zY6n08n4cmyKpsgKe6wscpWv8UD6DXQLb_frSyrP1Hhd1ZNDrEyJEKZX-mxJu4cQQkOtWHRBRfJeYJ4HFlb2MwzkXkUc_PfP0HTny75M6MAdLCl2mex_X9nR7CFHMLVVvV3F3MAQOyvgyBsRiagBwkUgI_cAVk7ZhHajAm_WtuWLu950pRIHOZ4dMULSrX3tZ13unYX4wwgvHptQs90e7GVOG-hrzPjo" />
-                            <span class="text-xs font-bold text-slate-400">Ask CareerPilot AI...</span>
-                        </div>
-                    </div>
-                    <!-- Related Concepts Card -->
-                    <div class="bg-surface-container-low p-6 rounded-xl">
-                        <h5 class="font-headline font-bold text-on-surface mb-4">Key Terminologies</h5>
-                        <div class="space-y-4">
-                            <div class="group cursor-pointer">
-                                <p class="text-xs font-bold text-primary mb-1">Event Loop</p>
-                                <p class="text-xs text-slate-500 group-hover:text-slate-800 transition-colors">The
-                                    mechanism that coordinates the execution of code, collects and processes events.</p>
-                            </div>
-                            <div class="group cursor-pointer">
-                                <p class="text-xs font-bold text-primary mb-1">Call Stack</p>
-                                <p class="text-xs text-slate-500 group-hover:text-slate-800 transition-colors">A
-                                    mechanism to keep track of its place in a script that calls multiple functions.</p>
-                            </div>
-                            <div class="group cursor-pointer">
-                                <p class="text-xs font-bold text-primary mb-1">Callback Queue</p>
-                                <p class="text-xs text-slate-500 group-hover:text-slate-800 transition-colors">A queue
-                                    of macrotasks waiting to be executed after the current stack is clear.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Gamification Widget -->
-                    <div class="bg-gradient-to-br from-secondary to-secondary-container p-6 rounded-xl text-white">
-                        <div class="flex justify-between items-start mb-6">
-                            <span class="material-symbols-outlined text-3xl"
-                                style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
-                            <div class="text-right">
-                                <p class="text-[10px] font-bold uppercase tracking-widest opacity-80">Next Unlock</p>
-                                <p class="font-headline font-extrabold text-xl">Silver Badge</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-1 mb-4">
-                            <div class="h-1.5 flex-1 bg-white rounded-full"></div>
-                            <div class="h-1.5 flex-1 bg-white rounded-full"></div>
-                            <div class="h-1.5 flex-1 bg-white/30 rounded-full"></div>
-                            <div class="h-1.5 flex-1 bg-white/30 rounded-full"></div>
-                            <div class="h-1.5 flex-1 bg-white/30 rounded-full"></div>
-                        </div>
-                        <p class="text-xs font-medium opacity-90 leading-tight">Complete 3 more questions without hints
-                            to earn your next career badge.</p>
-                    </div>
-                </div>
-            </div>
-            <!-- Footer Navigation -->
-            <div class="mt-12 flex justify-between items-center py-6 border-t border-surface-container-high">
-                <button class="flex items-center gap-2 text-slate-500 font-bold hover:text-primary transition-colors">
-                    <span class="material-symbols-outlined">arrow_back</span>
-                    <span>Previous Question</span>
-                </button>
-                <div class="flex gap-2">
-                    <div class="w-2 h-2 rounded-full bg-slate-300"></div>
-                    <div class="w-2 h-2 rounded-full bg-slate-300"></div>
-                    <div class="w-6 h-2 rounded-full bg-primary"></div>
-                    <div class="w-2 h-2 rounded-full bg-slate-300"></div>
-                    <div class="w-2 h-2 rounded-full bg-slate-300"></div>
-                </div>
-                <button class="flex items-center gap-2 text-primary font-bold hover:opacity-80 transition-opacity">
-                    <span>Skip to Next</span>
-                    <span class="material-symbols-outlined">arrow_forward</span>
-                </button>
-            </div>
-        </div>
-    </main>
-    <!-- Floating Action for Help -->
-    <div class="fixed bottom-8 right-8 z-50">
-        <button
-            class="bg-primary-container text-on-primary-container p-4 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all flex items-center gap-3 pr-6 group">
-            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_fix_high</span>
-            <span class="font-bold hidden group-hover:inline">Hint from AI</span>
+<!-- ── Sidebar ────────────────────────────────────────────────────────── -->
+<aside class="fixed left-0 top-0 h-screen w-64 bg-[#f3f4f5] flex flex-col py-6 z-50 border-r border-outline-variant/10">
+    <div class="px-6 mb-8">
+        <h1 class="text-xl font-bold text-primary font-headline tracking-tight">CareerPilot AI</h1>
+        <p class="text-xs text-outline mt-0.5">The Intelligent Void</p>
+    </div>
+    <nav class="flex-1 px-4 space-y-0.5">
+        <a href="dashboard.html"    class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-on-surface-variant hover:bg-white/60 transition-colors text-sm font-semibold"><span class="material-symbols-outlined text-xl">dashboard</span>Dashboard</a>
+        <a href="learningPath.html" class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-on-surface-variant hover:bg-white/60 transition-colors text-sm font-semibold"><span class="material-symbols-outlined text-xl">auto_stories</span>Learning Path</a>
+        <a href="codelab.html"      class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-on-surface-variant hover:bg-white/60 transition-colors text-sm font-semibold"><span class="material-symbols-outlined text-xl">science</span>CodeLab</a>
+        <a href="games.html"        class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-on-surface-variant hover:bg-white/60 transition-colors text-sm font-semibold"><span class="material-symbols-outlined text-xl">sports_esports</span>Games</a>
+        <a href="quiz.html"         class="flex items-center gap-3 px-4 py-2.5 rounded-lg bg-white/70 text-primary font-bold border-r-4 border-primary text-sm"><span class="material-symbols-outlined filled text-xl">quiz</span>Quizzes</a>
+        <a href="simulations.html"  class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-on-surface-variant hover:bg-white/60 transition-colors text-sm font-semibold"><span class="material-symbols-outlined text-xl">vital_signs</span>Simulations</a>
+        <a href="leaderboard.html"  class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-on-surface-variant hover:bg-white/60 transition-colors text-sm font-semibold"><span class="material-symbols-outlined text-xl">leaderboard</span>Leaderboard</a>
+    </nav>
+    <div class="px-4 mt-auto">
+        <button onclick="logout()" class="w-full flex items-center gap-2 px-4 py-2 rounded-lg text-on-surface-variant hover:bg-white/60 transition-colors text-sm font-semibold">
+            <span class="material-symbols-outlined text-xl">logout</span>Logout
         </button>
     </div>
-</body>
+</aside>
 
+<!-- ── Top Bar ────────────────────────────────────────────────────────── -->
+<header class="fixed top-0 left-64 right-0 h-14 bg-[#f8f9fa]/90 backdrop-blur-xl z-40 flex items-center justify-between px-8 border-b border-outline-variant/10">
+    <div class="flex items-center gap-2 text-sm font-bold text-on-surface-variant">
+        <span class="material-symbols-outlined text-base">quiz</span>
+        AI Quiz Generator
+    </div>
+    <div class="flex items-center gap-5">
+        <div id="hdr-streak" class="flex items-center gap-1.5 text-sm font-bold text-primary">
+            <span class="material-symbols-outlined filled text-orange-500 text-lg">local_fire_department</span>
+            <span>—</span>
+        </div>
+        <div id="hdr-xp" class="flex items-center gap-1.5 text-sm font-bold text-primary">
+            <span class="material-symbols-outlined filled text-yellow-500 text-lg">military_tech</span>
+            <span>—</span>
+        </div>
+    </div>
+</header>
+
+<!-- ── Main ───────────────────────────────────────────────────────────── -->
+<main class="ml-64 pt-14 min-h-screen">
+
+    <!-- ════════════════════════════════════════════════════════════════ -->
+    <!-- SCREEN 1 — CONFIG                                                -->
+    <!-- ════════════════════════════════════════════════════════════════ -->
+    <div id="screen-config" class="max-w-3xl mx-auto px-8 py-14">
+        <div class="text-center mb-10">
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-primary-container text-white shadow-xl mb-4">
+                <span class="material-symbols-outlined text-3xl filled">quiz</span>
+            </div>
+            <h2 class="text-3xl font-black font-headline tracking-tight">AI-Powered Quiz</h2>
+            <p class="text-outline mt-2">Gemini generates 5 unique questions tailored to your selection</p>
+        </div>
+
+        <div class="bg-surface-container-lowest rounded-2xl shadow-sm border border-outline-variant/10 p-8 space-y-6">
+
+            <!-- Language -->
+            <div>
+                <label class="block text-xs font-black uppercase tracking-widest text-on-surface-variant mb-3">Programming Language</label>
+                <div id="lang-pills" class="flex flex-wrap gap-2">
+                    <!-- injected by JS -->
+                </div>
+            </div>
+
+            <!-- Topic -->
+            <div>
+                <label class="block text-xs font-black uppercase tracking-widest text-on-surface-variant mb-3">Topic</label>
+                <div id="topic-pills" class="flex flex-wrap gap-2">
+                    <!-- injected by JS -->
+                </div>
+                <input id="custom-topic" type="text" placeholder="Or type a custom topic…"
+                    class="mt-3 w-full px-4 py-2.5 rounded-xl border border-outline-variant/30 bg-surface-container-low text-sm focus:ring-2 focus:ring-primary/20 focus:outline-none font-body" />
+            </div>
+
+            <!-- Difficulty -->
+            <div>
+                <label class="block text-xs font-black uppercase tracking-widest text-on-surface-variant mb-3">Difficulty</label>
+                <div id="diff-pills" class="flex gap-3">
+                    <!-- injected by JS -->
+                </div>
+            </div>
+
+            <!-- Generate button -->
+            <button id="generate-btn" onclick="startQuiz()"
+                class="w-full py-4 bg-gradient-to-br from-primary to-primary-container text-white font-bold text-sm rounded-xl shadow-lg hover:brightness-110 active:scale-95 transition-all flex items-center justify-center gap-3 mt-4">
+                <span class="material-symbols-outlined filled">auto_awesome</span>
+                Generate My Quiz with AI
+            </button>
+        </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════════════ -->
+    <!-- SCREEN 2 — LOADING                                               -->
+    <!-- ════════════════════════════════════════════════════════════════ -->
+    <div id="screen-loading" class="hidden max-w-3xl mx-auto px-8 py-14">
+        <div class="bg-surface-container-lowest rounded-2xl p-8 shadow-sm">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-primary animate-spin">cached</span>
+                </div>
+                <div>
+                    <p class="font-bold text-on-surface" id="loading-label">Gemini is crafting your quiz…</p>
+                    <p class="text-xs text-outline">This takes 3–5 seconds</p>
+                </div>
+            </div>
+            <div class="space-y-5">
+                <div class="skeleton h-6 w-2/3"></div>
+                <div class="skeleton h-4 w-full"></div>
+                <div class="skeleton h-12 w-full rounded-xl"></div>
+                <div class="skeleton h-12 w-full rounded-xl"></div>
+                <div class="skeleton h-12 w-full rounded-xl"></div>
+                <div class="skeleton h-12 w-full rounded-xl"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════════════ -->
+    <!-- SCREEN 3 — QUIZ                                                  -->
+    <!-- ════════════════════════════════════════════════════════════════ -->
+    <div id="screen-quiz" class="hidden max-w-4xl mx-auto px-8 py-10">
+
+        <!-- Progress header -->
+        <div class="flex items-center justify-between mb-6">
+            <div>
+                <p class="text-xs font-bold text-secondary uppercase tracking-widest" id="q-meta">Question 1 of 5</p>
+                <h2 class="text-2xl font-black font-headline tracking-tight mt-1" id="q-topic-label">Loading…</h2>
+            </div>
+            <div class="text-right">
+                <p class="text-2xl font-black text-primary font-headline" id="q-num">01</p>
+                <p class="text-xs text-outline">/ 05</p>
+            </div>
+        </div>
+
+        <!-- Progress bar -->
+        <div class="h-1.5 w-full bg-surface-container-high rounded-full overflow-hidden mb-8">
+            <div id="q-progress" class="h-full bg-gradient-to-r from-primary to-primary-container rounded-full transition-all duration-500" style="width:0%"></div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+            <!-- Question card -->
+            <div class="lg:col-span-2 space-y-5">
+                <div class="bg-surface-container-lowest p-8 rounded-2xl shadow-sm border border-outline-variant/10">
+                    <div class="flex items-center gap-2 mb-5">
+                        <span id="q-difficulty-badge" class="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest bg-tertiary-fixed text-on-tertiary-fixed">Medium</span>
+                        <span class="text-xs text-outline">• 3 min estimated</span>
+                    </div>
+
+                    <p id="q-text" class="text-lg font-semibold font-headline leading-relaxed mb-6"></p>
+
+                    <!-- Code block (hidden when empty) -->
+                    <div id="q-code-wrap" class="hidden bg-[#1e1e2e] rounded-xl p-5 mb-6 border-l-4 border-primary overflow-x-auto">
+                        <pre id="q-code" class="font-mono text-sm text-indigo-200 leading-relaxed whitespace-pre-wrap"></pre>
+                    </div>
+
+                    <!-- Options -->
+                    <div id="options-container" class="space-y-3"></div>
+
+                    <!-- Actions -->
+                    <div class="flex items-center justify-between mt-8 pt-6 border-t border-surface-container-high">
+                        <button id="hint-btn" onclick="getHint()"
+                            class="flex items-center gap-2 text-sm font-bold text-secondary hover:bg-secondary-container/20 px-4 py-2 rounded-lg transition-colors">
+                            <span class="material-symbols-outlined text-sm">lightbulb</span>Ask AI Hint
+                        </button>
+                        <div class="flex gap-3">
+                            <button id="submit-btn" onclick="submitAnswer()"
+                                class="px-8 py-3 bg-gradient-to-r from-primary to-primary-container text-white font-bold rounded-xl shadow-lg hover:brightness-110 active:scale-95 transition-all text-sm">
+                                Submit Answer
+                            </button>
+                            <button id="next-btn" onclick="nextQuestion()" style="display:none"
+                                class="px-8 py-3 bg-tertiary text-white font-bold rounded-xl shadow-lg hover:brightness-110 active:scale-95 transition-all text-sm flex items-center gap-2">
+                                Next <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Explanation (shown after submit) -->
+                <div id="explanation-card" class="hidden bg-tertiary-container/10 border-l-4 border-tertiary p-6 rounded-2xl">
+                    <div class="flex items-start gap-4">
+                        <div class="w-9 h-9 rounded-full bg-tertiary flex items-center justify-center flex-shrink-0">
+                            <span class="material-symbols-outlined text-white text-sm filled">lightbulb</span>
+                        </div>
+                        <div>
+                            <h4 id="exp-title" class="font-bold text-on-tertiary-fixed-variant font-headline mb-2">Here's why:</h4>
+                            <p id="exp-text" class="text-sm text-on-tertiary-fixed-variant/80 leading-relaxed"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Side panel -->
+            <div class="space-y-5">
+                <!-- AI Tutor note -->
+                <div class="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/10 shadow-sm">
+                    <h5 class="font-headline font-bold mb-3 flex items-center gap-2 text-sm">
+                        <span class="material-symbols-outlined text-secondary text-lg">psychology</span>
+                        AI Tutor Note
+                    </h5>
+                    <p id="tutor-note" class="text-xs text-slate-600 leading-relaxed">
+                        Read the question carefully and eliminate wrong answers first.
+                    </p>
+                </div>
+
+                <!-- Score tracker -->
+                <div class="bg-gradient-to-br from-primary to-primary-container p-5 rounded-2xl text-white shadow-lg">
+                    <p class="text-[10px] font-black uppercase tracking-widest opacity-70 mb-1">Session Score</p>
+                    <div class="flex items-end gap-2">
+                        <p id="live-score" class="text-3xl font-black font-headline">0</p>
+                        <p class="text-sm opacity-70 mb-1">/ <span id="live-total">0</span> answered</p>
+                    </div>
+                    <div class="mt-3 flex gap-1" id="score-dots"></div>
+                </div>
+
+                <!-- Hint output -->
+                <div id="hint-card" class="hidden bg-surface-container-low p-5 rounded-2xl border border-outline-variant/10">
+                    <p class="text-xs font-black uppercase tracking-widest text-secondary mb-2">AI Hint</p>
+                    <p id="hint-text" class="text-xs text-on-surface-variant leading-relaxed"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════════════ -->
+    <!-- SCREEN 4 — RESULTS                                               -->
+    <!-- ════════════════════════════════════════════════════════════════ -->
+    <div id="screen-results" class="hidden max-w-2xl mx-auto px-8 py-14">
+        <div class="bg-surface-container-lowest rounded-2xl p-10 shadow-sm border border-outline-variant/10 text-center">
+
+            <div class="relative inline-flex items-center justify-center mb-6">
+                <svg width="120" height="120" class="-rotate-90">
+                    <circle cx="60" cy="60" r="45" fill="none" stroke="#e7e8e9" stroke-width="10"/>
+                    <circle id="score-ring" cx="60" cy="60" r="45" fill="none" stroke="#3525cd"
+                        stroke-width="10" stroke-linecap="round" class="ring-progress"/>
+                </svg>
+                <div class="absolute text-center">
+                    <p id="res-pct" class="text-2xl font-black font-headline text-primary">0%</p>
+                    <p class="text-[10px] text-outline font-bold">Score</p>
+                </div>
+            </div>
+
+            <h2 id="res-title" class="text-3xl font-black font-headline mb-2">Quiz Complete!</h2>
+            <p id="res-subtitle" class="text-outline mb-8"></p>
+
+            <div class="grid grid-cols-3 gap-4 mb-8">
+                <div class="bg-surface-container-low rounded-xl p-4">
+                    <p class="text-2xl font-black font-headline text-primary" id="res-correct">0</p>
+                    <p class="text-xs text-outline font-bold mt-1">Correct</p>
+                </div>
+                <div class="bg-surface-container-low rounded-xl p-4">
+                    <p class="text-2xl font-black font-headline text-error" id="res-wrong">0</p>
+                    <p class="text-xs text-outline font-bold mt-1">Wrong</p>
+                </div>
+                <div class="bg-gradient-to-br from-tertiary to-tertiary-container rounded-xl p-4 text-white">
+                    <p class="text-2xl font-black font-headline" id="res-xp">+0</p>
+                    <p class="text-xs opacity-80 font-bold mt-1">XP Earned</p>
+                </div>
+            </div>
+
+            <div class="flex gap-3 justify-center">
+                <button onclick="retryQuiz()"
+                    class="px-8 py-3 bg-gradient-to-br from-primary to-primary-container text-white font-bold rounded-xl shadow-lg hover:brightness-110 active:scale-95 transition-all text-sm flex items-center gap-2">
+                    <span class="material-symbols-outlined text-sm">replay</span>
+                    Try Again
+                </button>
+                <button onclick="showConfig()"
+                    class="px-8 py-3 bg-surface-container-high text-primary font-bold rounded-xl hover:bg-surface-container-highest transition-colors text-sm flex items-center gap-2">
+                    <span class="material-symbols-outlined text-sm">tune</span>
+                    New Topic
+                </button>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<script>
+// ── Config data ──────────────────────────────────────────────────────────
+const LANGUAGES   = ['Python','JavaScript','Java','C++','SQL','TypeScript'];
+const TOPICS      = ['Loops & Conditions','Functions','OOP','Data Structures','Algorithms','Async/Await','Databases','ML Basics'];
+const DIFFICULTIES = [
+    { label: 'Easy',   color: 'bg-tertiary-fixed text-on-tertiary-fixed' },
+    { label: 'Medium', color: 'bg-secondary-container text-on-secondary-container' },
+    { label: 'Hard',   color: 'bg-primary-container text-white' },
+];
+
+const BACKEND = 'http://localhost:5000';
+
+// ── State ─────────────────────────────────────────────────────────────────
+let selectedLang  = 'Python';
+let selectedTopic = 'Loops & Conditions';
+let selectedDiff  = 'Medium';
+let quizData      = [];
+let currentQ      = 0;
+let results       = [];     // true/false per question
+let answered      = false;
+
+// ── Init ──────────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+    buildPills('lang-pills',  LANGUAGES,    () => selectedLang,  v => selectedLang = v);
+    buildPills('topic-pills', TOPICS,       () => selectedTopic, v => selectedTopic = v);
+    buildPills('diff-pills',  DIFFICULTIES.map(d => d.label), () => selectedDiff, v => selectedDiff = v);
+
+    // Load session user info into header
+    const raw = sessionStorage.getItem('careerpilot_session') || localStorage.getItem('careerpilot_session');
+    if (raw) {
+        const s = JSON.parse(raw);
+        document.getElementById('hdr-streak').querySelector('span:last-child').textContent = (s.streak || 0) + ' Streak';
+        document.getElementById('hdr-xp').querySelector('span:last-child').textContent     = (s.xp    || 0).toLocaleString() + ' XP';
+    }
+});
+
+function buildPills(containerId, items, getSelected, setSelected) {
+    const el = document.getElementById(containerId);
+    items.forEach(item => {
+        const btn = document.createElement('button');
+        btn.textContent = item;
+        btn.dataset.val = item;
+        btn.className = 'pill px-4 py-1.5 rounded-full text-sm font-semibold border transition-all '
+            + (item === getSelected()
+                ? 'bg-primary text-white border-primary'
+                : 'bg-surface-container-low text-on-surface-variant border-outline-variant/30 hover:border-primary/40');
+        btn.addEventListener('click', () => {
+            setSelected(item);
+            el.querySelectorAll('.pill').forEach(p => {
+                const active = p.dataset.val === item;
+                p.className = 'pill px-4 py-1.5 rounded-full text-sm font-semibold border transition-all '
+                    + (active ? 'bg-primary text-white border-primary'
+                              : 'bg-surface-container-low text-on-surface-variant border-outline-variant/30 hover:border-primary/40');
+            });
+            if (containerId === 'topic-pills') {
+                document.getElementById('custom-topic').value = '';
+            }
+        });
+        el.appendChild(btn);
+    });
+}
+
+// ── Screen management ─────────────────────────────────────────────────────
+function showScreen(id) {
+    ['screen-config','screen-loading','screen-quiz','screen-results'].forEach(s => {
+        document.getElementById(s).classList.toggle('hidden', s !== id);
+    });
+}
+
+function showConfig() { showScreen('screen-config'); }
+
+// ── Start quiz ────────────────────────────────────────────────────────────
+async function startQuiz() {
+    const customTopic = document.getElementById('custom-topic').value.trim();
+    const topic = customTopic || selectedTopic;
+
+    showScreen('screen-loading');
+
+    const loadMsgs = [
+        'Gemini is crafting your quiz…',
+        'Generating challenging questions…',
+        'Adding code snippets…',
+        'Finalizing your quiz…'
+    ];
+    let mi = 0;
+    const lbl = document.getElementById('loading-label');
+    const msgInterval = setInterval(() => { lbl.textContent = loadMsgs[Math.min(++mi, loadMsgs.length - 1)]; }, 1200);
+
+    try {
+        const res = await fetch(`${BACKEND}/generate-quiz`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ language: selectedLang, topic, difficulty: selectedDiff })
+        });
+
+        clearInterval(msgInterval);
+
+        if (!res.ok) throw new Error('Server error ' + res.status);
+        const data = await res.json();
+
+        if (!data.questions || data.questions.length === 0) throw new Error('No questions returned');
+
+        quizData  = data.questions;
+        results   = [];
+        currentQ  = 0;
+        answered  = false;
+
+        document.getElementById('q-topic-label').textContent = `${topic} · ${selectedLang}`;
+        document.getElementById('q-difficulty-badge').textContent = selectedDiff;
+
+        renderQuestion();
+        showScreen('screen-quiz');
+
+    } catch (err) {
+        clearInterval(msgInterval);
+        console.error(err);
+        showScreen('screen-config');
+        showToast('Could not generate quiz. Is the backend running on port 5000?', 'error');
+    }
+}
+
+// ── Render question ───────────────────────────────────────────────────────
+function renderQuestion() {
+    const q = quizData[currentQ];
+    answered = false;
+
+    // Header
+    document.getElementById('q-meta').textContent = `Question ${currentQ + 1} of ${quizData.length}`;
+    document.getElementById('q-num').textContent  = String(currentQ + 1).padStart(2, '0');
+    document.getElementById('q-progress').style.width = ((currentQ / quizData.length) * 100) + '%';
+
+    // Question text
+    document.getElementById('q-text').textContent = q.question;
+
+    // Code block
+    const codeWrap = document.getElementById('q-code-wrap');
+    const codeEl   = document.getElementById('q-code');
+    if (q.code && q.code.trim()) {
+        codeEl.textContent = q.code;
+        codeWrap.classList.remove('hidden');
+    } else {
+        codeWrap.classList.add('hidden');
+    }
+
+    // Options
+    const container = document.getElementById('options-container');
+    container.innerHTML = '';
+    q.options.forEach((opt, i) => {
+        const label = document.createElement('label');
+        label.className = 'option-label flex items-center gap-4 p-4 rounded-xl border border-outline-variant/20 bg-surface-container-low';
+        label.dataset.index = i;
+        label.innerHTML = `
+            <input type="radio" name="quiz-option" value="${i}"
+                class="w-4 h-4 text-primary border-outline focus:ring-primary shrink-0"/>
+            <span class="text-sm font-medium text-on-surface">${opt}</span>
+        `;
+        container.appendChild(label);
+    });
+
+    // Reset UI
+    document.getElementById('explanation-card').classList.add('hidden');
+    document.getElementById('hint-card').classList.add('hidden');
+    document.getElementById('submit-btn').style.display = '';
+    document.getElementById('next-btn').style.display   = 'none';
+    document.getElementById('hint-btn').disabled        = false;
+
+    // Score dots
+    updateScoreDots();
+    updateLiveScore();
+}
+
+// ── Submit ────────────────────────────────────────────────────────────────
+function submitAnswer() {
+    if (answered) return;
+
+    const selected = document.querySelector('input[name="quiz-option"]:checked');
+    if (!selected) { showToast('Please select an answer first.', 'warn'); return; }
+
+    answered = true;
+    const selectedIdx = parseInt(selected.value);
+    const correctIdx  = quizData[currentQ].answer;
+    const isCorrect   = selectedIdx === correctIdx;
+
+    results.push(isCorrect);
+
+    // Style options
+    document.querySelectorAll('.option-label').forEach(lbl => {
+        const idx = parseInt(lbl.dataset.index);
+        lbl.classList.add('answered', 'pointer-events-none');
+        if (idx === correctIdx)  lbl.classList.add('option-correct');
+        else if (idx === selectedIdx) lbl.classList.add('option-wrong');
+    });
+
+    // Explanation
+    const expCard  = document.getElementById('explanation-card');
+    const expTitle = document.getElementById('exp-title');
+    const expText  = document.getElementById('exp-text');
+    expTitle.textContent = isCorrect ? '✅ Correct! Here\'s why:' : '❌ Not quite. Here\'s why:';
+    expTitle.className   = `font-bold font-headline mb-2 ${isCorrect ? 'text-tertiary' : 'text-error'}`;
+    expText.textContent  = quizData[currentQ].explanation;
+    expCard.classList.remove('hidden');
+
+    // Buttons
+    document.getElementById('submit-btn').style.display = 'none';
+    document.getElementById('next-btn').style.display   = '';
+    if (currentQ === quizData.length - 1) {
+        document.getElementById('next-btn').innerHTML =
+            'View Results <span class="material-symbols-outlined text-sm">emoji_events</span>';
+    }
+
+    updateScoreDots();
+    updateLiveScore();
+}
+
+// ── Next ──────────────────────────────────────────────────────────────────
+function nextQuestion() {
+    currentQ++;
+    if (currentQ >= quizData.length) {
+        showResults();
+    } else {
+        renderQuestion();
+    }
+}
+
+// ── Score helpers ─────────────────────────────────────────────────────────
+function updateScoreDots() {
+    const dots = document.getElementById('score-dots');
+    dots.innerHTML = '';
+    quizData.forEach((_, i) => {
+        const dot = document.createElement('div');
+        dot.className = 'flex-1 h-1.5 rounded-full ';
+        if (i < results.length)      dot.className += results[i] ? 'bg-tertiary-fixed' : 'bg-error-container';
+        else if (i === currentQ)     dot.className += 'bg-white';
+        else                         dot.className += 'bg-white/30';
+        dots.appendChild(dot);
+    });
+}
+
+function updateLiveScore() {
+    document.getElementById('live-score').textContent = results.filter(Boolean).length;
+    document.getElementById('live-total').textContent = results.length;
+}
+
+// ── AI Hint ───────────────────────────────────────────────────────────────
+async function getHint() {
+    document.getElementById('hint-btn').disabled = true;
+    document.getElementById('hint-text').textContent = 'Thinking…';
+    document.getElementById('hint-card').classList.remove('hidden');
+
+    // Simple hint: reveal a clue from explanation without giving away the answer
+    const q = quizData[currentQ];
+    const hint = q.explanation
+        ? q.explanation.split('.')[0] + '… (think deeper to find the answer)'
+        : 'Try eliminating the clearly wrong options first.';
+
+    await new Promise(r => setTimeout(r, 600));
+    document.getElementById('hint-text').textContent = hint;
+}
+
+// ── Results ───────────────────────────────────────────────────────────────
+function showResults() {
+    const correct = results.filter(Boolean).length;
+    const total   = quizData.length;
+    const pct     = Math.round((correct / total) * 100);
+    const xp      = correct * 50 + (pct === 100 ? 100 : 0);
+
+    document.getElementById('res-correct').textContent = correct;
+    document.getElementById('res-wrong').textContent   = total - correct;
+    document.getElementById('res-xp').textContent      = `+${xp}`;
+    document.getElementById('res-pct').textContent     = `${pct}%`;
+
+    const title = pct === 100 ? '🏆 Perfect Score!' : pct >= 80 ? '🎉 Great Work!' : pct >= 60 ? '👏 Good Effort!' : '📚 Keep Practicing!';
+    const sub   = `You scored ${correct} out of ${total} — ${pct >= 80 ? 'Excellent knowledge!' : 'Review the explanations and try again.'}`;
+    document.getElementById('res-title').textContent    = title;
+    document.getElementById('res-subtitle').textContent = sub;
+
+    showScreen('screen-results');
+
+    // Animate ring
+    requestAnimationFrame(() => {
+        const circumference = 283;
+        const offset = circumference - (pct / 100) * circumference;
+        document.getElementById('score-ring').style.strokeDashoffset = offset;
+    });
+
+    // Persist XP
+    saveXP(xp);
+}
+
+function retryQuiz() {
+    currentQ = 0;
+    results  = [];
+    renderQuestion();
+    showScreen('screen-quiz');
+}
+
+function saveXP(earned) {
+    const key = sessionStorage.getItem('careerpilot_session') ? 'careerpilot_session' : null;
+    const lkey = localStorage.getItem('careerpilot_session')  ? 'careerpilot_session' : null;
+    const storage = key ? sessionStorage : (lkey ? localStorage : null);
+    if (!storage) return;
+    const s = JSON.parse(storage.getItem('careerpilot_session'));
+    s.xp = (s.xp || 0) + earned;
+    storage.setItem('careerpilot_session', JSON.stringify(s));
+    document.getElementById('hdr-xp').querySelector('span:last-child').textContent = s.xp.toLocaleString() + ' XP';
+}
+
+// ── Toast ─────────────────────────────────────────────────────────────────
+function showToast(msg, type = 'info') {
+    const t = document.createElement('div');
+    t.className = `fixed bottom-6 right-6 z-[999] px-5 py-3 rounded-xl text-sm font-bold shadow-xl transition-all
+        ${type === 'error' ? 'bg-error text-white' : type === 'warn' ? 'bg-amber-500 text-white' : 'bg-on-surface text-surface'}`;
+    t.textContent = msg;
+    document.body.appendChild(t);
+    setTimeout(() => t.remove(), 3500);
+}
+
+function logout() {
+    sessionStorage.removeItem('careerpilot_session');
+    localStorage.removeItem('careerpilot_session');
+    window.location.href = 'signIn.html';
+}
+</script>
+</body>
 </html>

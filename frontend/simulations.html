@@ -95,36 +95,36 @@
 <p class="text-[10px] uppercase tracking-[0.2em] text-slate-500 mt-1">The Intelligent Void</p>
 </div>
 <nav class="flex-1 space-y-1 px-4">
-<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg group" href="#">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg group" href="dashboard.html">
 <span class="material-symbols-outlined group-hover:scale-110 transition-transform">dashboard</span>
 <span>Dashboard</span>
 </a>
-<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg group" href="#">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg group" href="learningPath.html">
 <span class="material-symbols-outlined group-hover:scale-110 transition-transform">auto_stories</span>
 <span>Learning Path</span>
 </a>
-<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg group" href="#">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg group" href="codelab.html">
 <span class="material-symbols-outlined group-hover:scale-110 transition-transform">science</span>
 <span>Playground</span>
 </a>
-<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg group" href="#">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg group" href="games.html">
 <span class="material-symbols-outlined group-hover:scale-110 transition-transform">sports_esports</span>
 <span>Games</span>
 </a>
-<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg group" href="#">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg group" href="quiz.html">
 <span class="material-symbols-outlined group-hover:scale-110 transition-transform">quiz</span>
 <span>Quizzes</span>
 </a>
 <!-- ACTIVE TAB: Simulations -->
-<a class="flex items-center gap-3 px-4 py-3 text-[#3525cd] dark:text-[#4f46e5] font-bold border-r-4 border-[#3525cd] bg-white/40 dark:bg-slate-800/40 font-manrope tracking-tight" href="#">
+<a class="flex items-center gap-3 px-4 py-3 text-[#3525cd] dark:text-[#4f46e5] font-bold border-r-4 border-[#3525cd] bg-white/40 dark:bg-slate-800/40 font-manrope tracking-tight" href="simulations.html">
 <span class="material-symbols-outlined">vital_signs</span>
 <span>Simulations</span>
 </a>
-<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg group" href="#">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg group" href="leaderboard.html">
 <span class="material-symbols-outlined group-hover:scale-110 transition-transform">leaderboard</span>
 <span>Leaderboard</span>
 </a>
-<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg group" href="#">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg group" href="progress.html">
 <span class="material-symbols-outlined group-hover:scale-110 transition-transform">account_circle</span>
 <span>Profile</span>
 </a>
@@ -440,4 +440,11 @@
         reader.readAsDataURL(file);
     };
 </script>
+    <script>
+        // ── Auth Guard ────────────────────────────────────────────────────
+        (function () {
+            const s = sessionStorage.getItem('careerpilot_session') || localStorage.getItem('careerpilot_session');
+            if (!s) window.location.replace('signIn.html');
+        })();
+    </script>
 </body></html>

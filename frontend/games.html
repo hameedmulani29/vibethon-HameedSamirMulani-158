@@ -108,42 +108,42 @@
         </div>
         <nav class="flex-1 space-y-1 px-4">
             <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-500 hover:bg-white/50 transition-colors font-manrope font-semibold"
-                href="#">
+                href="dashboard.html">
                 <span class="material-symbols-outlined">dashboard</span>
                 <span>Dashboard</span>
             </a>
             <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-500 hover:bg-white/50 transition-colors font-manrope font-semibold"
-                href="#">
+                href="learningPath.html">
                 <span class="material-symbols-outlined">auto_stories</span>
                 <span>Learning Path</span>
             </a>
             <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-500 hover:bg-white/50 transition-colors font-manrope font-semibold"
-                href="#">
+                href="codelab.html">
                 <span class="material-symbols-outlined">science</span>
                 <span>Playground</span>
             </a>
             <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-[#3525cd] font-bold border-r-4 border-[#3525cd] bg-white/50 transition-colors font-manrope"
-                href="#">
+                href="games.html">
                 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">sports_esports</span>
                 <span>Games</span>
             </a>
             <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-500 hover:bg-white/50 transition-colors font-manrope font-semibold"
-                href="#">
+                href="quiz.html">
                 <span class="material-symbols-outlined">quiz</span>
                 <span>Quizzes</span>
             </a>
             <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-500 hover:bg-white/50 transition-colors font-manrope font-semibold"
-                href="#">
+                href="simulations.html">
                 <span class="material-symbols-outlined">vital_signs</span>
                 <span>Simulations</span>
             </a>
             <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-500 hover:bg-white/50 transition-colors font-manrope font-semibold"
-                href="#">
+                href="leaderboard.html">
                 <span class="material-symbols-outlined">leaderboard</span>
                 <span>Leaderboard</span>
             </a>
             <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-500 hover:bg-white/50 transition-colors font-manrope font-semibold"
-                href="#">
+                href="progress.html">
                 <span class="material-symbols-outlined">account_circle</span>
                 <span>Profile</span>
             </a>
@@ -443,6 +443,13 @@
                 setTimeout(expandTree, 500);
             });
         });
+    </script>
+    <script>
+        // ── Auth Guard ────────────────────────────────────────────────────
+        (function () {
+            const s = sessionStorage.getItem('careerpilot_session') || localStorage.getItem('careerpilot_session');
+            if (!s) window.location.replace('signIn.html');
+        })();
     </script>
 </body>
 

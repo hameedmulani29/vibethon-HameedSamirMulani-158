@@ -162,7 +162,7 @@ app.post('/api/login', async (req, res) => {
 // Logout
 app.post('/api/logout', (req, res) => {
   res.clearCookie('token');
-  res.json({ message: 'Logged out', redirect: '/signIn.html' });
+  res.json({ message: 'Logged out', redirect: '/hero.html' });
 });
 
 // Protected route example
@@ -183,7 +183,7 @@ app.get('/api/auth/status', (req, res) => {
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'CareerPilot AI Backend is running 🚀' });
+  res.json({ status: 'NuralPlay Backend is running 🚀' });
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -197,7 +197,7 @@ app.post('/api/generate-quiz', async (req, res) => {
   const { language = 'Python', topic = 'Basics', difficulty = 'Medium' } = req.body;
 
   const prompt = `
-You are an expert programming quiz generator for a gamified AI/ML learning platform called CareerPilot AI.
+You are an expert programming quiz generator for a gamified AI/ML learning platform called NuralPlay.
 
 Generate exactly 5 challenging questions.
 
@@ -277,7 +277,7 @@ app.get('/', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`\n🚀 CareerPilot AI Backend running on http://localhost:${PORT}`);
+  console.log(`\n🚀 NuralPlay Backend running on http://localhost:${PORT}`);
   console.log(`   MongoDB: ${process.env.MONGODB_URI ? '✅ Configured' : '⚠️  Local instance'}`);
   console.log(`   Gemini API: ${process.env.GEMINI_API_KEY ? '✅ Loaded' : '❌ Missing'}\n`);
 });

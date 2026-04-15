@@ -129,47 +129,52 @@
         <nav class="flex-1 px-4 space-y-1">
             <!-- Active: Dashboard -->
             <a class="flex items-center gap-4 px-4 py-3 text-[#3525cd] dark:text-[#4f46e5] font-bold border-r-4 border-[#3525cd] hover:bg-white/50 transition-colors duration-300"
-                href="#">
+                href="dashboard.html">
                 <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
                 <span class="font-manrope tracking-tight">Dashboard</span>
             </a>
             <a class="flex items-center gap-4 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-white/50 transition-colors duration-300"
-                href="#">
+                href="learningPath.html">
                 <span class="material-symbols-outlined" data-icon="auto_stories">auto_stories</span>
                 <span class="font-manrope tracking-tight">Learning Path</span>
             </a>
             <a class="flex items-center gap-4 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-white/50 transition-colors duration-300"
-                href="#">
+                href="codelab.html">
                 <span class="material-symbols-outlined" data-icon="science">science</span>
                 <span class="font-manrope tracking-tight">Playground</span>
             </a>
             <a class="flex items-center gap-4 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-white/50 transition-colors duration-300"
-                href="#">
+                href="games.html">
                 <span class="material-symbols-outlined" data-icon="sports_esports">sports_esports</span>
                 <span class="font-manrope tracking-tight">Games</span>
             </a>
             <a class="flex items-center gap-4 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-white/50 transition-colors duration-300"
-                href="#">
+                href="quiz.html">
                 <span class="material-symbols-outlined" data-icon="quiz">quiz</span>
                 <span class="font-manrope tracking-tight">Quizzes</span>
             </a>
             <a class="flex items-center gap-4 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-white/50 transition-colors duration-300"
-                href="#">
+                href="simulations.html">
                 <span class="material-symbols-outlined" data-icon="vital_signs">vital_signs</span>
                 <span class="font-manrope tracking-tight">Simulations</span>
             </a>
             <a class="flex items-center gap-4 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-white/50 transition-colors duration-300"
-                href="#">
+                href="leaderboard.html">
                 <span class="material-symbols-outlined" data-icon="leaderboard">leaderboard</span>
                 <span class="font-manrope tracking-tight">Leaderboard</span>
             </a>
             <a class="flex items-center gap-4 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-white/50 transition-colors duration-300"
-                href="#">
+                href="progress.html">
                 <span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
                 <span class="font-manrope tracking-tight">Profile</span>
             </a>
         </nav>
-        <div class="mt-auto px-4">
+        <div class="mt-auto px-4 space-y-2">
+            <button id="logout-btn"
+                class="w-full py-3 px-4 bg-surface-container-low hover:bg-surface-container-high text-on-surface rounded-xl font-manrope font-medium text-sm tracking-wide flex items-center justify-center gap-2 transition-colors">
+                <span class="material-symbols-outlined text-sm">logout</span>
+                <span>Logout</span>
+            </button>
             <button
                 class="w-full py-4 px-4 primary-gradient text-white rounded-xl font-manrope font-bold text-sm tracking-wide shadow-xl shadow-primary/20 flex items-center justify-center gap-2 group hover:scale-[1.02] transition-transform active:scale-95">
                 <span>Start Daily Lesson</span>
@@ -520,6 +525,46 @@
         class="fixed bottom-8 right-8 w-14 h-14 primary-gradient text-white rounded-full shadow-2xl flex items-center justify-center group hover:scale-110 active:scale-90 transition-all z-50">
         <span class="material-symbols-outlined text-2xl group-hover:rotate-12 transition-transform">bolt</span>
     </button>
+    <script>
+        // ── Auth Guard ────────────────────────────────────────────────────────
+        (function () {
+            const raw = sessionStorage.getItem('careerpilot_session') || localStorage.getItem('careerpilot_session');
+            if (!raw) { window.location.replace('signIn.html'); }
+        })();
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // ── Load session ─────────────────────────────────────────────────
+            const raw     = sessionStorage.getItem('careerpilot_session') || localStorage.getItem('careerpilot_session');
+            const session = raw ? JSON.parse(raw) : {};
+
+            // ── Populate dynamic UI from session ─────────────────────────────
+            const firstName = (session.name || 'Learner').split(' ')[0];
+
+            // Update streak & XP badges in header
+            const streakBadge = document.querySelector('.text-on-error-container.font-manrope');
+            const xpBadge     = document.querySelector('.text-on-secondary-container.font-manrope');
+            if (streakBadge) streakBadge.textContent = (session.streak || 12) + ' Streaks';
+            if (xpBadge)     xpBadge.textContent     = (session.xp    || 2450).toLocaleString() + ' XP';
+
+            // Update avatar tooltip with name
+            const avatar = document.querySelector('img[data-alt*="portrait"]');
+            if (avatar) avatar.setAttribute('title', firstName);
+
+            // Update greeting in hero section
+            const heroHeading = document.querySelector('h2.font-extrabold.font-manrope');
+            if (heroHeading) {
+                const label = heroHeading.closest('section')?.querySelector('span.uppercase');
+                if (label) label.textContent = 'Welcome back, ' + firstName + ' · Daily Focus';
+            }
+
+            // ── Logout ────────────────────────────────────────────────────────
+            document.getElementById('logout-btn').addEventListener('click', function () {
+                sessionStorage.removeItem('careerpilot_session');
+                localStorage.removeItem('careerpilot_session');
+                window.location.href = 'signIn.html';
+            });
+        });
+    </script>
 </body>
 
 </html>

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Sign Up | NeuralPlay</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#3525cd",
+                        "on-tertiary-fixed": "#002109",
+                        "tertiary-fixed": "#6bff8f",
+                        "outline-variant": "#c7c4d8",
+                        "outline": "#777587",
+                        "on-primary-container": "#dad7ff",
+                        "on-secondary-container": "#006172",
+                        "on-secondary-fixed": "#001f26",
+                        "on-tertiary-container": "#63f889",
+                        "on-secondary-fixed-variant": "#004e5c",
+                        "surface-container-low": "#f3f4f5",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#c3c0ff",
+                        "secondary-fixed": "#acedff",
+                        "on-background": "#191c1d",
+                        "surface-bright": "#f8f9fa",
+                        "error-container": "#ffdad6",
+                        "primary-container": "#4f46e5",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error": "#ffffff",
+                        "secondary-fixed-dim": "#4cd7f6",
+                        "inverse-surface": "#2e3132",
+                        "error": "#ba1a1a",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-tertiary-fixed-variant": "#005321",
+                        "tertiary-fixed-dim": "#4ae176",
+                        "surface-container": "#edeeef",
+                        "on-tertiary": "#ffffff",
+                        "surface": "#f8f9fa",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "surface-dim": "#d9dadb",
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#007030",
+                        "surface-container-high": "#e7e8e9",
+                        "on-surface": "#191c1d",
+                        "tertiary": "#005523",
+                        "on-primary-fixed": "#0f0069",
+                        "inverse-on-surface": "#f0f1f2",
+                        "surface-tint": "#4d44e3",
+                        "secondary-container": "#57dffe",
+                        "primary-fixed": "#e2dfff",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#464555",
+                        "secondary": "#00687a",
+                        "background": "#f8f9fa",
+                        "surface-variant": "#e1e3e4"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .bg-intelligent-void {
+            background-color: #f8f9fa;
+            background-image:
+                radial-gradient(at 0% 0%, rgba(53, 37, 205, 0.05) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(0, 104, 122, 0.05) 0px, transparent 50%);
+        }
+
+        .transition-heavy {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+
+<body
+    class="bg-intelligent-void font-body text-on-surface min-h-screen flex items-center justify-center p-6 selection:bg-primary-fixed selection:text-on-primary-fixed">
+    <main
+        class="w-full max-w-[1200px] grid md:grid-cols-2 bg-surface-container-lowest rounded-3xl overflow-hidden shadow-2xl relative">
+        <!-- Branding & Context Side -->
+        <section class="hidden md:flex flex-col justify-between p-12 bg-surface-container-low relative overflow-hidden">
+            <div class="relative z-10">
+                <div class="flex items-center gap-3 mb-16">
+                    <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
+                        <span class="material-symbols-outlined text-white"
+                            style="font-variation-settings: 'FILL' 1;">psychology</span>
+                    </div>
+                    <span class="font-headline font-extrabold text-2xl tracking-tighter text-primary">NeuralPlay</span>
+                </div>
+                <h1 class="font-headline text-5xl font-extrabold text-on-surface leading-tight mb-6 tracking-tight">
+                    Step into the <br />
+                    <span class="text-primary">Intelligent Void.</span>
+                </h1>
+                <p class="text-on-surface-variant text-lg leading-relaxed max-w-sm mb-12">
+                    Join a community of researchers and developers sculpting the next generation of cognitive systems.
+                </p>
+                <div class="flex flex-col gap-6">
+                    <div class="flex items-center gap-4 group">
+                        <div
+                            class="w-12 h-12 rounded-full bg-surface-container-lowest flex items-center justify-center text-primary shadow-sm transition-heavy group-hover:scale-110">
+                            <span class="material-symbols-outlined">science</span>
+                        </div>
+                        <div>
+                            <p class="font-headline font-bold text-on-surface">Experimental Sandbox</p>
+                            <p class="text-sm text-on-surface-variant">Deploy LLMs in a zero-latency environment.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 group">
+                        <div
+                            class="w-12 h-12 rounded-full bg-surface-container-lowest flex items-center justify-center text-primary shadow-sm transition-heavy group-hover:scale-110">
+                            <span class="material-symbols-outlined">hub</span>
+                        </div>
+                        <div>
+                            <p class="font-headline font-bold text-on-surface">Neural Hub</p>
+                            <p class="text-sm text-on-surface-variant">Collaborative weights sharing and fine-tuning.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Background Decorative Element -->
+            <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-primary opacity-5 rounded-full blur-3xl"></div>
+            <div class="absolute top-1/2 -right-12 w-48 h-48 bg-secondary opacity-5 rounded-full blur-2xl"></div>
+            <div class="relative z-10 pt-12">
+                <p class="text-xs font-label uppercase tracking-widest text-outline">v2.4.0 Codename: Synapse</p>
+            </div>
+        </section>
+        <!-- Form Side -->
+        <section class="flex flex-col justify-center p-8 md:p-16 lg:p-20 bg-surface-container-lowest">
+            <div class="max-w-md mx-auto w-full">
+                <!-- Mobile Branding -->
+                <div class="flex md:hidden items-center gap-2 mb-8">
+                    <span class="material-symbols-outlined text-primary text-3xl">psychology</span>
+                    <span class="font-headline font-extrabold text-xl tracking-tighter text-primary">NeuralPlay</span>
+                </div>
+                <div class="mb-10">
+                    <h2 class="font-headline text-3xl font-bold text-on-surface mb-2">Create your account</h2>
+                    <p class="text-on-surface-variant">Already have an account? <a
+                            class="text-primary font-semibold hover:underline decoration-2 underline-offset-4"
+                            href="signIn.html">Sign in</a></p>
+                </div>
+                <!-- OAuth Buttons -->
+                <div class="grid grid-cols-2 gap-4 mb-8">
+                    <button
+                        class="flex items-center justify-center gap-3 py-3 px-4 rounded-xl bg-surface-container-low border border-transparent hover:bg-surface-container-high transition-heavy group active:scale-95">
+                        <img alt="Google Logo" class="w-5 h-5 grayscale group-hover:grayscale-0 transition-heavy"
+                            data-alt="Google colorful logo icon on transparent background"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiz_iQZWQi5EmzWQBWHX637zZTLlsOAc2N50Vb1ahpUyiKV-ktuPgkPK6BArB-8I4J8tOBkHzgK2cZ-hXu00gAqwDVbdiuKdQBSy9EvyHd4c0V0WQFHnrr4HyCCLqzRFVpVd8ezvtnAh5AJC6_BJZ7YsgWZr29Y1_g4B4tGKPb2rww3IablKuZrQK43rWAa0nS7UM3ojurwmfO-nMgHeu80wDVlVdLKBDwhndssAi-bXm1W6msU2d6eIwSDykkP6AN28q4CJR_nRk" />
+                        <span class="text-sm font-semibold text-on-surface">Google</span>
+                    </button>
+                    <button
+                        class="flex items-center justify-center gap-3 py-3 px-4 rounded-xl bg-surface-container-low border border-transparent hover:bg-surface-container-high transition-heavy group active:scale-95">
+                        <img alt="GitHub Logo" class="w-5 h-5 opacity-70 group-hover:opacity-100 transition-heavy"
+                            data-alt="Github black logo silhouette on white background"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEvBXUsnjK2u9ei6yL8dejc5uCbmUAogmZLUh2k2SlqLvfbZ5YddSPWDrQTnNnnRcc1kB5983NAQEcvtH0T3OMpFsR1-_p6xUJERQZto9dS5tB3g8zDa6VJUL_Y7vrmoMOo9bxi4ZXkKzVFRTmeiumiF1r9yvi_R3coleAdhR2-dLA8yuz9njcuVHDMi76SF5FxA0T3dpHOifSqYEshrFBsZsqhtn2RdbFQbw8SCa1tWEIV0MHP6aYkqXkZgT5xa1xocNVG5ffHMI" />
+                        <span class="text-sm font-semibold text-on-surface">GitHub</span>
+                    </button>
+                </div>
+                <div class="relative flex items-center gap-4 mb-8">
+                    <div class="flex-grow h-px bg-surface-container-highest"></div>
+                    <span class="text-xs font-label font-bold text-outline uppercase tracking-widest">or use
+                        email</span>
+                    <div class="flex-grow h-px bg-surface-container-highest"></div>
+                </div>
+                <!-- Signup Form -->
+                <form action="#" class="space-y-6" onsubmit="return false">
+                    <div class="space-y-2">
+                        <label class="block text-sm font-bold text-on-surface-variant font-headline" for="name">Full
+                            Name</label>
+                        <div class="relative group">
+                            <span
+                                class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-heavy">person</span>
+                            <input
+                                class="w-full pl-12 pr-4 py-4 rounded-xl bg-surface-container-highest border-0 focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-heavy text-on-surface placeholder:text-outline"
+                                id="name" placeholder="John Doe" type="text" />
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="block text-sm font-bold text-on-surface-variant font-headline" for="email">Email
+                            Address</label>
+                        <div class="relative group">
+                            <span
+                                class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-heavy">alternate_email</span>
+                            <input
+                                class="w-full pl-12 pr-4 py-4 rounded-xl bg-surface-container-highest border-0 focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-heavy text-on-surface placeholder:text-outline"
+                                id="email" placeholder="name@company.com" type="email" />
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="block text-sm font-bold text-on-surface-variant font-headline"
+                            for="password">Password</label>
+                        <div class="relative group">
+                            <span
+                                class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-heavy">lock</span>
+                            <input
+                                class="w-full pl-12 pr-12 py-4 rounded-xl bg-surface-container-highest border-0 focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-heavy text-on-surface placeholder:text-outline"
+                                id="password" placeholder="••••••••" type="password" />
+                            <button
+                                class="absolute right-4 top-1/2 -translate-y-1/2 text-outline hover:text-on-surface transition-heavy"
+                                type="button">
+                                <span class="material-symbols-outlined">visibility</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3 pt-2">
+                        <input
+                            class="mt-1 w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary bg-surface-container-lowest"
+                            id="terms" type="checkbox" />
+                        <label class="text-sm text-on-surface-variant leading-snug" for="terms">
+                            I agree to the <a class="text-primary font-medium hover:underline" href="#">Terms of
+                                Service</a> and <a class="text-primary font-medium hover:underline" href="#">Privacy
+                                Policy</a>.
+                        </label>
+                    </div>
+                    <button
+                        class="w-full py-4 px-6 rounded-xl bg-gradient-to-br from-primary to-primary-container text-white font-headline font-bold text-lg shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-0.5 active:translate-y-0 transition-heavy">
+                        Create Account
+                    </button>
+                </form>
+                <footer class="mt-12 text-center">
+                    <p class="text-xs text-outline font-label tracking-wide">
+                        Protected by NeuralPlay Shield™ <br />
+                        Encrypted end-to-end with lattice-based cryptography.
+                    </p>
+                </footer>
+            </div>
+        </section>
+    </main>
+    <!-- Floating Background Orbs for 'Intelligent Void' atmosphere -->
+    <div class="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none overflow-hidden">
+        <div class="absolute top-[10%] left-[5%] w-[400px] h-[400px] rounded-full bg-primary/5 blur-[120px]"></div>
+        <div class="absolute bottom-[10%] right-[5%] w-[500px] h-[500px] rounded-full bg-secondary/5 blur-[150px]">
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.querySelector('form');
+            const submitBtn = form.querySelector('button');
+            const nameInput = document.getElementById('name');
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            const termsInput = document.getElementById('terms');
+
+            // Create error message element
+            let errorMsg = document.createElement('p');
+            errorMsg.className = 'error-msg text-xs text-error font-medium flex items-center gap-1 mt-2 hidden';
+            errorMsg.innerHTML = '<span class="material-symbols-outlined text-sm">error</span> <span class="error-text"></span>';
+            submitBtn.parentNode.insertBefore(errorMsg, submitBtn);
+
+            function showError(msg) {
+                errorMsg.querySelector('.error-text').textContent = msg;
+                errorMsg.classList.remove('hidden');
+            }
+
+            [nameInput, emailInput, passwordInput].forEach(input =>
+                input.addEventListener('input', () => errorMsg.classList.add('hidden'))
+            );
+            termsInput.addEventListener('change', () => errorMsg.classList.add('hidden'));
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const name     = nameInput.value.trim();
+                const email    = emailInput.value.trim().toLowerCase();
+                const password = passwordInput.value;
+                const terms    = termsInput.checked;
+
+                // --- Validation ---
+                if (!name)                        return showError('Full name is required.');
+                if (!email)                       return showError('Email address is required.');
+                if (!/\S+@\S+\.\S+/.test(email)) return showError('Please enter a valid email.');
+                if (!password)                    return showError('Password is required.');
+                if (password.length < 6)          return showError('Password must be at least 6 characters.');
+                if (!terms)                       return showError('You must agree to the Terms of Service.');
+
+                // --- Check if email already registered ---
+                const users = JSON.parse(localStorage.getItem('careerpilot_users') || '[]');
+                if (users.find(u => u.email === email)) {
+                    return showError('An account with this email already exists. Sign in instead.');
+                }
+
+                // --- Register user ---
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Creating Account...';
+
+                const newUser = {
+                    id: 'user_' + Date.now(),
+                    name,
+                    email,
+                    // Simple obfuscation (not crypto — this is a demo project)
+                    passwordHash: btoa(password + email),
+                    createdAt: new Date().toISOString(),
+                    xp: 0,
+                    streak: 0,
+                };
+
+                users.push(newUser);
+                localStorage.setItem('careerpilot_users', JSON.stringify(users));
+
+                // Show success flash briefly then redirect
+                submitBtn.textContent = '✓ Account Created! Redirecting...';
+                submitBtn.classList.replace('from-primary', 'from-tertiary');
+
+                setTimeout(() => {
+                    window.location.href = 'signIn.html';
+                }, 800);
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CareerPilot AI | Real-World Simulations</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error-container": "#ffdad6",
+                    "surface-tint": "#4d44e3",
+                    "on-surface-variant": "#464555",
+                    "secondary-fixed": "#acedff",
+                    "on-surface": "#191c1d",
+                    "on-secondary-fixed": "#001f26",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed": "#0f0069",
+                    "surface-container-low": "#f3f4f5",
+                    "surface-dim": "#d9dadb",
+                    "on-background": "#191c1d",
+                    "outline": "#777587",
+                    "error": "#ba1a1a",
+                    "surface-container": "#edeeef",
+                    "on-tertiary-fixed": "#002109",
+                    "tertiary-container": "#007030",
+                    "inverse-surface": "#2e3132",
+                    "background": "#f8f9fa",
+                    "surface-variant": "#e1e3e4",
+                    "secondary-fixed-dim": "#4cd7f6",
+                    "primary-fixed": "#e2dfff",
+                    "tertiary-fixed": "#6bff8f",
+                    "tertiary-fixed-dim": "#4ae176",
+                    "on-primary-fixed-variant": "#3323cc",
+                    "on-primary-container": "#dad7ff",
+                    "primary-container": "#4f46e5",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#005321",
+                    "tertiary": "#005523",
+                    "primary-fixed-dim": "#c3c0ff",
+                    "on-secondary-container": "#006172",
+                    "on-error-container": "#93000a",
+                    "surface-container-high": "#e7e8e9",
+                    "surface": "#f8f9fa",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-highest": "#e1e3e4",
+                    "on-secondary": "#ffffff",
+                    "outline-variant": "#c7c4d8",
+                    "inverse-on-surface": "#f0f1f2",
+                    "inverse-primary": "#c3c0ff",
+                    "on-error": "#ffffff",
+                    "surface-bright": "#f8f9fa",
+                    "primary": "#3525cd",
+                    "on-tertiary-container": "#63f889",
+                    "on-secondary-fixed-variant": "#004e5c",
+                    "secondary": "#00687a",
+                    "secondary-container": "#57dffe"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "1rem",
+                    "xl": "1.25rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bg-primary-gradient {
+            background: linear-gradient(135deg, #3525cd 0%, #4f46e5 100%);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-screen w-64 bg-[#f3f4f5] dark:bg-slate-900 flex flex-col py-6 z-50">
+<div class="px-8 mb-10">
+<h1 class="text-2xl font-bold text-[#3525cd] dark:text-[#4f46e5] font-headline tracking-tight">CareerPilot AI</h1>
+<p class="text-[10px] uppercase tracking-[0.2em] text-slate-500 mt-1">The Intelligent Void</p>
+</div>
+<nav class="flex-1 space-y-1 px-4">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">auto_stories</span>
+<span>Learning Path</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">science</span>
+<span>Playground</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">sports_esports</span>
+<span>Games</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">quiz</span>
+<span>Quizzes</span>
+</a>
+<!-- ACTIVE TAB: Simulations -->
+<a class="flex items-center gap-3 px-4 py-3 text-[#3525cd] dark:text-[#4f46e5] font-bold border-r-4 border-[#3525cd] bg-white/40 dark:bg-slate-800/40 font-manrope tracking-tight" href="#">
+<span class="material-symbols-outlined">vital_signs</span>
+<span>Simulations</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">leaderboard</span>
+<span>Leaderboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">account_circle</span>
+<span>Profile</span>
+</a>
+</nav>
+<div class="mt-auto px-6">
+<button class="w-full py-4 bg-primary-gradient text-white rounded-xl font-headline font-bold text-sm shadow-[0_4px_20px_rgba(53,37,205,0.2)] hover:opacity-90 active:scale-95 transition-all">
+                Start Daily Lesson
+            </button>
+</div>
+</aside>
+<!-- TopAppBar -->
+<header class="fixed top-0 right-0 left-64 h-16 bg-[#f8f9fa]/80 dark:bg-slate-950/80 backdrop-blur-xl flex justify-between items-center px-8 z-40">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full bg-surface-container-highest border-none rounded-lg pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Search simulations..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4 text-sm font-manrope tracking-wide">
+<div class="flex items-center gap-1 text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined text-orange-500" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<span class="font-bold">12 Streaks</span>
+</div>
+<div class="flex items-center gap-1 text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined text-yellow-500" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+<span class="font-bold">2,450 XP</span>
+</div>
+</div>
+<div class="h-8 w-[1px] bg-outline-variant/20"></div>
+<div class="flex items-center gap-3">
+<button class="material-symbols-outlined text-slate-600 dark:text-slate-400 hover:opacity-80 transition-opacity">notifications</button>
+<img alt="User avatar" class="w-8 h-8 rounded-full border-2 border-white shadow-sm" data-alt="close-up portrait of a professional male designer with a friendly smile, clean lighting and studio background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGimSqTeZkJv6_q48DtnmIJMLmubAHaeF10ATyrvxPHr3-S0Iw3PIYGNkDPP8AC5DKqn_fpMI6VXybwF9aE9ImSnFPl_ySkm1Rh9Zujgbg72lrfw9VASEh5YTqMNOMwkjvVitsYmB_J1F6_2O9V6cgVP8ENQ1M1qPLOrRk8SLvgzNGPdWGDmRTkX6_-yxPmzLb7Eyx6iYCHbKucUYZxZsKlivv7cvtxQ4XBm2JZFuTKme_sbe_qcEA01Rq68xfR5tWvd6clxqqnL8"/>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-64 mt-16 p-8 min-h-screen">
+<!-- Editorial Header -->
+<div class="max-w-6xl mx-auto mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<h2 class="text-[3.5rem] font-headline font-extrabold tracking-tight leading-none text-on-surface">Simulations.</h2>
+<p class="mt-4 text-lg text-slate-500 max-w-xl font-body leading-relaxed">
+                    Step into the digital laboratory. Test high-performance AI models in real-world scenarios to understand the mechanics of the "Intelligent Void."
+                </p>
+</div>
+<div class="flex items-center gap-2 px-4 py-2 bg-tertiary-fixed/10 text-on-tertiary-fixed-variant rounded-full text-xs font-bold tracking-widest uppercase">
+<span class="w-2 h-2 bg-tertiary rounded-full animate-pulse"></span>
+                System Operational
+            </div>
+</div>
+<div class="max-w-6xl mx-auto grid grid-cols-12 gap-8">
+<!-- Module 1: Spam Detection (Bento Style) -->
+<section class="col-span-12 lg:col-span-7 bg-surface-container-lowest rounded-xl p-8 shadow-[0_4px_20px_rgba(53,37,205,0.02)] relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full -mr-10 -mt-10"></div>
+<header class="mb-8 relative">
+<span class="text-[10px] font-bold text-primary tracking-[0.3em] uppercase mb-2 block">Natural Language Processing</span>
+<h3 class="text-2xl font-headline font-bold">Email Spam Detection</h3>
+</header>
+<div class="space-y-6">
+<div class="group">
+<label class="block text-xs font-bold text-slate-500 mb-2 tracking-wide uppercase">Input text for analysis</label>
+<textarea id="spam-input" class="w-full bg-surface-container-low border-none rounded-lg p-4 text-sm focus:ring-2 focus:ring-primary/20 transition-all resize-none" placeholder="Enter an email message or SMS body here..." rows="4"></textarea>
+</div>
+<div class="flex items-center justify-between">
+<button id="run-model-btn" class="px-8 py-3 bg-primary-gradient text-white rounded-lg font-headline font-bold text-sm shadow-lg hover:scale-[1.02] active:scale-95 transition-all">
+                            Run Model
+                        </button>
+<div class="flex gap-4">
+<div class="text-right">
+<p class="text-[10px] text-slate-400 font-bold uppercase tracking-tighter">Model Latency</p>
+<p class="text-sm font-headline font-bold">14ms</p>
+</div>
+<div class="text-right">
+<p class="text-[10px] text-slate-400 font-bold uppercase tracking-tighter">Architecture</p>
+<p class="text-sm font-headline font-bold">BERT-Tiny</p>
+</div>
+</div>
+</div>
+<!-- NLP Result Visualization -->
+<div class="mt-8 p-6 bg-surface-container-low rounded-lg border-l-4 border-tertiary">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h4 class="font-headline font-bold text-sm">Classification Result</h4>
+<p class="text-xs text-slate-500">Analysis completed successfully.</p>
+</div>
+<span id="spam-result-label" class="px-3 py-1 bg-tertiary/10 text-tertiary text-[10px] font-bold rounded-full uppercase">Ham (Clean)</span>
+</div>
+<div class="relative pt-1">
+<div class="flex mb-2 items-center justify-between">
+<div><span class="text-[10px] font-semibold inline-block text-tertiary">Confidence Score</span></div>
+<div class="text-right"><span id="spam-result-score" class="text-[10px] font-semibold inline-block text-tertiary">98.4%</span></div>
+</div>
+<div class="overflow-hidden h-1.5 mb-4 text-xs flex rounded bg-tertiary/10">
+<div id="spam-progress-bar" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-tertiary" style="width:98.4%"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Module 2: Image Classification (Floating Card) -->
+<section class="col-span-12 lg:col-span-5 bg-surface-container-lowest rounded-xl p-8 shadow-[0_4px_20px_rgba(53,37,205,0.02)]">
+<header class="mb-6">
+<span class="text-[10px] font-bold text-secondary tracking-[0.3em] uppercase mb-2 block">Computer Vision</span>
+<h3 class="text-2xl font-headline font-bold">Object Recognition</h3>
+</header>
+<div class="relative group cursor-pointer mb-6">
+<div id="image-drop-zone" class="w-full aspect-square bg-surface-container-high rounded-xl flex flex-col items-center justify-center border-2 border-dashed border-outline-variant/30 group-hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-4xl text-slate-300 mb-2">upload_file</span>
+<p class="text-xs font-bold text-slate-500">Drop Image or Click</p>
+<p class="text-[10px] text-slate-400 mt-1">JPEG, PNG up to 5MB</p>
+</div>
+</div>
+<div class="space-y-4">
+<h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest">Top Predictions</h4>
+<div id="prediction-list" class="space-y-3">
+<div class="flex items-center justify-between p-3 bg-surface-container-low rounded-lg">
+<span class="text-xs font-bold">Mountain Landscape</span>
+<span class="text-xs font-headline font-bold text-primary">87.2%</span>
+</div>
+<div class="flex items-center justify-between p-3 bg-surface-container-low/50 rounded-lg">
+<span class="text-xs font-medium text-slate-500">Aerial View</span>
+<span class="text-xs font-headline font-bold text-slate-400">10.5%</span>
+</div>
+<div class="flex items-center justify-between p-3 bg-surface-container-low/50 rounded-lg">
+<span class="text-xs font-medium text-slate-500">Cloud Formation</span>
+<span class="text-xs font-headline font-bold text-slate-400">2.3%</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Data Context Table -->
+<section class="col-span-12 bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(53,37,205,0.02)]">
+<div class="p-8 border-b border-surface-container">
+<h3 class="text-xl font-headline font-bold mb-2">Training Set Context</h3>
+<p class="text-sm text-slate-500">Sample of the data used to fine-tune current simulation models.</p>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+<th class="px-8 py-4">ID</th>
+<th class="px-8 py-4">Snippet</th>
+<th class="px-8 py-4">Label</th>
+<th class="px-8 py-4">Token Count</th>
+<th class="px-8 py-4">Status</th>
+</tr>
+</thead>
+<tbody class="text-sm divide-y divide-surface-container">
+<tr class="hover:bg-surface-container-low/30 transition-colors">
+<td class="px-8 py-5 font-mono text-xs text-primary">#TR-8821</td>
+<td class="px-8 py-5 text-slate-600 italic">"Get a free gift card today by clicking..."</td>
+<td class="px-8 py-5 font-bold">SPAM</td>
+<td class="px-8 py-5">24</td>
+<td class="px-8 py-5">
+<span class="px-2 py-1 bg-tertiary-fixed text-on-tertiary-fixed-variant text-[10px] font-bold rounded">Verified</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/30 transition-colors">
+<td class="px-8 py-5 font-mono text-xs text-primary">#TR-8822</td>
+<td class="px-8 py-5 text-slate-600 italic">"The board meeting has been moved to..."</td>
+<td class="px-8 py-5 font-bold">HAM</td>
+<td class="px-8 py-5">18</td>
+<td class="px-8 py-5">
+<span class="px-2 py-1 bg-tertiary-fixed text-on-tertiary-fixed-variant text-[10px] font-bold rounded">Verified</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/30 transition-colors">
+<td class="px-8 py-5 font-mono text-xs text-primary">#TR-8823</td>
+<td class="px-8 py-5 text-slate-600 italic">"Your package will arrive by 5 PM..."</td>
+<td class="px-8 py-5 font-bold">HAM</td>
+<td class="px-8 py-5">12</td>
+<td class="px-8 py-5">
+<span class="px-2 py-1 bg-surface-variant text-on-surface-variant text-[10px] font-bold rounded uppercase">Pending Review</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Insights (Asymmetric Layout) -->
+<div class="col-span-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="bg-primary p-8 rounded-xl text-white relative overflow-hidden">
+<span class="material-symbols-outlined absolute -bottom-4 -right-4 text-8xl opacity-10 rotate-12">trending_up</span>
+<h4 class="text-sm font-bold uppercase tracking-widest opacity-80 mb-4">Global Accuracy</h4>
+<p class="text-5xl font-headline font-black mb-2">99.2%</p>
+<p class="text-xs opacity-70">Across 4.2M test samples last quarter.</p>
+</div>
+<div class="md:col-span-2 bg-surface-container-low rounded-xl p-8 flex items-center justify-between">
+<div class="max-w-sm">
+<h4 class="text-xl font-headline font-bold mb-2">Need More Precision?</h4>
+<p class="text-sm text-slate-500 mb-6">Access our Advanced Hyperparameter Tuning playground to refine the model's weights manually.</p>
+<button class="text-primary font-bold text-sm flex items-center gap-2 hover:gap-4 transition-all">
+                            Explore Advanced Lab <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<div class="hidden sm:block">
+<img alt="AI Server Cluster" class="w-48 h-32 object-cover rounded-lg grayscale hover:grayscale-0 transition-all duration-500 shadow-xl" data-alt="futuristic server room with glowing blue led lights on high-performance computer hardware and sleek cable management" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2rQ8QSbwUBCwil2L1iQgBzHhqboxGagEG6pHm2tuzU3QpcomUtnI49hgU339FgXDXBAdNW4pcwode4enE9S4RWUhrJTZfSpieAQPX67ZUQu5uVJBRCrYAd5LMxOduoKVVO_m1plfKWaIlWh2ThMZmvHBT2zE6NjyxILsGLnzSQ6Ikucrl9JPfnS5sxegaJSi_UwFuN5NxXq8cMkr6llLNnehEH3EeqEz7VebRx4hFD4y76c3WNN7ebXBdYYGfHE-v0m-ZIl0zmwM"/>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script type="module">
+    import { pipeline } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.6.0';
+
+    const runBtn = document.getElementById('run-model-btn');
+    const textarea = document.getElementById('spam-input');
+    const resultText = document.getElementById('spam-result-score');
+    const resultLabel = document.getElementById('spam-result-label');
+    const progressBar = document.getElementById('spam-progress-bar');
+
+    let classifier;
+
+    async function initModel() {
+        if (!runBtn) return;
+        runBtn.innerText = 'Loading Model...';
+        classifier = await pipeline('text-classification', 'Xenova/distilbert-base-uncased-finetuned-sst-2-english');
+        runBtn.innerText = 'Run Model';
+    }
+
+    async function analyzeText() {
+        if (!textarea || !resultText || !resultLabel || !progressBar || !runBtn) return;
+
+        if (!classifier) {
+            await initModel();
+        }
+
+        const text = textarea.value.trim();
+        if (!text) {
+            alert('Please enter text');
+            return;
+        }
+
+        runBtn.disabled = true;
+        runBtn.innerText = 'Analyzing...';
+
+        try {
+            const output = await classifier(text);
+            const score = output?.[0]?.score ? (output[0].score * 100).toFixed(1) : 0;
+            const label = output?.[0]?.label || 'UNKNOWN';
+
+            resultLabel.innerText = label === 'POSITIVE' ? 'HAM (CLEAN)' : 'SPAM';
+            resultText.innerText = `${score}%`;
+            progressBar.style.width = `${score}%`;
+        } catch (error) {
+            console.error(error);
+            alert('Model analysis failed. Please try again.');
+        } finally {
+            runBtn.disabled = false;
+            runBtn.innerText = 'Run Model';
+        }
+    }
+
+    if (runBtn) {
+        runBtn.addEventListener('click', analyzeText);
+    }
+</script>
+<!-- Contextual Learning Drawer (Hidden by default, ready for action) -->
+<div class="fixed right-0 top-0 h-full w-80 bg-white/80 backdrop-blur-2xl border-l border-outline-variant/10 shadow-2xl translate-x-full transition-transform duration-500 z-[60]">
+<div class="p-8">
+<button class="material-symbols-outlined text-slate-400 hover:text-on-surface mb-8">close</button>
+<h5 class="text-[10px] font-bold text-primary tracking-widest uppercase mb-4">AI Definition</h5>
+<h4 class="text-2xl font-headline font-bold mb-4">Neural Weights</h4>
+<p class="text-sm text-slate-600 leading-relaxed">
+                In artificial neural networks, weights are the coefficients of the equation which determines the target. Weights are adjusted during the training process to minimize error.
+            </p>
+</div>
+</div>
+<script>
+    const imageInput = document.createElement('input');
+    imageInput.type = 'file';
+    imageInput.accept = 'image/*';
+
+    const dropZone = document.getElementById('image-drop-zone');
+    const predictionList = document.getElementById('prediction-list');
+
+    dropZone.onclick = () => imageInput.click();
+
+    imageInput.onchange = (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            const img = new Image();
+            img.src = event.target.result;
+            img.className = 'w-full h-full object-cover rounded-xl';
+
+            dropZone.innerHTML = '';
+            dropZone.appendChild(img);
+
+            ml5.imageClassifier('MobileNet').then((classifier) => {
+                classifier.classify(img, (err, results) => {
+                    if (err) {
+                        console.error(err);
+                        predictionList.innerHTML = '<div class="text-xs text-red-600">Image classification failed.</div>';
+                        return;
+                    }
+
+                    predictionList.innerHTML = results
+                        .slice(0, 3)
+                        .map((res) => `
+                            <div class="flex items-center justify-between p-3 bg-surface-container-low rounded-lg">
+                                <span class="text-xs font-bold">${res.label.split(',')[0]}</span>
+                                <span class="text-xs font-headline font-bold text-primary">${(res.confidence * 100).toFixed(1)}%</span>
+                            </div>
+                        `)
+                        .join('');
+                });
+            });
+        };
+        reader.readAsDataURL(file);
+    };
+</script>
+</body></html>

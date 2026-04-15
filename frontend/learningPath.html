@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>NeuralPlay | Learning Path</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed-variant": "#005321",
+                        "inverse-primary": "#c3c0ff",
+                        "on-primary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-variant": "#e1e3e4",
+                        "on-secondary-fixed": "#001f26",
+                        "inverse-on-surface": "#f0f1f2",
+                        "tertiary-container": "#007030",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "primary-fixed": "#e2dfff",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#191c1d",
+                        "secondary-fixed": "#acedff",
+                        "tertiary-fixed": "#6bff8f",
+                        "primary-container": "#4f46e5",
+                        "surface-container-highest": "#e1e3e4",
+                        "inverse-surface": "#2e3132",
+                        "surface-container-low": "#f3f4f5",
+                        "outline-variant": "#c7c4d8",
+                        "primary": "#3525cd",
+                        "secondary-container": "#57dffe",
+                        "surface-tint": "#4d44e3",
+                        "surface-container-high": "#e7e8e9",
+                        "secondary-fixed-dim": "#4cd7f6",
+                        "on-surface-variant": "#464555",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "secondary": "#00687a",
+                        "on-secondary-container": "#006172",
+                        "on-surface": "#191c1d",
+                        "on-secondary-fixed-variant": "#004e5c",
+                        "on-primary-container": "#dad7ff",
+                        "on-tertiary-container": "#63f889",
+                        "background": "#f8f9fa",
+                        "on-primary-fixed": "#0f0069",
+                        "outline": "#777587",
+                        "error-container": "#ffdad6",
+                        "tertiary": "#005523",
+                        "surface": "#f8f9fa",
+                        "on-tertiary-fixed": "#002109",
+                        "surface-bright": "#f8f9fa",
+                        "surface-dim": "#d9dadb",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed-dim": "#4ae176",
+                        "surface-container": "#edeeef"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "1rem",
+                        "xl": "1.25rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .glass-nav {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .active-nav-link {
+            border-bottom: 2px solid #3525cd;
+        }
+    </style>
+</head>
+
+<body class="text-on-background">
+    <!-- Sidebar (Shared Component JSON Integration) -->
+    <aside
+        class="h-screen w-64 fixed left-0 top-0 bg-[#f3f4f5] dark:bg-slate-950 flex flex-col py-8 z-40 hidden md:flex">
+        <div class="px-8 mb-10">
+            <h1 class="font-manrope font-extrabold text-indigo-900 dark:text-white text-xl">The Void</h1>
+            <p class="text-xs font-medium text-slate-500 uppercase tracking-widest mt-1">Digital Laboratory</p>
+        </div>
+        <nav class="flex-1 space-y-1">
+            <a class="bg-white dark:bg-slate-900 text-[#3525cd] dark:text-indigo-300 rounded-r-full shadow-sm py-3 px-8 flex items-center gap-3 transition-all duration-200"
+                href="#">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">route</span>
+                <span class="font-inter text-sm font-medium">Pathways</span>
+            </a>
+            <a class="text-slate-500 dark:text-slate-400 py-3 px-8 flex items-center gap-3 hover:bg-white/50 transition-colors"
+                href="#">
+                <span class="material-symbols-outlined">book_2</span>
+                <span class="font-inter text-sm font-medium">Library</span>
+            </a>
+            <a class="text-slate-500 dark:text-slate-400 py-3 px-8 flex items-center gap-3 hover:bg-white/50 transition-colors"
+                href="#">
+                <span class="material-symbols-outlined">analytics</span>
+                <span class="font-inter text-sm font-medium">Analytics</span>
+            </a>
+            <a class="text-slate-500 dark:text-slate-400 py-3 px-8 flex items-center gap-3 hover:bg-white/50 transition-colors"
+                href="#">
+                <span class="material-symbols-outlined">psychology</span>
+                <span class="font-inter text-sm font-medium">Mentors</span>
+            </a>
+            <a class="text-slate-500 dark:text-slate-400 py-3 px-8 flex items-center gap-3 hover:bg-white/50 transition-colors"
+                href="#">
+                <span class="material-symbols-outlined">inventory_2</span>
+                <span class="font-inter text-sm font-medium">Archive</span>
+            </a>
+        </nav>
+        <div class="px-6 mt-auto">
+            <button
+                class="w-full bg-primary-container text-on-primary py-3 px-4 rounded-lg font-bold text-sm shadow-lg shadow-indigo-200 transition-transform active:scale-95">
+                Initiate Learning
+            </button>
+            <div class="mt-8 space-y-2">
+                <a class="text-slate-500 py-2 px-2 flex items-center gap-3 text-xs hover:text-primary transition-colors"
+                    href="#">
+                    <span class="material-symbols-outlined text-sm">help</span>
+                    Support
+                </a>
+                <a class="text-slate-500 py-2 px-2 flex items-center gap-3 text-xs hover:text-error transition-colors"
+                    href="#">
+                    <span class="material-symbols-outlined text-sm">logout</span>
+                    Sign Out
+                </a>
+            </div>
+        </div>
+    </aside>
+    <!-- Top Navigation Bar (Shared Component JSON Integration) -->
+    <header
+        class="fixed top-0 w-full z-50 bg-[#f8f9fa]/80 dark:bg-slate-950/80 backdrop-blur-lg flex justify-between items-center px-10 py-4 shadow-[0px_4px_20px_rgba(53,37,205,0.04)] md:pl-72">
+        <div class="flex items-center gap-8">
+            <span
+                class="text-2xl font-black font-manrope tracking-tighter text-[#3525cd] dark:text-white">CognitiveFlow</span>
+            <nav class="hidden lg:flex items-center gap-6">
+                <a class="text-slate-500 dark:text-slate-400 hover:text-[#3525cd] font-manrope font-bold text-sm tracking-tight transition-all duration-300"
+                    href="#">Explore</a>
+                <a class="text-slate-500 dark:text-slate-400 hover:text-[#3525cd] font-manrope font-bold text-sm tracking-tight transition-all duration-300"
+                    href="#">Community</a>
+                <a class="text-slate-500 dark:text-slate-400 hover:text-[#3525cd] font-manrope font-bold text-sm tracking-tight transition-all duration-300"
+                    href="#">Resources</a>
+            </nav>
+        </div>
+        <div class="flex items-center gap-4">
+            <div class="hidden md:flex items-center bg-surface-container px-4 py-2 rounded-full">
+                <span class="material-symbols-outlined text-slate-400 text-lg">search</span>
+                <input class="bg-transparent border-none focus:ring-0 text-sm w-48 font-body"
+                    placeholder="Search knowledge..." type="text" />
+            </div>
+            <button class="p-2 text-slate-500 hover:bg-indigo-50/50 rounded-full transition-all">
+                <span class="material-symbols-outlined">notifications</span>
+            </button>
+            <button class="p-2 text-slate-500 hover:bg-indigo-50/50 rounded-full transition-all">
+                <span class="material-symbols-outlined">settings</span>
+            </button>
+            <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary/20">
+                <img alt="User avatar" class="w-full h-full object-cover"
+                    data-alt="professional portrait of a creative individual with a clean minimalist background and soft lighting"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYFy7bTzhYBF7LM4YEHWL6xH1alZYkogDmSRYgd_qZ_N3b3UufWI3rhZem2uU_Z90RouEoo-KmrGY-5xcDYpB6ts2x54-s27z8zxekRekvxRazmDhZQ5qWOd2BARImjswqu48lf1Qt7N6nDolmTm8BzvBIJ7q8EZVi1UY3yaDR0DwkEwKeQ6IZDfaDdJ1IXt8zBaLgALD37A6mTAK2oGxW64PZ5GRM1SZqoJ930vtf6gVn21JTWT9xH6QMbkCKMtH_Pf8wkoVEojQ" />
+            </div>
+        </div>
+    </header>
+    <!-- Main Content Canvas -->
+    <main class="md:pl-64 pt-24 min-h-screen">
+        <div class="max-w-7xl mx-auto px-10 pb-20">
+            <!-- Hero Section -->
+            <section class="mt-12 mb-16 relative">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-end">
+                    <div>
+                        <span class="text-primary font-bold text-xs uppercase tracking-[0.2em] mb-4 block">Personalized
+                            Learning Path</span>
+                        <h2 class="text-5xl font-extrabold text-on-surface tracking-tighter leading-tight mb-6">
+                            Master the <br /><span
+                                class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Ethereal
+                                Web</span>
+                        </h2>
+                        <p class="text-slate-500 max-w-md font-body text-lg leading-relaxed">
+                            A curated odyssey through the mechanics of intelligence. Journey from basic neurons to
+                            autonomous transformer systems.
+                        </p>
+                    </div>
+                    <div class="bg-surface-container-low rounded-xl p-8 border-l-4 border-primary">
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="font-headline font-bold text-on-surface">Global Progress</span>
+                            <span class="font-body text-primary font-bold">34% Completed</span>
+                        </div>
+                        <div class="w-full bg-surface-container-highest h-3 rounded-full overflow-hidden">
+                            <div class="bg-primary h-full rounded-full" style="width: 34%"></div>
+                        </div>
+                        <div class="mt-4 flex gap-4 text-xs font-medium text-slate-400">
+                            <span class="flex items-center gap-1"><span
+                                    class="material-symbols-outlined text-sm">check_circle</span> 4 Modules
+                                Finished</span>
+                            <span class="flex items-center gap-1"><span
+                                    class="material-symbols-outlined text-sm">history</span> 12 Hours Invested</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Tiered Curriculum (Bento Grid Style) -->
+            <div class="space-y-24">
+                <!-- Tier 1: Foundation -->
+                <section>
+                    <div class="flex items-center gap-4 mb-10">
+                        <div class="w-12 h-12 rounded-lg bg-indigo-50 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-primary">foundation</span>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-indigo-900">Tier 1: Foundation</h3>
+                            <p class="text-sm text-slate-500">Master the fundamental axioms of digital thought.</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Module Card 1 -->
+                        <div
+                            class="group bg-white rounded-lg p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-transparent hover:border-outline-variant/10">
+                            <div class="flex justify-between items-start mb-6">
+                                <div class="w-14 h-14 bg-surface-container rounded-xl flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-primary text-3xl">hub</span>
+                                </div>
+                                <span
+                                    class="bg-tertiary-fixed text-on-tertiary-fixed-variant px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">Completed</span>
+                            </div>
+                            <h4 class="text-xl font-bold mb-3">Introduction to Neural Networks</h4>
+                            <p class="text-slate-500 text-sm mb-6 font-body leading-relaxed">
+                                Uncover the architecture of the artificial neuron. Learn how weighted inputs and
+                                activation functions mirror biological synapses.
+                            </p>
+                            <div class="bg-surface-container-low rounded-lg p-4 mb-6">
+                                <span class="text-[10px] font-bold text-primary uppercase mb-2 block">Real-World Use
+                                    Case</span>
+                                <p class="text-xs text-on-surface font-medium">Binary classification in spam filters and
+                                    basic credit scoring models.</p>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="flex -space-x-2">
+                                    <img class="w-6 h-6 rounded-full border-2 border-white"
+                                        data-alt="avatar of a diverse learner"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCM0Ylk47hvdu8arWNUMDO39pGSkrDXkbPkb953CJAvoQWa8QB2yuEWmoxbr5T7QYT0P1RJFJwZQUvmwCGjKkv7XECfvgN1qiBeuK3CaOJwqlseX5HAcAchieR6ND2IwlOmwxGuFMvGKLtJsPSwOFMmVVeg2CdtsmgH5e87g1BcUoaLw1wPCoVjk4AYPpHPnDOMk4DHeQWxuGncdm6CsxTb-HCTmB1qynWczdy9DksXfpyOyi_7qylkdwIsIK6zKQlZPJF9DIlgJWY" />
+                                    <img class="w-6 h-6 rounded-full border-2 border-white"
+                                        data-alt="avatar of a professional student"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxOQeNju1Ld2wRbkOwhP-hDrDMEPlIIvpsvjILoHsHYFIOJ5lpS5oX-f1fkLYbshaMxcP4xNjR4mtkwNM3z0hMTXEUZM_wdzhB_H-qBOUVstkAfP6g-HnEft7lmLi3bObMfAubujQibD4U9O2Hi8PA1kblWU5oouG20x8utLqZPGsMVi6mvEBetVhk0731QPWo7uCYrE9HKyY8QOmMg93PGMXW4G0xY6tS06fkqFjycmAKJ68JDuSJiE85S8XTU_AOAzrhILos5t4" />
+                                    <div
+                                        class="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center text-[8px] font-bold">
+                                        +12k</div>
+                                </div>
+                                <button
+                                    class="text-primary font-bold text-sm flex items-center gap-2 group-hover:gap-3 transition-all">
+                                    Review Content <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Module Card 2 -->
+                        <div
+                            class="group bg-white rounded-lg p-8 shadow-sm hover:shadow-xl transition-all duration-300 border-l-4 border-primary">
+                            <div class="flex justify-between items-start mb-6">
+                                <div class="w-14 h-14 bg-indigo-50 rounded-xl flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-primary text-3xl">conversion_path</span>
+                                </div>
+                                <span
+                                    class="bg-indigo-100 text-primary px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">In
+                                    Progress</span>
+                            </div>
+                            <h4 class="text-xl font-bold mb-3">Optimization &amp; Backpropagation</h4>
+                            <p class="text-slate-500 text-sm mb-6 font-body leading-relaxed">
+                                The heart of learning. Explore Gradient Descent and how error signals traverse backward
+                                to refine global weights.
+                            </p>
+                            <div class="bg-indigo-50/50 rounded-lg p-4 mb-6 relative overflow-hidden">
+                                <span class="text-[10px] font-bold text-primary uppercase mb-2 block">Real-World Use
+                                    Case</span>
+                                <p class="text-xs text-on-surface font-medium">Fine-tuning recommendation engines for
+                                    massive streaming platforms.</p>
+                                <div class="absolute right-[-10px] bottom-[-10px] opacity-10">
+                                    <span class="material-symbols-outlined text-6xl text-primary">show_chart</span>
+                                </div>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="w-full bg-surface-container h-1.5 rounded-full">
+                                    <div class="bg-primary h-full rounded-full" style="width: 65%"></div>
+                                </div>
+                                <button
+                                    class="w-full bg-primary text-white py-3 rounded-lg font-bold text-sm flex items-center justify-center gap-2 hover:bg-primary-container transition-colors shadow-md shadow-indigo-100">
+                                    Continue Discovery <span class="material-symbols-outlined text-sm">play_arrow</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Tier 2: Complexity -->
+                <section>
+                    <div class="flex items-center gap-4 mb-10">
+                        <div class="w-12 h-12 rounded-lg bg-secondary-container/20 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-secondary">layers</span>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-slate-800">Tier 2: Complexity</h3>
+                            <p class="text-sm text-slate-500">Navigate multidimensional data and temporal sequences.</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                        <!-- Module Card 3 (Featured) -->
+                        <div
+                            class="lg:col-span-2 group relative overflow-hidden bg-white rounded-lg p-10 shadow-sm border border-transparent hover:border-secondary/20 transition-all">
+                            <div class="flex flex-col md:flex-row gap-8 items-start">
+                                <div class="flex-1">
+                                    <div class="flex items-center gap-3 mb-6">
+                                        <div
+                                            class="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center">
+                                            <span
+                                                class="material-symbols-outlined text-secondary text-2xl">visibility</span>
+                                        </div>
+                                        <h4 class="text-2xl font-bold">CNNs for Computer Vision</h4>
+                                    </div>
+                                    <p class="text-slate-500 text-base mb-8 leading-relaxed max-w-lg">
+                                        Convolutional layers mimic the human visual cortex. Learn spatial hierarchy,
+                                        pooling, and how machines "see" edges and textures.
+                                    </p>
+                                    <div class="bg-surface-container-low rounded-lg p-6 mb-8 inline-block w-full">
+                                        <span
+                                            class="text-[10px] font-bold text-secondary uppercase mb-2 block">Real-World
+                                            Impact</span>
+                                        <div class="flex items-center gap-4">
+                                            <span class="material-symbols-outlined text-secondary">directions_car</span>
+                                            <p class="text-sm text-on-surface font-medium">Used in autonomous vehicle
+                                                object detection and facial recognition security.</p>
+                                        </div>
+                                    </div>
+                                    <button
+                                        class="bg-secondary text-white px-8 py-4 rounded-lg font-bold hover:bg-on-secondary-container transition-all">
+                                        Begin Module
+                                    </button>
+                                </div>
+                                <div
+                                    class="w-full md:w-64 aspect-square bg-surface-container-low rounded-2xl flex items-center justify-center relative overflow-hidden">
+                                    <img alt="abstract neural pattern"
+                                        class="absolute inset-0 w-full h-full object-cover opacity-20 grayscale"
+                                        data-alt="abstract architectural visualization of high-tech neural network connections with glowing cyan lines on a dark minimal surface"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2lYB713fSsIjgS3gazLu58MrItnnEKGkXFyoaMm9mZKHtcDKYSMh03Lqeqa9jsjGBJSmVR70hRA8WYcSTRmloAf2DHGv3CutYReLRPMGl9adf5O_WzHyIQ2Fa4bju3xgKZR-MJXkoQGRHh1jp_Io7BdU3e3uIdbL3agYUL03ci2xxoNEU6Y7VtedVhTIvlOc2wvwMx5kLd3S-Z5EQ0tE9iVOYGgcu2CuuEPBYIqNAPn9lgzGdGZpHa7Jhy595hUxXaHS9gJeZmfA" />
+                                    <span
+                                        class="material-symbols-outlined text-7xl text-secondary opacity-30">grid_view</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Module Card 4 -->
+                        <div
+                            class="bg-white rounded-lg p-8 shadow-sm border border-transparent hover:border-secondary/20 transition-all flex flex-col">
+                            <div class="w-12 h-12 bg-secondary/5 rounded-xl flex items-center justify-center mb-6">
+                                <span class="material-symbols-outlined text-secondary text-2xl">timeline</span>
+                            </div>
+                            <h4 class="text-xl font-bold mb-4">Sequential Modeling (RNNs)</h4>
+                            <p class="text-slate-500 text-sm mb-6 flex-1">
+                                Time-dependent learning. Explore LSTMs and GRUs to handle information loops and memory
+                                across data sequences.
+                            </p>
+                            <div class="pt-6 border-t border-surface-container">
+                                <div
+                                    class="flex justify-between text-xs font-bold text-slate-400 mb-2 uppercase tracking-tighter">
+                                    <span>Difficulty</span>
+                                    <span class="text-secondary">Intermediate</span>
+                                </div>
+                                <div class="flex gap-1">
+                                    <div class="h-1 flex-1 bg-secondary rounded-full"></div>
+                                    <div class="h-1 flex-1 bg-secondary rounded-full"></div>
+                                    <div class="h-1 flex-1 bg-surface-container rounded-full"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Tier 3: Mastery -->
+                <section>
+                    <div class="flex items-center gap-4 mb-10">
+                        <div class="w-12 h-12 rounded-lg bg-tertiary/10 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-tertiary">diamond</span>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-slate-800">Tier 3: Mastery</h3>
+                            <p class="text-sm text-slate-500">The frontier of Generative AI and Human-AI alignment.</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Module Card 5 -->
+                        <div
+                            class="bg-white rounded-xl p-8 shadow-sm border border-transparent hover:border-tertiary/20 transition-all">
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="w-12 h-12 bg-tertiary/5 rounded-xl flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-tertiary text-2xl"
+                                        style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+                                </div>
+                                <h4 class="text-xl font-bold">Transformer Architectures</h4>
+                            </div>
+                            <p class="text-slate-500 text-sm mb-6 leading-relaxed">
+                                Self-attention mechanisms and multi-head processing. Discover the engine behind Large
+                                Language Models and Generative Pre-training.
+                            </p>
+                            <div class="grid grid-cols-2 gap-4 mb-8">
+                                <div class="p-3 bg-surface-container-low rounded-lg text-center">
+                                    <span class="text-[10px] font-bold text-slate-400 block mb-1">Lesson Time</span>
+                                    <span class="text-sm font-bold">6.5 Hours</span>
+                                </div>
+                                <div class="p-3 bg-surface-container-low rounded-lg text-center">
+                                    <span class="text-[10px] font-bold text-slate-400 block mb-1">Quizzes</span>
+                                    <span class="text-sm font-bold">4 Modules</span>
+                                </div>
+                            </div>
+                            <button
+                                class="w-full py-3 rounded-lg font-bold border-2 border-tertiary text-tertiary hover:bg-tertiary hover:text-white transition-all">
+                                Unlock Syllabus
+                            </button>
+                        </div>
+                        <!-- Module Card 6 -->
+                        <div
+                            class="bg-white rounded-xl p-8 shadow-sm border border-transparent hover:border-tertiary/20 transition-all">
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="w-12 h-12 bg-tertiary/5 rounded-xl flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-tertiary text-2xl">model_training</span>
+                                </div>
+                                <h4 class="text-xl font-bold">RLHF &amp; Fine-Tuning</h4>
+                            </div>
+                            <p class="text-slate-500 text-sm mb-6 leading-relaxed">
+                                Reinforcement Learning from Human Feedback. Aligning model outputs with human intent and
+                                safety guardrails.
+                            </p>
+                            <div class="flex items-center gap-4 mb-8">
+                                <div
+                                    class="flex-1 h-32 bg-surface-container-lowest rounded-lg border-2 border-dashed border-outline-variant/30 flex flex-col items-center justify-center text-slate-300">
+                                    <span class="material-symbols-outlined text-4xl mb-2">schema</span>
+                                    <span class="text-[10px] font-bold uppercase tracking-widest">Alignment Map</span>
+                                </div>
+                            </div>
+                            <button
+                                class="w-full py-3 rounded-lg font-bold border-2 border-slate-200 text-slate-400 cursor-not-allowed flex items-center justify-center gap-2">
+                                <span class="material-symbols-outlined text-sm">lock</span>
+                                Prerequisite: Tier 2
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+    <!-- Footer Space -->
+    <footer class="md:pl-64 border-t border-surface-container mt-12 py-10 bg-white">
+        <div class="max-w-7xl mx-auto px-10 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-sm text-slate-400 font-body">
+                © 2024 CognitiveFlow Systems. All neural pathways mapped.
+            </div>
+            <div class="flex gap-8 text-sm font-bold text-slate-500">
+                <a class="hover:text-primary transition-colors" href="#">Documentation</a>
+                <a class="hover:text-primary transition-colors" href="#">Privacy Laboratory</a>
+                <a class="hover:text-primary transition-colors" href="#">Human Protocol</a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

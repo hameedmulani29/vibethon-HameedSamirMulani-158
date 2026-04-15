@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Quiz &amp; Assessment | CareerPilot AI</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#ffdad6",
+                        "surface-tint": "#4d44e3",
+                        "on-surface-variant": "#464555",
+                        "secondary-fixed": "#acedff",
+                        "on-surface": "#191c1d",
+                        "on-secondary-fixed": "#001f26",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed": "#0f0069",
+                        "surface-container-low": "#f3f4f5",
+                        "surface-dim": "#d9dadb",
+                        "on-background": "#191c1d",
+                        "outline": "#777587",
+                        "error": "#ba1a1a",
+                        "surface-container": "#edeeef",
+                        "on-tertiary-fixed": "#002109",
+                        "tertiary-container": "#007030",
+                        "inverse-surface": "#2e3132",
+                        "background": "#f8f9fa",
+                        "surface-variant": "#e1e3e4",
+                        "secondary-fixed-dim": "#4cd7f6",
+                        "primary-fixed": "#e2dfff",
+                        "tertiary-fixed": "#6bff8f",
+                        "tertiary-fixed-dim": "#4ae176",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "on-primary-container": "#dad7ff",
+                        "primary-container": "#4f46e5",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#005321",
+                        "tertiary": "#005523",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "on-secondary-container": "#006172",
+                        "on-error-container": "#93000a",
+                        "surface-container-high": "#e7e8e9",
+                        "surface": "#f8f9fa",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-secondary": "#ffffff",
+                        "outline-variant": "#c7c4d8",
+                        "inverse-on-surface": "#f0f1f2",
+                        "inverse-primary": "#c3c0ff",
+                        "on-error": "#ffffff",
+                        "surface-bright": "#f8f9fa",
+                        "primary": "#3525cd",
+                        "on-tertiary-container": "#63f889",
+                        "on-secondary-fixed-variant": "#004e5c",
+                        "secondary": "#00687a",
+                        "secondary-container": "#57dffe"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "1rem",
+                        "xl": "1.25rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .glass-panel {
+            background: rgba(248, 249, 250, 0.8);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+
+<body class="bg-background font-body text-on-surface selection:bg-primary-fixed-dim">
+    <!-- SideNavBar (Shared Component) -->
+    <aside class="fixed left-0 top-0 h-screen w-64 bg-[#f3f4f5] dark:bg-slate-900 flex flex-col py-6 border-r-0 z-50">
+        <div class="px-6 mb-10">
+            <h1 class="text-2xl font-bold text-[#3525cd] dark:text-[#4f46e5] font-headline tracking-tight">CareerPilot
+                AI</h1>
+            <p class="text-xs text-slate-500 font-medium mt-1">The Intelligent Void</p>
+        </div>
+        <nav class="flex-1 space-y-1 px-4 overflow-y-auto">
+            <a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg"
+                href="dashboard.html">
+                <span class="material-symbols-outlined">dashboard</span>
+                <span>Dashboard</span>
+            </a>
+            <a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg"
+                href="learningPath.html">
+                <span class="material-symbols-outlined">auto_stories</span>
+                <span>Learning Path</span>
+            </a>
+            <a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg"
+                href="codelab.html">
+                <span class="material-symbols-outlined">science</span>
+                <span>Playground</span>
+            </a>
+            <a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg"
+                href="games.html">
+                <span class="material-symbols-outlined">sports_esports</span>
+                <span>Games</span>
+            </a>
+            <a class="flex items-center gap-3 px-4 py-3 text-[#3525cd] dark:text-[#4f46e5] font-bold border-r-4 border-[#3525cd] font-manrope tracking-tight bg-white/40 rounded-l-lg"
+                href="quiz.html">
+                <span class="material-symbols-outlined">quiz</span>
+                <span>Quizzes</span>
+            </a>
+            <a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg"
+                href="simulations.html">
+                <span class="material-symbols-outlined">vital_signs</span>
+                <span>Simulations</span>
+            </a>
+            <a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg"
+                href="leaderboard.html">
+                <span class="material-symbols-outlined">leaderboard</span>
+                <span>Leaderboard</span>
+            </a>
+            <a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg"
+                href="progress.html">
+                <span class="material-symbols-outlined">account_circle</span>
+                <span>Profile</span>
+            </a>
+        </nav>
+        <div class="px-6 mt-auto">
+            <button
+                class="w-full py-4 px-4 bg-gradient-to-br from-primary to-primary-container text-white font-bold rounded-lg shadow-lg hover:opacity-90 transition-all flex items-center justify-center gap-2">
+                <span>Start Daily Lesson</span>
+            </button>
+        </div>
+    </aside>
+    <!-- TopAppBar (Shared Component) -->
+    <header
+        class="fixed top-0 w-full z-40 bg-[#f8f9fa]/80 dark:bg-slate-950/80 backdrop-blur-xl flex justify-between items-center h-16 px-8 ml-64 shadow-[0_4px_20px_rgba(53,37,205,0.04)]">
+        <div class="flex items-center gap-4">
+            <div class="flex items-center gap-2 text-[#3525cd] dark:text-[#4f46e5] font-manrope text-sm tracking-wide">
+                <span class="material-symbols-outlined">local_fire_department</span>
+                <span class="font-bold">12 Day Streak</span>
+            </div>
+            <div class="flex items-center gap-2 text-slate-600 dark:text-slate-400 font-manrope text-sm tracking-wide">
+                <span class="material-symbols-outlined">military_tech</span>
+                <span class="font-bold">4,250 XP</span>
+            </div>
+        </div>
+        <div class="flex items-center gap-6">
+            <div class="relative">
+                <span
+                    class="material-symbols-outlined text-slate-600 cursor-pointer hover:opacity-80 transition-opacity">notifications</span>
+                <span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full"></span>
+            </div>
+            <img alt="User avatar"
+                class="w-10 h-10 rounded-full border-2 border-primary-fixed-dim object-cover scale-95 active:scale-90 transition-transform"
+                data-alt="Close up portrait of a smiling young creative professional in a bright studio environment with warm natural lighting"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCE5dUtOdSNxfztWjAWuPpZg8NNLj1WgYHGcJAV4EQ0J3Ac9u6rMyrgPOZ_awCTyJwO9q-VkybXLnP-cYBl-6Hzkj4RU82dHLo6TVMEkthZeX2wGxTuMu8HEesJL30vMV7mXnFfnHsFBZbTx36UTQgPDrbaJWSqN_GaU-aUQ6R4lIBUVAZn_znPEgoXjxXKSHW5OSphxFmQn0GGzTFWF7us2CrIfuh7TB59vSEhTOOIlLl65LdnLoQmpfWW6ZTlPXtbWkprA7sRdnc" />
+        </div>
+    </header>
+    <!-- Main Content Canvas -->
+    <main class="ml-64 pt-24 pb-12 px-12 min-h-screen">
+        <div class="max-w-4xl mx-auto">
+            <!-- Progress Header -->
+            <div class="mb-12">
+                <div class="flex justify-between items-end mb-4">
+                    <div>
+                        <span
+                            class="text-label-sm font-semibold text-secondary tracking-widest uppercase text-[10px]">Assessment
+                            Module 04</span>
+                        <h2 class="font-headline text-3xl font-extrabold tracking-tight mt-1 text-on-surface">
+                            Asynchronous Programming</h2>
+                    </div>
+                    <div class="text-right">
+                        <span class="font-headline font-bold text-primary">07</span>
+                        <span class="font-label text-slate-400">/ 15</span>
+                    </div>
+                </div>
+                <div class="h-1.5 w-full bg-surface-container-high rounded-full overflow-hidden">
+                    <div class="h-full bg-gradient-to-r from-primary to-secondary w-[46%] rounded-full"></div>
+                </div>
+            </div>
+            <!-- Quiz Layout: Asymmetric Bento Grid -->
+            <div class="grid grid-cols-12 gap-8 items-start">
+                <!-- Main Question Card (Left 8 cols) -->
+                <div class="col-span-12 lg:col-span-8 space-y-6">
+                    <div class="bg-surface-container-lowest p-8 rounded-xl shadow-sm border border-outline-variant/10">
+                        <div class="flex items-center gap-3 mb-6">
+                            <span
+                                class="px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed-variant rounded-full text-[10px] font-bold tracking-widest uppercase">Intermediate</span>
+                            <span class="text-slate-400 text-xs">• 3 mins estimated</span>
+                        </div>
+                        <p class="font-headline text-xl font-semibold leading-relaxed mb-8">
+                            In the provided JavaScript snippet, what will be the console output order given the event
+                            loop's priority handling for Microtasks and Macrotasks?
+                        </p>
+                        <!-- Code Block -->
+                        <div
+                            class="bg-[#1e1e2e] p-6 rounded-lg font-mono text-sm leading-relaxed text-indigo-200 overflow-x-auto mb-8 border-l-4 border-primary">
+                            <pre><code><span class="text-purple-400">console</span>.<span class="text-blue-400">log</span>(<span class="text-green-400">'Start'</span>);
+
+<span class="text-purple-400">setTimeout</span>(() =&gt; {
+  <span class="text-purple-400">console</span>.<span class="text-blue-400">log</span>(<span class="text-green-400">'Timeout'</span>);
+}, <span class="text-amber-400">0</span>);
+
+<span class="text-purple-400">Promise</span>.<span class="text-blue-400">resolve</span>().<span class="text-blue-400">then</span>(() =&gt; {
+  <span class="text-purple-400">console</span>.<span class="text-blue-400">log</span>(<span class="text-green-400">'Promise'</span>);
+});
+
+<span class="text-purple-400">console</span>.<span class="text-blue-400">log</span>(<span class="text-green-400">'End'</span>);</code></pre>
+                        </div>
+                        <!-- Options -->
+                        <div class="space-y-3">
+                            <label
+                                class="group flex items-center p-4 rounded-lg bg-surface-container-low hover:bg-primary-fixed/30 cursor-pointer transition-all border border-transparent hover:border-primary-fixed-dim">
+                                <input
+                                    class="w-5 h-5 text-primary border-outline focus:ring-primary ring-offset-background"
+                                    name="quiz-option" type="radio" />
+                                <span class="ml-4 font-medium text-on-surface">Start, End, Timeout, Promise</span>
+                            </label>
+                            <label
+                                class="group flex items-center p-4 rounded-lg bg-surface-container-low hover:bg-primary-fixed/30 cursor-pointer transition-all border border-transparent hover:border-primary-fixed-dim">
+                                <input
+                                    class="w-5 h-5 text-primary border-outline focus:ring-primary ring-offset-background"
+                                    name="quiz-option" type="radio" />
+                                <span class="ml-4 font-medium text-on-surface">Start, Promise, Timeout, End</span>
+                            </label>
+                            <!-- Correct Selected State -->
+                            <label
+                                class="group flex items-center p-4 rounded-lg bg-tertiary-fixed/20 border-2 border-tertiary/30 cursor-pointer transition-all">
+                                <div class="relative flex items-center justify-center">
+                                    <input checked=""
+                                        class="w-5 h-5 text-tertiary border-tertiary focus:ring-tertiary ring-offset-background"
+                                        name="quiz-option" type="radio" />
+                                    <span
+                                        class="absolute material-symbols-outlined text-tertiary text-[16px] pointer-events-none">check</span>
+                                </div>
+                                <span class="ml-4 font-bold text-on-tertiary-fixed-variant">Start, End, Promise,
+                                    Timeout</span>
+                                <span class="ml-auto material-symbols-outlined text-tertiary"
+                                    style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                            </label>
+                            <label
+                                class="group flex items-center p-4 rounded-lg bg-surface-container-low hover:bg-primary-fixed/30 cursor-pointer transition-all border border-transparent hover:border-primary-fixed-dim">
+                                <input
+                                    class="w-5 h-5 text-primary border-outline focus:ring-primary ring-offset-background"
+                                    name="quiz-option" type="radio" />
+                                <span class="ml-4 font-medium text-on-surface">Start, End, Timeout</span>
+                            </label>
+                        </div>
+                        <!-- Submit Section -->
+                        <div
+                            class="mt-10 flex items-center justify-between gap-6 border-t border-surface-container-high pt-8">
+                            <button
+                                class="flex items-center gap-2 px-6 py-3 text-secondary font-bold hover:bg-secondary-container/20 transition-all rounded-lg">
+                                <span class="material-symbols-outlined">flag</span>
+                                <span>Report Issue</span>
+                            </button>
+                            <div class="flex items-center gap-4">
+                                <button
+                                    class="px-8 py-3 bg-gradient-to-r from-primary to-primary-container text-white font-bold rounded-lg shadow-lg hover:shadow-primary/20 transition-all active:scale-95">
+                                    Submit Answer
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Post-Submission Feedback Block -->
+                    <div class="bg-tertiary-container/10 border-l-8 border-tertiary p-8 rounded-xl">
+                        <div class="flex items-start gap-4">
+                            <div class="bg-tertiary p-2 rounded-full">
+                                <span class="material-symbols-outlined text-white"
+                                    style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+                            </div>
+                            <div>
+                                <h4 class="font-headline font-bold text-on-tertiary-fixed-variant text-lg mb-2">
+                                    Excellent! Here's why:</h4>
+                                <p class="text-on-tertiary-fixed-variant/80 leading-relaxed font-medium">
+                                    Synchronous code runs first (Start, End). Next, the <strong>Microtask Queue</strong>
+                                    (Promises) is emptied before moving to the <strong>Macrotask Queue</strong>
+                                    (setTimeout). Even with a delay of 0ms, the timeout is queued as a macrotask and
+                                    will always execute after microtasks.
+                                </p>
+                                <div class="mt-4 flex items-center gap-4">
+                                    <button
+                                        class="text-xs font-bold text-tertiary underline decoration-2 underline-offset-4">Read
+                                        Documentation</button>
+                                    <button
+                                        class="text-xs font-bold text-tertiary underline decoration-2 underline-offset-4">Watch
+                                        Deep Dive</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Contextual Panel (Right 4 cols) -->
+                <div class="col-span-12 lg:col-span-4 space-y-6">
+                    <!-- Tip Card -->
+                    <div class="glass-panel p-6 rounded-xl border border-white/40 shadow-sm">
+                        <h5 class="font-headline font-bold text-on-surface mb-4 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-secondary">psychology</span>
+                            AI Tutor Note
+                        </h5>
+                        <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                            Think of the Microtask Queue as "priority mail"—it gets delivered before the Macrotask
+                            "standard package" even if they arrive at the same time.
+                        </p>
+                        <div class="flex items-center gap-3">
+                            <img alt="AI Mentor" class="w-8 h-8 rounded-full"
+                                data-alt="Digital representation of an AI mentor, semi-transparent silhouette against a soft blue abstract network background"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDodnwGHZ9p-VdqehYgvqg66Y8_wdHkU5m3jmkrx1_gJc-zY6n08n4cmyKpsgKe6wscpWv8UD6DXQLb_frSyrP1Hhd1ZNDrEyJEKZX-mxJu4cQQkOtWHRBRfJeYJ4HFlb2MwzkXkUc_PfP0HTny75M6MAdLCl2mex_X9nR7CFHMLVVvV3F3MAQOyvgyBsRiagBwkUgI_cAVk7ZhHajAm_WtuWLu950pRIHOZ4dMULSrX3tZ13unYX4wwgvHptQs90e7GVOG-hrzPjo" />
+                            <span class="text-xs font-bold text-slate-400">Ask CareerPilot AI...</span>
+                        </div>
+                    </div>
+                    <!-- Related Concepts Card -->
+                    <div class="bg-surface-container-low p-6 rounded-xl">
+                        <h5 class="font-headline font-bold text-on-surface mb-4">Key Terminologies</h5>
+                        <div class="space-y-4">
+                            <div class="group cursor-pointer">
+                                <p class="text-xs font-bold text-primary mb-1">Event Loop</p>
+                                <p class="text-xs text-slate-500 group-hover:text-slate-800 transition-colors">The
+                                    mechanism that coordinates the execution of code, collects and processes events.</p>
+                            </div>
+                            <div class="group cursor-pointer">
+                                <p class="text-xs font-bold text-primary mb-1">Call Stack</p>
+                                <p class="text-xs text-slate-500 group-hover:text-slate-800 transition-colors">A
+                                    mechanism to keep track of its place in a script that calls multiple functions.</p>
+                            </div>
+                            <div class="group cursor-pointer">
+                                <p class="text-xs font-bold text-primary mb-1">Callback Queue</p>
+                                <p class="text-xs text-slate-500 group-hover:text-slate-800 transition-colors">A queue
+                                    of macrotasks waiting to be executed after the current stack is clear.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Gamification Widget -->
+                    <div class="bg-gradient-to-br from-secondary to-secondary-container p-6 rounded-xl text-white">
+                        <div class="flex justify-between items-start mb-6">
+                            <span class="material-symbols-outlined text-3xl"
+                                style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+                            <div class="text-right">
+                                <p class="text-[10px] font-bold uppercase tracking-widest opacity-80">Next Unlock</p>
+                                <p class="font-headline font-extrabold text-xl">Silver Badge</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-1 mb-4">
+                            <div class="h-1.5 flex-1 bg-white rounded-full"></div>
+                            <div class="h-1.5 flex-1 bg-white rounded-full"></div>
+                            <div class="h-1.5 flex-1 bg-white/30 rounded-full"></div>
+                            <div class="h-1.5 flex-1 bg-white/30 rounded-full"></div>
+                            <div class="h-1.5 flex-1 bg-white/30 rounded-full"></div>
+                        </div>
+                        <p class="text-xs font-medium opacity-90 leading-tight">Complete 3 more questions without hints
+                            to earn your next career badge.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer Navigation -->
+            <div class="mt-12 flex justify-between items-center py-6 border-t border-surface-container-high">
+                <button class="flex items-center gap-2 text-slate-500 font-bold hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined">arrow_back</span>
+                    <span>Previous Question</span>
+                </button>
+                <div class="flex gap-2">
+                    <div class="w-2 h-2 rounded-full bg-slate-300"></div>
+                    <div class="w-2 h-2 rounded-full bg-slate-300"></div>
+                    <div class="w-6 h-2 rounded-full bg-primary"></div>
+                    <div class="w-2 h-2 rounded-full bg-slate-300"></div>
+                    <div class="w-2 h-2 rounded-full bg-slate-300"></div>
+                </div>
+                <button class="flex items-center gap-2 text-primary font-bold hover:opacity-80 transition-opacity">
+                    <span>Skip to Next</span>
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+            </div>
+        </div>
+    </main>
+    <!-- Floating Action for Help -->
+    <div class="fixed bottom-8 right-8 z-50">
+        <button
+            class="bg-primary-container text-on-primary-container p-4 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all flex items-center gap-3 pr-6 group">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_fix_high</span>
+            <span class="font-bold hidden group-hover:inline">Hint from AI</span>
+        </button>
+    </div>
+</body>
+
+</html>

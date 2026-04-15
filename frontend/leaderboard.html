@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Leaderboard | CareerPilot AI</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#ffdad6",
+                        "surface-tint": "#4d44e3",
+                        "on-surface-variant": "#464555",
+                        "secondary-fixed": "#acedff",
+                        "on-surface": "#191c1d",
+                        "on-secondary-fixed": "#001f26",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed": "#0f0069",
+                        "surface-container-low": "#f3f4f5",
+                        "surface-dim": "#d9dadb",
+                        "on-background": "#191c1d",
+                        "outline": "#777587",
+                        "error": "#ba1a1a",
+                        "surface-container": "#edeeef",
+                        "on-tertiary-fixed": "#002109",
+                        "tertiary-container": "#007030",
+                        "inverse-surface": "#2e3132",
+                        "background": "#f8f9fa",
+                        "surface-variant": "#e1e3e4",
+                        "secondary-fixed-dim": "#4cd7f6",
+                        "primary-fixed": "#e2dfff",
+                        "tertiary-fixed": "#6bff8f",
+                        "tertiary-fixed-dim": "#4ae176",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "on-primary-container": "#dad7ff",
+                        "primary-container": "#4f46e5",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#005321",
+                        "tertiary": "#005523",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "on-secondary-container": "#006172",
+                        "on-error-container": "#93000a",
+                        "surface-container-high": "#e7e8e9",
+                        "surface": "#f8f9fa",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-secondary": "#ffffff",
+                        "outline-variant": "#c7c4d8",
+                        "inverse-on-surface": "#f0f1f2",
+                        "inverse-primary": "#c3c0ff",
+                        "on-error": "#ffffff",
+                        "surface-bright": "#f8f9fa",
+                        "primary": "#3525cd",
+                        "on-tertiary-container": "#63f889",
+                        "on-secondary-fixed-variant": "#004e5c",
+                        "secondary": "#00687a",
+                        "secondary-container": "#57dffe"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "1rem",
+                        "xl": "1.25rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+
+<body class="bg-background text-on-surface font-body selection:bg-primary-fixed selection:text-primary">
+    <!-- SideNavBar -->
+    <aside class="fixed left-0 top-0 h-screen w-64 bg-[#f3f4f5] dark:bg-slate-900 border-r-0 z-50 flex flex-col py-6">
+        <div class="px-8 mb-10">
+            <h1 class="text-2xl font-bold text-[#3525cd] dark:text-[#4f46e5] font-headline tracking-tight">CareerPilot
+                AI</h1>
+            <p class="text-xs font-manrope font-semibold tracking-tight text-slate-500 mt-1">The Intelligent Void</p>
+        </div>
+        <nav class="flex-1 space-y-1 px-4">
+            <a class="flex items-center px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg group"
+                href="#">
+                <span class="material-symbols-outlined mr-3 group-hover:scale-110 transition-transform"
+                    data-icon="dashboard">dashboard</span>
+                <span>Dashboard</span>
+            </a>
+            <a class="flex items-center px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg group"
+                href="#">
+                <span class="material-symbols-outlined mr-3 group-hover:scale-110 transition-transform"
+                    data-icon="auto_stories">auto_stories</span>
+                <span>Learning Path</span>
+            </a>
+            <a class="flex items-center px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg group"
+                href="#">
+                <span class="material-symbols-outlined mr-3 group-hover:scale-110 transition-transform"
+                    data-icon="science">science</span>
+                <span>Playground</span>
+            </a>
+            <a class="flex items-center px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg group"
+                href="#">
+                <span class="material-symbols-outlined mr-3 group-hover:scale-110 transition-transform"
+                    data-icon="sports_esports">sports_esports</span>
+                <span>Games</span>
+            </a>
+            <a class="flex items-center px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg group"
+                href="#">
+                <span class="material-symbols-outlined mr-3 group-hover:scale-110 transition-transform"
+                    data-icon="quiz">quiz</span>
+                <span>Quizzes</span>
+            </a>
+            <a class="flex items-center px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg group"
+                href="#">
+                <span class="material-symbols-outlined mr-3 group-hover:scale-110 transition-transform"
+                    data-icon="vital_signs">vital_signs</span>
+                <span>Simulations</span>
+            </a>
+            <a class="flex items-center px-4 py-3 text-[#3525cd] dark:text-[#4f46e5] font-bold border-r-4 border-[#3525cd] font-manrope tracking-tight bg-white/50 dark:bg-slate-800/50 rounded-l-lg group"
+                href="#">
+                <span class="material-symbols-outlined mr-3 scale-110" data-icon="leaderboard"
+                    style="font-variation-settings: 'FILL' 1;">leaderboard</span>
+                <span>Leaderboard</span>
+            </a>
+            <a class="flex items-center px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope font-semibold tracking-tight hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg group"
+                href="#">
+                <span class="material-symbols-outlined mr-3 group-hover:scale-110 transition-transform"
+                    data-icon="account_circle">account_circle</span>
+                <span>Profile</span>
+            </a>
+        </nav>
+        <div class="px-6 mt-auto">
+            <button
+                class="w-full py-4 bg-gradient-to-br from-primary to-primary-container text-on-primary rounded-lg font-headline font-bold text-sm shadow-lg shadow-primary/20 scale-95 hover:scale-100 transition-transform active:scale-90">
+                Start Daily Lesson
+            </button>
+        </div>
+    </aside>
+    <!-- TopAppBar -->
+    <header
+        class="fixed top-0 right-0 left-0 ml-64 h-16 bg-[#f8f9fa]/80 backdrop-blur-xl z-40 flex justify-between items-center px-8 shadow-[0_4px_20px_rgba(53,37,205,0.04)]">
+        <div class="flex items-center gap-6">
+            <div class="relative w-64">
+                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-sm"
+                    data-icon="search">search</span>
+                <input
+                    class="w-full bg-surface-container-highest border-none rounded-full pl-10 pr-4 py-1.5 text-xs focus:ring-2 focus:ring-primary/20"
+                    placeholder="Search rankings..." type="text" />
+            </div>
+        </div>
+        <div class="flex items-center gap-8">
+            <div class="flex items-center gap-4">
+                <div class="flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-orange-500" data-icon="local_fire_department"
+                        style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+                    <span class="text-sm font-headline font-black text-primary">12 Streaks</span>
+                </div>
+                <div class="flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-yellow-500" data-icon="military_tech"
+                        style="font-variation-settings: 'FILL' 1;">military_tech</span>
+                    <span class="text-sm font-headline font-black text-primary">4,850 XP</span>
+                </div>
+            </div>
+            <div class="flex items-center gap-4 border-l border-outline-variant/30 pl-8">
+                <button class="material-symbols-outlined text-slate-600 hover:opacity-80 transition-opacity"
+                    data-icon="notifications">notifications</button>
+                <div class="w-8 h-8 rounded-full overflow-hidden border-2 border-primary-fixed ring-2 ring-surface">
+                    <img class="w-full h-full object-cover"
+                        data-alt="close up professional portrait of a young man with a friendly smile, studio lighting, neutral background"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6lqsYpnx_9YHPafgcL6g8pspE5wpN1g6UfGvbMyjEgBtBNcBEutBZYOm_zVnr6sEcCLN_1ufC5eXTaRMJOfO06GcWaepk2PanoSIEp5OJGKL0Gys4ArN1-avIeD1GaxIgbSBB6vbaEPElez_qc9Ml9j0JFmSFOqrHvdFs49bL66t0WCfD7yh1j2j7CVTBvUz9VX06Y06oMbpuEVghx8HB4Qf8hVOF1rAdvLf7xYYb7wtfU9b5WhySyB2ascNT4ka9nVn3b2XuJYc" />
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Main Content -->
+    <main class="ml-64 mt-16 p-8 bg-surface min-h-screen">
+        <div class="max-w-6xl mx-auto space-y-8">
+            <!-- Header & Toggle Section -->
+            <div class="flex justify-between items-end">
+                <div>
+                    <h2 class="text-4xl font-headline font-extrabold tracking-tight text-on-surface">Leaderboard</h2>
+                    <p class="text-outline mt-2 max-w-md">Rise through the ranks by completing daily simulations and
+                        professional challenges.</p>
+                </div>
+                <div class="flex bg-surface-container-low p-1 rounded-full border-none">
+                    <button
+                        class="px-6 py-2 bg-white rounded-full text-sm font-bold text-primary shadow-sm">Weekly</button>
+                    <button
+                        class="px-6 py-2 text-sm font-bold text-outline hover:text-primary transition-colors">All-time</button>
+                </div>
+            </div>
+            <!-- Podium Section (The "Intelligent Void" asymmetric layout) -->
+            <div class="grid grid-cols-12 gap-6 items-end py-10">
+                <!-- 2nd Place -->
+                <div class="col-span-3 flex flex-col items-center">
+                    <div class="relative mb-4">
+                        <div
+                            class="w-24 h-24 rounded-full p-1 bg-slate-300 ring-4 ring-white shadow-xl overflow-hidden">
+                            <img class="w-full h-full object-cover"
+                                data-alt="portrait of a confident woman with short hair, natural daylight, soft bokeh background"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCg-P5vk9ax-zcgoz5Rvbrqa3EpceBW1G8t8hb7o3zFhJxe4eVN26r0CVZnBvWm0j7s3EW7MOAOloduNgUj2mmEj3nkYTL497vQpL_lnin7ZQwY-e0Usv5SLvepbJmz9uukgT-dGsyzucsMqcA8utO-NtrGeWBVA8HjoNGeC2kPzEZqQWuU0L36Ryvxj6yNlIMbzLOraAV5-_6CbTvqL97_V7vmgFguF49khyu51IJ1NmkDh7s5uH6StIIn6CzuXZD0Bohjv708Mrg" />
+                        </div>
+                        <div
+                            class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-slate-300 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shadow-md">
+                            2</div>
+                    </div>
+                    <div class="text-center">
+                        <p class="font-headline font-bold text-on-surface">Elena S.</p>
+                        <p class="text-xs font-bold text-secondary uppercase tracking-widest mt-1">12,400 XP</p>
+                    </div>
+                    <div
+                        class="w-full h-32 bg-surface-container-low rounded-t-2xl mt-6 flex items-center justify-center opacity-60">
+                        <span class="material-symbols-outlined text-4xl text-slate-400"
+                            data-icon="bar_chart">bar_chart</span>
+                    </div>
+                </div>
+                <!-- 1st Place (Hero) -->
+                <div class="col-span-6 flex flex-col items-center">
+                    <div class="relative mb-6">
+                        <div class="absolute -inset-4 bg-primary/10 rounded-full blur-2xl"></div>
+                        <div
+                            class="w-36 h-36 rounded-full p-1.5 bg-gradient-to-tr from-yellow-400 to-amber-600 ring-4 ring-white shadow-2xl relative z-10 overflow-hidden">
+                            <img class="w-full h-full object-cover"
+                                data-alt="professional headshot of a middle-aged man with glasses and a beard, office background, sharp focus"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_zLopeMU8L3TV4Ju2YanxYYKqywtWqXtQ6GuuJgbYRYBVrm_B0v5Mo66c8ZCMoWEkUxwcWp_4U7VthOCv58oLFbZx-bmJwq-Y74CW6-nVzvtFKEvx1S3Dtj7rPNZTGFKma7Ma9Ixx1lajmpcXELmOiRe7cdpLqvByi_Y-C3Y6_bKocreS7WwwDucBfGm2Gpdy9tD0kb-hH7NcPhYc3jWlpK_YNmYixcX1o8KS-kC8VgJIONReG0tawZXSTOHdh4Kleyd2kqxTq2I" />
+                        </div>
+                        <div
+                            class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-amber-500 text-white w-10 h-10 rounded-full flex items-center justify-center font-black text-lg shadow-lg z-20">
+                            1</div>
+                        <div class="absolute -top-8 left-1/2 -translate-x-1/2">
+                            <span class="material-symbols-outlined text-4xl text-amber-500" data-icon="crown"
+                                style="font-variation-settings: 'FILL' 1;">crown</span>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-2xl font-headline font-black text-on-surface">Julian Vance</h3>
+                        <div class="flex items-center justify-center gap-2 mt-2">
+                            <span
+                                class="px-3 py-1 bg-tertiary-container/10 text-tertiary text-[10px] font-black uppercase tracking-widest rounded-full">Top
+                                Performer</span>
+                            <span class="text-sm font-black text-primary">15,820 XP</span>
+                        </div>
+                    </div>
+                    <div
+                        class="w-full h-48 bg-gradient-to-b from-primary-container/20 to-surface-container-low rounded-t-[2.5rem] mt-8 flex flex-col items-center justify-end pb-8">
+                        <span class="material-symbols-outlined text-primary mb-2 text-3xl"
+                            data-icon="trending_up">trending_up</span>
+                        <p class="text-[10px] font-black uppercase text-primary/60 tracking-widest">Master Level 4</p>
+                    </div>
+                </div>
+                <!-- 3rd Place -->
+                <div class="col-span-3 flex flex-col items-center">
+                    <div class="relative mb-4">
+                        <div
+                            class="w-24 h-24 rounded-full p-1 bg-amber-800/40 ring-4 ring-white shadow-xl overflow-hidden">
+                            <img class="w-full h-full object-cover"
+                                data-alt="portrait of a man with short curly hair, bright blue sky in background, cinematic warm lighting"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAj6NYgk-M-st8TZS9JTqy1ySsyE8YgG7GHM4e3ak5BhwK7clBmn09QhjRSUAMSC0TMJ-6fNsVIF3hn_AUssrqC7aRFBuK2qffpO9M3aOKfitcLCCrBJ2ALM2Z6FW1SjaOUu9-0P5FrSW1u-y8IW_eWZ_OUTJrQulOHvCx5mqCbfZSvZwQnVpcZD0Ycf6bvPSHnaR4picv5J2DnD_0HYVFcpPVcl2lvOfWCGKJiJpxJfcBYDMSuHMmKZa0YHZdXmsTSx0oOjRNdQrU" />
+                        </div>
+                        <div
+                            class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-amber-800 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shadow-md">
+                            3</div>
+                    </div>
+                    <div class="text-center">
+                        <p class="font-headline font-bold text-on-surface">Marcus L.</p>
+                        <p class="text-xs font-bold text-secondary uppercase tracking-widest mt-1">11,950 XP</p>
+                    </div>
+                    <div
+                        class="w-full h-24 bg-surface-container-low rounded-t-2xl mt-6 flex items-center justify-center opacity-60">
+                        <span class="material-symbols-outlined text-4xl text-slate-400"
+                            data-icon="bar_chart">bar_chart</span>
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-cols-12 gap-8 mt-12">
+                <!-- Main Rankings List -->
+                <div class="col-span-8">
+                    <h4 class="text-xl font-headline font-bold mb-6 flex items-center gap-2">
+                        Global Rankings
+                        <span
+                            class="text-xs font-normal text-outline bg-surface-container px-3 py-1 rounded-full">Updated
+                            2m ago</span>
+                    </h4>
+                    <div class="bg-surface-container-low rounded-xl overflow-hidden">
+                        <div class="divide-y divide-surface-variant/30">
+                            <!-- User Item -->
+                            <div class="flex items-center gap-4 p-5 bg-white border-l-4 border-primary shadow-sm">
+                                <span class="w-8 text-center font-headline font-black text-primary">14</span>
+                                <div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container">
+                                    <img class="w-full h-full object-cover" data-alt="avatar of the current user"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDC8MJw5sQY4A5UW87O_r_e5QN5tJPZTqoPGB862kP2oU6DtbFtdgn1wU5OV-Nx2Jlm8FFYjKWh3Ky63Cst98XO2AcbiuzBO4zvRL3IEjWjqY-7SBMyR4-j7Ub5oHyHOgyPFXWreYx7FtBEfcEGcGgEdyMeLQ2WSygb8WKCOy98lKgezcbcMkU_0fyzOGKPIQhWr9z4GATAU2VyqivoCE_49GYYgCq8L4eeyalIcZzpVTGZL8ug_cVf_WXrK0nLW7_D9SHwfhVtSnQ" />
+                                </div>
+                                <div class="flex-1">
+                                    <p class="font-bold text-on-surface flex items-center gap-2">
+                                        You (David)
+                                        <span
+                                            class="text-[10px] bg-primary text-white px-2 py-0.5 rounded-full uppercase tracking-tighter">Current
+                                            Rank</span>
+                                    </p>
+                                    <p class="text-xs text-outline">Software Engineering Path</p>
+                                </div>
+                                <div class="flex items-center gap-6 pr-4">
+                                    <div class="text-right">
+                                        <p class="text-sm font-black text-primary">4,850 XP</p>
+                                        <p class="text-[10px] text-outline font-bold uppercase">+120 today</p>
+                                    </div>
+                                    <div class="flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-orange-500 text-sm"
+                                            data-icon="local_fire_department"
+                                            style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+                                        <span class="text-sm font-bold">12</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- List Item 4 -->
+                            <div class="flex items-center gap-4 p-5 hover:bg-white/50 transition-colors">
+                                <span class="w-8 text-center font-headline font-bold text-outline">4</span>
+                                <div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container">
+                                    <img class="w-full h-full object-cover"
+                                        data-alt="portrait of a young woman with long dark hair, soft natural lighting"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZ966ZJ6lwEyqczBV9Mv81Rl0vqOQbEBImoVNn2O4rcd_aV73lZ70pDux7QSP79bXBBfLRqrUFbxCAeCMTyinqxcFrs0Y0xIdCyeY-eUhHYeXv8I5SdXDL34DWfiI4Se8phWokleLuzVB52FIJmFNPuQLo29CQ5GUs0hkak8SpL5x5omo3pRpXZOdQkB-RLsfSv8N5zAiL0jLS1yl6JXe_w8XtAh6_W25CekChHrHTlgWW7hzfh2-Rou4O7HNEgVpPAunog12qPQs" />
+                                </div>
+                                <div class="flex-1">
+                                    <p class="font-bold text-on-surface">Sarah K.</p>
+                                    <p class="text-xs text-outline">Project Management</p>
+                                </div>
+                                <div class="flex items-center gap-6 pr-4">
+                                    <div class="text-right">
+                                        <p class="text-sm font-black text-on-surface">10,200 XP</p>
+                                    </div>
+                                    <div class="flex items-center gap-1 opacity-60">
+                                        <span class="material-symbols-outlined text-slate-400 text-sm"
+                                            data-icon="local_fire_department">local_fire_department</span>
+                                        <span class="text-sm font-bold text-slate-500">45</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- List Item 5 -->
+                            <div class="flex items-center gap-4 p-5 hover:bg-white/50 transition-colors">
+                                <span class="w-8 text-center font-headline font-bold text-outline">5</span>
+                                <div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container">
+                                    <img class="w-full h-full object-cover"
+                                        data-alt="man sitting at cafe with coffee, looking thoughtfully at camera"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgfkMz_MZ3NxbF3sZD0h-zRY3fM8DIGHStjtm6qs4WeFleK3GVQSxJGohEDBI8LdkxN88k-_A4VFQxMhlY8XyHy33GIKSqkbf8sR2Qw7ob05U5fSsq8qka_jLwwkmR-Pq8D0SrF3EV4gljUsaKVmHo64ghYc5UsOoEQQbcj6yb0-T24wayb47akLiN9smQDxnSarxCJVGU5SX_Ipi30wHcCCjYxyf_3oiy6D_gJLu8DzuowF3YPfESix0tvMOVD1unswXalGSgyZw" />
+                                </div>
+                                <div class="flex-1">
+                                    <p class="font-bold text-on-surface">Tom Wilson</p>
+                                    <p class="text-xs text-outline">Data Science</p>
+                                </div>
+                                <div class="flex items-center gap-6 pr-4">
+                                    <div class="text-right">
+                                        <p class="text-sm font-black text-on-surface">9,840 XP</p>
+                                    </div>
+                                    <div class="flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-orange-500 text-sm"
+                                            data-icon="local_fire_department"
+                                            style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+                                        <span class="text-sm font-bold">102</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- List Item 6 -->
+                            <div class="flex items-center gap-4 p-5 hover:bg-white/50 transition-colors">
+                                <span class="w-8 text-center font-headline font-bold text-outline">6</span>
+                                <div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container">
+                                    <img class="w-full h-full object-cover"
+                                        data-alt="portrait of a woman in her late 20s with glasses, professional aesthetic"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3TC1siwp-0Y5AfAaKcHQ1Ip4a0wlYS3WJRb_L9mIV7pokKXPuwtoSWU2fFlXn3yTaw5JWKfLCSeNQv4nZ8tK21R4h1vJygsByaZV5vTIM0n_-uucGbYEbnnCbYhNo6WObw-wDtX6MZiOqVe8KlEUSgLbFSkg-8r-12Pz_JCRrqdoDvWFnwlP8e8m_wpaLe9x1CwW8kh8E4LjyOVE2gY9hd4CEyEJRRyRMCD3MkgiLKwDM79rW8HIHTUzN9xu_RAi6l2JOFzCI6lE" />
+                                </div>
+                                <div class="flex-1">
+                                    <p class="font-bold text-on-surface">Li Wei</p>
+                                    <p class="text-xs text-outline">UX Design</p>
+                                </div>
+                                <div class="flex items-center gap-6 pr-4">
+                                    <div class="text-right">
+                                        <p class="text-sm font-black text-on-surface">9,110 XP</p>
+                                    </div>
+                                    <div class="flex items-center gap-1 opacity-60">
+                                        <span class="material-symbols-outlined text-slate-400 text-sm"
+                                            data-icon="local_fire_department">local_fire_department</span>
+                                        <span class="text-sm font-bold text-slate-500">8</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button
+                            class="w-full py-4 bg-surface-container text-primary font-bold text-sm hover:bg-surface-variant transition-colors">
+                            Load More Rankings
+                        </button>
+                    </div>
+                </div>
+                <!-- Sidebar: Achievements & Stats -->
+                <div class="col-span-4 space-y-8">
+                    <!-- Achievements Section -->
+                    <div class="bg-surface-container-lowest p-6 rounded-xl border-none shadow-sm space-y-6">
+                        <div class="flex justify-between items-center">
+                            <h5 class="font-headline font-bold text-on-surface">Recent Badges</h5>
+                            <a class="text-xs font-bold text-primary hover:underline" href="#">View All</a>
+                        </div>
+                        <div class="grid grid-cols-3 gap-4">
+                            <div class="group cursor-help relative">
+                                <div
+                                    class="aspect-square bg-tertiary-fixed/30 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform">
+                                    <span class="material-symbols-outlined text-tertiary text-3xl" data-icon="bolt"
+                                        style="font-variation-settings: 'FILL' 1;">bolt</span>
+                                </div>
+                                <div class="mt-2 text-center">
+                                    <p class="text-[10px] font-bold leading-tight">Fast Learner</p>
+                                </div>
+                            </div>
+                            <div class="group cursor-help relative">
+                                <div
+                                    class="aspect-square bg-primary-fixed/30 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform">
+                                    <span class="material-symbols-outlined text-primary text-3xl"
+                                        data-icon="auto_awesome"
+                                        style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+                                </div>
+                                <div class="mt-2 text-center">
+                                    <p class="text-[10px] font-bold leading-tight">Logic Guru</p>
+                                </div>
+                            </div>
+                            <div class="group cursor-help relative">
+                                <div
+                                    class="aspect-square bg-secondary-fixed/30 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform">
+                                    <span class="material-symbols-outlined text-secondary text-3xl" data-icon="groups"
+                                        style="font-variation-settings: 'FILL' 1;">groups</span>
+                                </div>
+                                <div class="mt-2 text-center">
+                                    <p class="text-[10px] font-bold leading-tight">Team Player</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pt-4 border-t border-surface-variant/30">
+                            <div class="flex justify-between text-xs font-bold mb-2">
+                                <span class="text-outline">Next Milestone: Expert 1</span>
+                                <span class="text-primary">85%</span>
+                            </div>
+                            <div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+                                <div class="h-full w-[85%] bg-primary rounded-full"></div>
+                            </div>
+                            <p class="text-[10px] text-outline mt-2 italic">Earn 150 more XP to unlock the "Master
+                                Researcher" badge.</p>
+                        </div>
+                    </div>
+                    <!-- Personal Stats Bento -->
+                    <div class="space-y-4">
+                        <div class="bg-surface-container-lowest p-5 rounded-xl flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-lg bg-orange-100 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-orange-600"
+                                    data-icon="history">history</span>
+                            </div>
+                            <div>
+                                <p class="text-xs text-outline font-medium">Weekly Consistency</p>
+                                <p class="text-lg font-headline font-black text-on-surface">94%</p>
+                            </div>
+                        </div>
+                        <div class="bg-surface-container-lowest p-5 rounded-xl flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-lg bg-indigo-100 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-indigo-600"
+                                    data-icon="emoji_events">emoji_events</span>
+                            </div>
+                            <div>
+                                <p class="text-xs text-outline font-medium">Podium Finishes</p>
+                                <p class="text-lg font-headline font-black text-on-surface">3 Times</p>
+                            </div>
+                        </div>
+                        <div class="bg-gradient-to-br from-secondary to-secondary-container p-6 rounded-xl text-white">
+                            <p class="text-xs opacity-80 uppercase font-black tracking-widest mb-1">Career Boost Active
+                            </p>
+                            <h6 class="text-xl font-headline font-extrabold mb-4">2x XP Multiplier</h6>
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-sm" data-icon="timer">timer</span>
+                                <span class="text-sm font-bold">Ends in 04:22:15</span>
+                            </div>
+                            <button
+                                class="w-full mt-4 bg-white/20 hover:bg-white/30 backdrop-blur-md border border-white/30 py-2 rounded-lg text-sm font-bold transition-all">
+                                Extend with 500 XP
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- FAB Suppression Logic: FAB is contextual to the action. On leaderboard, it's about checking progress or rules. -->
+    <button
+        class="fixed bottom-8 right-8 w-14 h-14 rounded-full bg-primary text-on-primary shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-transform z-50 group">
+        <span class="material-symbols-outlined" data-icon="help_center">help_center</span>
+        <span
+            class="absolute right-full mr-4 bg-on-surface text-surface text-[10px] font-bold px-3 py-1.5 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none uppercase tracking-widest">How
+            to Rank Up</span>
+    </button>
+</body>
+
+</html>
